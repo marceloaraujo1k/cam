@@ -86,6 +86,7 @@ $form["saldoDevedor"]=null;
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Produção Médica</h1>
+				
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -378,15 +379,9 @@ $form["saldoDevedor"]=null;
 											</span>
 										  </div>
 								</div>  
-									<!--<div class="form-group col-lg-2"> 
-										<label class="control-label">Data Prev.Pagto</label>
-											<div class='input-group date' id='datetimepicker5'>
-											 <input type='text' class="form-control" name="dataPrevisaoPagamento" id="dataPrevisaoPagamento"  value="null"/>
-											<span class="input-group-addon">
-											<span class="glyphicon glyphicon-calendar"></span>
-											</span>
-										  </div>
-								</div> --> 
+
+								<input type="hidden" name="dataPrevisaoPagamento" id="dataPrevisaoPagamento">
+											
 								<div class="form-group col-lg-2"> 
 										<label class="control-label">Data Repasse</label>
 											<div class='input-group date' id='datetimepicker6'>
@@ -613,7 +608,7 @@ $form["saldoDevedor"]=null;
 									</div>	
 									<div class="form-group col-md-6">
 										  <label for="filtroData">Filtrar por</label>
-											<select id="filtroData" name="filtroData" class="form-control"> 
+											<select id="filtroData0" name="filtroData" class="form-control"> 
 												<option value="0">Data de Realização</option>
 												<option value="1">Data de Cobrança</option>
 												<option value="2">Data de Pagamento</option>
@@ -673,7 +668,7 @@ $form["saldoDevedor"]=null;
 								<div class="row">
 									<div class="form-group col-md-6">
 									  <label for="tipoRelatorio">Tipo</label>
-									  <select id="tipoRelatorio" name="tipoRelatorio" class="form-control"> 
+									  <select id="tipoRelatorio1" name="tipoRelatorio" class="form-control"> 
 											<option value="0">Produção Médica</option>
 											<option value="1">Plano de Saúde</option>
 											<option value="2">SUS</option>
@@ -685,7 +680,7 @@ $form["saldoDevedor"]=null;
 									</div>
 									<div class="form-group col-md-6">
 										<label for="medico">Médico</label>
-											<select id="medico_report" name="idmedico" class="form-control">
+											<select id="medico_report1" name="idmedico" class="form-control">
 											<option value=""></option>
 											<?php
 											for($i=0; $i<count($medicos); $i++)
@@ -711,7 +706,7 @@ $form["saldoDevedor"]=null;
 								<div class="row">
 									<div class="form-group col-md-6">
 									  <label for="inputStatusPagamento">Status</label>
-										<select id="statusPagamento" name="statusPagamento" class="form-control" required> 
+										<select id="statusPagamento1" name="statusPagamento" class="form-control" required> 
 												<option>Faturar</option>
 												<option>Pago</option>
 												<option>Glosada</option>
@@ -720,7 +715,7 @@ $form["saldoDevedor"]=null;
 									</div>	
 									<div class="form-group col-md-6">
 										  <label for="filtroData">Filtrar por</label>
-											<select id="filtroData" name="filtroData" class="form-control"> 
+											<select id="filtroData1" name="filtroData" class="form-control"> 
 												<option value="0">Data de Realização</option>
 												<option value="1">Data de Cobrança</option>
 												<option value="2">Data de Pagamento</option>
@@ -735,7 +730,7 @@ $form["saldoDevedor"]=null;
 										<div class="form-group col-md-6"> 
 											<br>
 											<label class="control-label">Data Inicial</label>
-											<div class='input-group date' id="start_date_report">
+											<div class='input-group date' id="start_date_report1">
 											 <input type='text' name="start_date_report" class="form-control"/>
 											 <span class="input-group-addon">
 											 <span class="glyphicon glyphicon-calendar"></span>
@@ -745,7 +740,7 @@ $form["saldoDevedor"]=null;
 										  <div class="form-group col-md-6"> 
 											<br>
 											<label class="control-label">Data Final</label>
-											<div class='input-group date' id="end_date_report">
+											<div class='input-group date' id="end_date_report1">
 											 <input type='text' name="end_date_report" class="form-control"/>
 											 <span class="input-group-addon">
 											 <span class="glyphicon glyphicon-calendar"></span>
@@ -762,7 +757,7 @@ $form["saldoDevedor"]=null;
 								</div>
 									<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-										<button  type="button" id="btnVisualizar" class="btn btn-primary" title="Relatório" onclick="email()">Gerar </button>
+										<button  type="button" id="btnEnviarEmail" class="btn btn-primary" title="Relatório" onclick="email()">Gerar </button>
 								</form>
 							</div>
 						</div>
@@ -835,14 +830,14 @@ $form["saldoDevedor"]=null;
 </script>
 	
 <script>	
+// adiciona varios procedimentos
 		$('#adicionarProcedimentos').on( 'click', function () {
-		
+
 		var t = $('#tblprocedimentos').DataTable();
 		var valor = $("#valor").maskMoney('unmasked')[0];
 		var valorRecebido = $("#valorRecebido").maskMoney('unmasked')[0];
 		var glosa = $("#glosa").maskMoney('unmasked')[0];
-
-        
+    
         t.row.add([
 			document.getElementById('searchCodProcedimento').value,
             document.getElementById('searchProcedimento').value,
@@ -860,10 +855,6 @@ $form["saldoDevedor"]=null;
 				$('#totalProcedimentos').html(parseFloat(totalProcedimentos).toFixed(2));
 				$('#totalRecebido').html(parseFloat(totalRecebido).toFixed(2));
 			});
-			//  $('#adicionarProcedimentos').click();
-	//});	
-	//	document.getElementById('searchCodProcedimento').value=null;
-	//	document.getElementById('valor').value=null;
 </script>	
 
 <script>
@@ -902,11 +893,12 @@ $form["saldoDevedor"]=null;
 			
 					var idmedico = $("#medico_report").find('option:selected').val();
 
+					var filtroDataTipo = $("#filtroData0").find('option:selected').val();
 					
 				   var id = document.getElementById("tipoRelatorio").value;
 					switch (id) {
 						case '0':
-							window.open("relatorioProducaoMedica.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date);
+							window.open("relatorioProducaoMedica.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo);
 							break;
 						
 						case '1':
@@ -931,16 +923,10 @@ $form["saldoDevedor"]=null;
 				method:"POST",  
 				data: {id : rowId, dataOperacao : $("#dataOperacao").val(), formaPagamento: $("#formaPagamentoOp").val(), statusOperacao : $("#statusOperacao").find('option:selected').text(), notaFiscal : $("#notaFiscalOp").val()},
 				beforeSend:function(){  
-					//if ($("#idproducao") != null) {
-					// $("#inserirConta").val('atualizaConta');
-					//alert (	$("#inserirConta").val());
-					//}
-					},  
+				},  
 				success:function(data){  
 				$('#formOperacoesLote')[0].reset(); 
-				$('#listar-producao').DataTable().ajax.reload();
-			
-				 //$('#resultado').html(data); 
+					$('#listar-producao').DataTable().ajax.reload();
 				}  
 			   });  
 				});
@@ -951,21 +937,21 @@ $form["saldoDevedor"]=null;
 
 <script>
 	function email() {
-		$(document).on('click','#btnVisualizar',function(e){
+		$(document).on('click','#btnEnviarEmail',function(e){
 			e.preventDefault();
-					var start = $('#start_date_report').data('DateTimePicker').date().toString();
+					var start = $('#start_date_report1').data('DateTimePicker').date().toString();
 					var date = new Date(start);
 					var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
 				
-					var end = $('#end_date_report').data('DateTimePicker').date().toString();
+					var end = $('#end_date_report1').data('DateTimePicker').date().toString();
 					var date = new Date(end);
 					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
 			
-					var idmedico = $("#medico_report").find('option:selected').val();
+					var idmedico = $("#medico_report1").find('option:selected').val();
 
 					var pdff =$("#pdff").val();
 					
-				   var id = document.getElementById("tipoRelatorio").value;
+				   var id = document.getElementById("tipoRelatorio1").value;
 					switch (id) {
 						case '0':
 							window.open("envioEmailProducao.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&pdff="+pdff);
@@ -1014,22 +1000,32 @@ $form["saldoDevedor"]=null;
 			$.ajax({  
 				url:"proc_producao.php",  
 				method:"POST",  
+			 	dataType: "json",
 				data: {submit : $("#inserirConta").val(), idproducao: $("#idproducao").val(), idempresa : $("#idempresa").val(),  dataRealizacao : $("#dataRealizacao").val(), idpaciente: $("#idpaciente").val(), paciente: $("#searchPaciente").val(), 
 					  carteiraPaciente: $("#searchNoCarteira").val(), idmedico: $("#idmedico").val(), medico: $("#searchMedico").val(), idconvenio: $("#convenio").find('option:selected').val(), convenio : $('#convenio').find('option:selected').text(), hospital : $('#hospital').find('option:selected').text(),
 					  codigoProcedimento:codigoProcedimento, descricaoProcedimento: descricao, quantidade : quantidade,  adicional : adicional, redutor : redutor,
 					  valorProcedimento : valorProcedimento, valorRecebido :valorRecebido, glosa : glosa,  saldo : $('#saldo').maskMoney('unmasked')[0],
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
 					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: observacao},
-				beforeSend:function(){  
-					},  
-				success:function(data){  
-					}  
+				beforeSend:function(){
+				},  
+				success:function(data){
+			// Verificar como inserir o IDPACIENTE na 2a. requisição da tabela de procedimentos
+				//	alert(data[0]["idp"]);
+			//		var idp = data[0]["idp"];
+					//alert(idp);
+				//	paciente = idp;
+			
+                	},
+				error: function() {
+				    alert('Ocorreu um erro'); 
+			   }	    
 			   });
 
 				});		
-				$('#formProducao')[0].reset();  
-				 window.parent.location.reload();
-				 $('#listar-producao').DataTable().ajax.reload();					
+			//	 $('#formProducao')[0].reset();  
+		 	//	 window.parent.location.reload();
+			// 	 $('#listar-producao').DataTable().ajax.reload();					
 				});
 			});
 </script>
@@ -1048,16 +1044,11 @@ $form["saldoDevedor"]=null;
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
 					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: $("#observacao").val()  },
 				beforeSend:function(){  
-					//if ($("#idproducao") != null) {
-					// $("#inserirConta").val('atualizaConta');
-					//alert (	$("#inserirConta").val());
-					//}
-					},  
+				},  
 				success:function(data){  
-				 $('#formProducao')[0].reset();  
-				 window.parent.location.reload();
-				 $('#listar-producao').DataTable().ajax.reload();
-				 //$('#resultado').html(data); 
+					$('#formProducao')[0].reset();  
+					window.parent.location.reload();
+					$('#listar-producao').DataTable().ajax.reload();
 				}  
 			   });  
 				}); 
@@ -1327,7 +1318,7 @@ function getSaldo(val) {
                     data: {
                         searchNoCarteira: request.term
                     },
-                    success: function( data ) {
+				    success: function( data ) {
                         response( data );
 					 }
 					});
@@ -1514,6 +1505,24 @@ function getSaldo(val) {
   <script>
 		$( document ).ready(function() {
 			$('#end_date_report').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY HH:mm'
+			});
+		});
+ </script>
+
+<script>
+		$( document ).ready(function() {
+			$('#start_date_report1').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY HH:mm'
+			});
+		});
+ </script>
+ 
+  <script>
+		$( document ).ready(function() {
+			$('#end_date_report1').datetimepicker({
 			defaultDate: new Date(),
 			format:'DD/MM/YYYY HH:mm'
 			});

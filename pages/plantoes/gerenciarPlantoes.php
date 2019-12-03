@@ -528,8 +528,8 @@ if(isset($_GET["edit"]))
 				dataFim : $("#dataFim").val(),
 				cor : $("#cor").val(),
 				statusPagamento: $("#statusPagamento").find('option:selected').text(),
-				dataPagamento : $("#dataPagamento").val(),
-				dataRepasse : $("#dataRepasse").val()									
+				dataPagamentoPlantao : $("#dataPagamento").val(),
+				dataRepassePlantao : $("#dataRepasse").val()									
 				},
 				beforeSend:function(){ 
 					},  

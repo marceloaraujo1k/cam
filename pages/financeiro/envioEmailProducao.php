@@ -23,7 +23,7 @@ echo $email;
 //$idmedico = $_GET["idmedico"];
 
 $q = "SELECT email FROM medicos where idmedico =  ".$_GET["id"];
-var_dump($q);
+//var_dump($q);
 
 $result = mysqli_query($mysql_conn, $q);
 $row = mysqli_num_rows($result);
@@ -32,7 +32,7 @@ $row = mysqli_num_rows($result);
 while($row = mysqli_fetch_assoc($result)){
 	$email2 = $row['email'];
 	$_SESSION['email2'] = $email2;
-	var_dump($email2);
+	//var_dump($email2);
 }
 
 
@@ -358,12 +358,12 @@ while ($row = mysqli_fetch_assoc($result3))
 	
 	$_SESSION['pdff'] = $pdff;
 
-	$pdf->Output('F','C:\xampp\htdocs\cam\Email-PHPMailer-master\assets\img/'.$_SESSION['pdff'].'.pdf');		
+	$pdf->Output('F','..\email\assets\img/'.$_SESSION['pdff'].'.pdf');		
 	//$pdf->Output();
 	//echo "<script>
 	//		alert('".$_GET["id"]."')</script>";
 	
-	echo "<script>location.href='../../Email-PHPMailer-master/enviar_email.php';alert('');</script>";
+	echo "<script>location.href='../email/enviar_email.php';alert('');</script>";
 	
 	
 	

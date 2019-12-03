@@ -17,7 +17,7 @@ $start_date = $_GET["start_date"];
 $end_date = $_GET["end_date"];
 
 
-$query =  "SELECT * FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND dataRealizacao BETWEEN '".$start_date."' AND '".$end_date. "' order by convenio, dataRealizacao"; 
+$query =  "SELECT * FROM plantoes inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND dataRealizacao BETWEEN '".$start_date."' AND '".$end_date. "' order by convenio, dataRealizacao"; 
 
 
 $result = mysqli_query($mysql_conn, $query);
@@ -42,13 +42,11 @@ $pdf->AddPage("L");
     // Move to the right
    $pdf->Cell(70);
     // Title
-	$pdf->Cell(120,10,utf8_decode('Detalhamento Produção Médica'),0,0,'C');
+	$pdf->Cell(120,10,utf8_decode('ESCALA DE PLANTÕES'),0,0,'C');
 
     // Line break
     $pdf->Ln(10);
-	
-		
-
+			
 $pdf->SetFont('arial','',10);
 $pdf->Cell(0,5,''.utf8_decode("Médico: ").' '.utf8_decode($row["medico"]).'',0,1,'L');
 $pdf->Cell(0,5,utf8_decode("Período:").' '.date_format(date_create($start_date), 'd/m/y').utf8_decode(' à ').date_format(date_create($end_date), 'd/m/y') ,0,1,'L');
@@ -64,27 +62,9 @@ $pdf->SetFillColor(8,172,192);
 			
 			$result1 = mysqli_query($mysql_conn, $query1);
 		
-			//Consulta a tabela de plantões medicos feitos SUBSTITUICAO de acordo com o PERIODO DO REPASSE REALIZADO
-			$query6 = "SELECT c.idhospital, (SELECT hospital FROM hospital subh where subh.idhospital = c.idhospital) as hospital, p.dataRepassePlantao, DATE_FORMAT(p.dataRepassePlantao,'%b') as mes, DATE_FORMAT(p.dataRepassePlantao,'%Y-%m'),
-			(sum(p.horasSubstituicaoPlantao)/12) as totalHorasSubstituicaoPlantao, sum(p.valorSubstituicaoPlantaoBruto) as totalSubstituicaoPlantaoBruto, sum(p.valorSubstituicaoPlantaoLiquido) as totalSubstituicaoPlantaoLiquido, 
-			p.idplantao, p.dataInicio, p.dataFim, p.idmedico, p.idConfiguracaoPlantao, 
-			p.idsubstituto, p.horasSubstituicaoPlantao, p.statusPagamento, c.idConfiguracaoPlantao,  p.valorSubstituicaoPlantaoBruto, p.valorSubstituicaoPlantaoLiquido,  m.idmedico, m.nome, (SELECT nome FROM medicos subm where subm.idmedico = p.idsubstituto) as substituto FROM  plantoes AS p, 
-			configuracaoplantoes AS c, medicos AS m WHERE p.idmedico = m.idmedico and p.idConfiguracaoPlantao = c.idConfiguracaoPlantao and p.idsubstituto = '".$_GET["id"]."' and p.dataRepassePlantao BETWEEN '".$start_date."' AND '".$end_date. "' group by idhospital, DATE_FORMAT(p.dataRepassePlantao,'%Y-%m')";
-			
-			$result6 = mysqli_query($mysql_conn, $query6);
-		
-				
+	
 
-
-			$pdf->Cell(100,5,''.utf8_decode("RESUMO DOS PLANTÕES"),1,0,"C",true);
-			$pdf->Cell(30,5,''.utf8_decode("MÊS"),1,0,"C",true); 
-			$pdf->Cell(30,5,''.utf8_decode("QTD."),1,0,"C",true);
-			$pdf->Cell(30,5,''.utf8_decode("R$ BRUTO"),1,0,"C",true);
-			$pdf->Cell(30,5,''.utf8_decode("% IMP."),1,0,"C",true);
-			$pdf->Cell(30,5,''.utf8_decode("R$ IMPOSTOS"),1,0,"C",true);
-			$pdf->Cell(30,5,''.utf8_decode("R$ LÍQUIDO"),1,1,"C",true);
-		
-			setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+		setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 			date_default_timezone_set('America/Sao_Paulo');
 
 		while ($row1 = mysqli_fetch_assoc($result1)) {
@@ -229,15 +209,7 @@ $pdf->Cell(280,5,'RESUMO FINANCEIRO',1,1,'C',true);
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
 		$pdf->Cell(30,5,'R$'.'',"BR",1,"L");
 		
-	
-		/*		$pdf->Cell(50,10,utf8_decode('Valor Líquido: R$ '). number_format($totalBruto-($totalBruto*$totalImpostos),2,",",".").'',"R",1,"L");
-		$pdf->Cell(30,10,'PIS R$: '. number_format($totalBruto*$pis,2,",",".").'',"LB",0,"L");
-		$pdf->Cell(36,10,'COFINS R$: '. number_format($totalBruto*$cofins,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'CSLL R$: '. number_format($totalBruto*$csll,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'IRPJ R$: '. number_format($totalBruto*$irpj,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'ISS R$: '. number_format($totalBruto*$iss,2,",",".").'',"B",0,"L");
-		$pdf->Cell(42,10,'Tx./Encargos R$: '. number_format($totalBruto*$outros_encargos,2,",",".").'',"BR",1,"L");
-			*/
+
 // Page footer
 function Footer()
 {

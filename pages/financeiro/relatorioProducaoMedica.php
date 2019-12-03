@@ -12,12 +12,34 @@ ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 
-
+//Periodo 
 $start_date = $_GET["start_date"];
 $end_date = $_GET["end_date"];
+// Essa variavel define o tipo de filtro de data  "0"=Data de Realização  | "1=Data de Cobrança  | "2"=Data de Pagamento | "3"=Data de Repasse
+$filtroDataTipo = $_GET["filtroDataTipo"];
+
+$dataOpcao = null;
+
+switch ($filtroDataTipo) {
+	case '0':
+		$dataOpcao = "dataRealizacao";
+		break;
+	
+	case '1':
+		$dataOpcao = "dataCobranca";
+		break;
+
+	case '2':
+		$dataOpcao = "dataPagamento";
+			break;
+	
+	case '3':
+		$dataOpcao = "dataRepasse";
+		break;	
+}
 
 
-$query =  "SELECT * FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND dataRealizacao BETWEEN '".$start_date."' AND '".$end_date. "' order by convenio, dataRealizacao"; 
+$query =  "SELECT * FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND ".$dataOpcao."   BETWEEN '".$start_date."' AND '".$end_date. "' order by convenio, ".$dataOpcao.""; 
 
 
 $result = mysqli_query($mysql_conn, $query);
@@ -123,7 +145,7 @@ $pdf->SetFillColor(8,172,192);
 $query2 =  "SELECT producao.idconvenio, producao.medico,  sum(producao.valorProcedimento) as total, 
 	sum(producao.valorRecebido), convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
 	on producao.idconvenio = convenio.idconvenio  where  producao.idmedico='".$_GET["id"]."' AND
-	producao.dataRealizacao BETWEEN '".$start_date."' AND '".$end_date. "' group by convenio.classificacao;"; 
+	producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date. "' group by convenio.classificacao;"; 
 			
 $result2 = mysqli_query($mysql_conn, $query2);
 $totalPlanoSaude = 0;
