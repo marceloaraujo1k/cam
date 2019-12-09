@@ -1024,9 +1024,9 @@ $form["saldoDevedor"]=null;
 			   });
 
 				});		
-			//	 $('#formProducao')[0].reset();  
-		 	//	 window.parent.location.reload();
-			// 	 $('#listar-producao').DataTable().ajax.reload();					
+				 $('#formProducao')[0].reset();  
+		 		 window.parent.location.reload();
+				 $('#listar-producao').DataTable().ajax.reload();					
 				});
 			});
 </script>
@@ -1305,6 +1305,17 @@ function getSaldo(val) {
 		 
 		});
 </script>
+
+
+<script>
+$("#searchNoCarteira").keyup(function() {
+if (!this.value) {
+	alert('The box is empty');
+	$("#idpaciente").val("");
+}
+});
+</script>
+
 
 <script>
 // search NO CARTEIRA PACIENTES

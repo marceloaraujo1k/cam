@@ -142,8 +142,8 @@ $pdf->SetFillColor(8,172,192);
 
 			
 			
-$query2 =  "SELECT producao.idconvenio, producao.medico,  sum(producao.valorProcedimento) as total, 
-	sum(producao.valorRecebido), convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
+$query2 =  "SELECT producao.idconvenio, producao.medico,  sum(producao.valorProcedimento) , 
+	sum(producao.valorRecebido) as total, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
 	on producao.idconvenio = convenio.idconvenio  where  producao.idmedico='".$_GET["id"]."' AND
 	producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date. "' group by convenio.classificacao;"; 
 			
@@ -172,7 +172,7 @@ $totalImpostosParticular = 0;
 			$totalImpostosSUS = ($row2["pis"]+$row2["cofins"]+$row2["csll"]+$row2["irpj"]+$row2["iss"]+$row2["outros_encargos"]);
 			break;
 		
-			case 'Eletivas':
+			case 'ELETIVAS':
 			$totalEletivas =$row2["total"];
 			$totalImpostosEletivas = ($row2["pis"]+$row2["cofins"]+$row2["csll"]+$row2["irpj"]+$row2["iss"]+$row2["outros_encargos"]);
 			break;
@@ -251,15 +251,6 @@ $pdf->Cell(280,5,'RESUMO FINANCEIRO',1,1,'C',true);
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
 		$pdf->Cell(30,5,'R$'.'',"BR",1,"L");
 		
-	
-		/*		$pdf->Cell(50,10,utf8_decode('Valor Líquido: R$ '). number_format($totalBruto-($totalBruto*$totalImpostos),2,",",".").'',"R",1,"L");
-		$pdf->Cell(30,10,'PIS R$: '. number_format($totalBruto*$pis,2,",",".").'',"LB",0,"L");
-		$pdf->Cell(36,10,'COFINS R$: '. number_format($totalBruto*$cofins,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'CSLL R$: '. number_format($totalBruto*$csll,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'IRPJ R$: '. number_format($totalBruto*$irpj,2,",",".").'',"B",0,"L");
-		$pdf->Cell(30,10,'ISS R$: '. number_format($totalBruto*$iss,2,",",".").'',"B",0,"L");
-		$pdf->Cell(42,10,'Tx./Encargos R$: '. number_format($totalBruto*$outros_encargos,2,",",".").'',"BR",1,"L");
-			*/
 // Page footer
 function Footer()
 {

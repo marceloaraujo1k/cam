@@ -1,0 +1,1420 @@
+<?php
+
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>
+
+</title>
+<style type = 'text/css'>
+<!--
+.flxmain_table {table-layout:fixed; border-collapse:collapse;border-spacing: 0}
+table.flxmain_table td {overflow:hidden;padding: 0 1.5pt}
+.flxmain_bordered_table {table-layout:fixed; border-collapse:collapse;border-spacing: 0;border:1px solid silver}
+.flxmain_bordered_table td {overflow:hidden;padding: 0 1.5pt;border:1px solid silver}
+ .imagediv {position:absolute;border:none}
+ table td.imagecell {vertical-align:top;text-align:left;padding:0}
+table td.flxHeading {background-color:#E7E7E7;text-align:center;border: 1px solid black;font-family:helvetica,arial,sans-serif;font-size:10pt}
+ .flx0 {
+  background-color:white;
+  color:black;
+  font-size:11pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Calibri;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx1 {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx2 {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx3 {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx4 {
+  background-color:yellow;
+  color:black;
+  font-size:12pt;
+  font-weight:bold;
+  font-style:italic;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:middle;
+  white-space:nowrap;
+ }
+
+ .flx5 {
+  background-color:yellow;
+  color:black;
+  font-size:11pt;
+  font-weight:bold;
+  font-style:italic;
+  font-family:Calibri;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx6 {
+  background-color:white;
+  color:black;
+  font-size:12pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+ }
+
+ .flx7 {
+  background-color:yellow;
+  color:black;
+  font-size:12pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+ }
+
+ .flx8 {
+  background-color:white;
+  color:black;
+  font-size:12pt;
+  font-weight:bold;
+  font-style:italic;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx9 {
+  background-color:white;
+  color:black;
+  font-size:14pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx10 {
+  background-color:white;
+  color:black;
+  font-size:14pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx11 {
+  background-color:white;
+  color:black;
+  font-size:14pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx12 {
+  background-color:white;
+  color:black;
+  font-size:14pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx13 {
+  background-color:yellow;
+  color:black;
+  font-size:8pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:middle;
+  white-space:normal;
+ }
+
+ .flx14 {
+  background-color:#c9c9c9;
+  color:black;
+  font-size:8pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:middle;
+  white-space:normal;
+ }
+
+ .flx15 {
+  background-color:white;
+  color:black;
+  font-size:7pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:middle;
+  white-space:normal;
+ }
+
+ .flx16 {
+  background-color:white;
+  color:black;
+  font-size:9pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx17 {
+  background-color:white;
+  color:black;
+  font-size:9pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx18 {
+  background-color:white;
+  color:black;
+  font-size:7pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx19 {
+  background-color:white;
+  color:black;
+  font-size:6pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:center;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx20 {
+  background-color:white;
+  color:black;
+  font-size:7pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx21 {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  font-weight:normal;
+  font-style:normal;
+  font-family:Arial;
+  text-align:right;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx22 {
+  background-color:white;
+  color:black;
+  font-size:7pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx23 {
+  background-color:white;
+  color:black;
+  font-size:10pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx24 {
+  background-color:white;
+  color:black;
+  font-size:8pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:bottom;
+  white-space:nowrap;
+ }
+
+ .flx25 {
+  background-color:white;
+  color:black;
+  font-size:8pt;
+  font-weight:bold;
+  font-style:normal;
+  font-family:Arial;
+  text-align:left;
+  vertical-align:middle;
+  white-space:nowrap;
+ }
+
+-->
+</style>
+</head>
+<body>
+<table class='flxmain_bordered_table' border='1' cellpadding='0' cellspacing='0' style='width:1869.67pt' summary="Excel Sheet: Sheet1">
+ <col class='flx0' span='36' style ='width:50.51pt;'>
+ <col class='flx0' style ='width:51.31pt;'>
+  
+ <tr  style='height:14.57pt;'>
+  
+<td  style = 'vertical-align:top;text-align:left;padding:0;'>  
+<img src='1cj3y2luhe9qoejg4vw5pj8h8u9s6t42_plantao%2Bhapvida_1_image1.png' width='335' height='89' alt="Imagem 4" class = 'imagediv' style='margin-top: 0pt; margin-left: 0pt; z-index:1;width:251.25pt;height:66.75pt;'  >
+</td>
+
+
+</tr>
+
+ 
+
+
+ <tr  style='height:15.29pt;'>
+  <td class='flx4' colspan = '6'>HOSPITAL HOSPITAL RODOLFO FERNANDES</td>
+  <td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+
+  <td class='flx6' style ='border-right:1px solid black;' colspan = '6' rowspan ='1'>M&ecirc;s/ano:</td>
+  <td class='flx7' style ='border-left:1px solid black;border-top:1px solid black;border-right:medium solid black;border-bottom:1px solid black;' colspan = '3' rowspan ='1'>JANEIRO/2019</td>
+  <td class = 'flx0' style = 'border-left:1px none black;'></td>
+
+</tr>
+ <tr  style='height:17.48pt;'>
+  <td class='flx8' style ='border-bottom:1px solid black;' colspan = '3' rowspan ='1'>ESCALA DE SERVI&Ccedil;O</td>
+  <td class='flx9' style ='border-bottom:1px none black;' colspan = '20' rowspan ='1'>Setor / Categoria CAM - Clinica de Anestesia de Mossor&oacute;</td>
+  <td class='flx10' style ='border-bottom:1px solid black;' colspan = '11' rowspan ='1'></td>
+  <td class = 'flx11' style = 'border-top:1px none black;border-bottom:1px none black;'></td>
+<td class = 'flx11' style = 'border-top:1px none black;border-bottom:1px none black;'></td>
+<td class = 'flx12' style = 'border-bottom:1px none black;'></td>
+
+</tr>
+ <tr  style='height:17.48pt;'>
+  <td class='flx13' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>CRM</td>
+  <td class='flx13' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>NOME</td>
+  <td class='flx13' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>CARGO</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>2</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>3</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>4</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>5</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>6</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>7</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>8</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>9</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>10</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>11</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>12</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>13</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>14</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>15</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>16</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>17</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>18</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>19</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>20</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>21</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>22</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>23</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>24</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>25</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>26</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>27</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>28</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>29</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>30</td>
+  <td class='flx14' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>31</td>
+  <td class='flx15' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>C.H. Normal</td>
+  <td class='flx15' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>C.H. Eventual</td>
+  <td class='flx15' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>C.H. Ad. Noturno</td>
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>5669</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>ANTONIO NEI</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>5000</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>EDILSON DA SILVA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>6341</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>ELUMAR PEREIRA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>6579</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>ENOX DE PAIVA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>3996</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>EVANE MARIA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>8388&nbsp;</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'><span class='flx17' style ='height:14.57pt;'>FRANCISCO CHARLES</span></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>6336</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>FRANCISCO NETO</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>5637</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>JILIELISSON SOUZA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>2725</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>JO&Atilde;O EVANGELISTA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx19' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>7289&nbsp;</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>JO&Atilde;O MARCELO</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>7116</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>JO&Atilde;O T. PINTO</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>8128</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>LANA LACERDA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>3059</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>LEOPOLDO NOBRE</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>5759</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>MANOEL FERREIRA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>851</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>MARCELA ALVES</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>7029&nbsp;</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>MARCOS SABOIA</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>6890&nbsp;</td>
+  <td class='flx17' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '2' rowspan ='1'>RODOLFO HENRIQUE</td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx18' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class='flx16' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+  <td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx17' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx3' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'>Obs:</td>
+  <td class='flx20' style ='border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;' colspan = '33' rowspan ='1'></td>
+  <td class = 'flx1' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx1' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+<td class = 'flx1' style = 'border-left:1px solid black;border-top:1px solid black;border-right:1px solid black;border-bottom:1px solid black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class = 'flx21' style = 'border-top:1px none black;'></td>
+<td class = 'flx3' style = 'border-top:1px none black;'></td>
+<td class = 'flx3' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx22' style = 'border-top:1px none black;'></td>
+<td class = 'flx23' style = 'border-top:1px none black;'></td>
+<td class = 'flx1' style = 'border-top:1px none black;'></td>
+<td class = 'flx1' style = 'border-top:1px none black;'></td>
+<td class = 'flx23' style = 'border-top:1px none black;'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx24'>LEGENDA</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx25'>HOR&Aacute;RIO</td>
+  <td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx3'></td>
+<td class = 'flx3'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20'>D = Diurno</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx20' colspan = '2'>07:00 &agrave;s 19:00 horas</td>
+  <td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx3'></td>
+<td class = 'flx3'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20'>N = Noturno</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx20' colspan = '2'>19:00 &agrave;s 07:00 horas</td>
+  <td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx3'></td>
+<td class = 'flx3'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20'>P = Plant&atilde;o</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx20'>24 horas</td>
+  <td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20'>M = Manh&atilde;</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx20' colspan = '2'>07:00 &agrave;s 13:00 horas</td>
+  <td class = 'flx2'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20'>T = Tarde</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx20' colspan = '2'>13:00 &agrave;s 19:00 horas</td>
+  <td class = 'flx2'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx0' style = 'border-bottom:1px solid black;'></td>
+<td class = 'flx2'></td>
+
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20' colspan = '2'>T/N = Tarde e Noite</td>
+  <td class='flx20' colspan = '2'>13:00 &agrave;s 07:00 horas</td>
+  <td class = 'flx0'></td>
+<td class = 'flx0'></td>
+
+  <td class='flx3' colspan = '15' rowspan ='1'>Diretor T&eacute;cnico da CAM</td>
+  <td class = 'flx2'></td>
+
+  <td class='flx3' colspan = '15' rowspan ='1'>Diretor Geral&nbsp;</td>
+</tr>
+ <tr  style='height:14.57pt;'>
+  <td class='flx20' colspan = '2'>M/N = Manh&atilde; e Noite&nbsp;</td>
+  <td class='flx20' colspan = '3'>07:00 &agrave;s 13:00 e 19:00 &agrave;s 07:00</td>
+  <td class = 'flx0'></td>
+
+  <td class='flx3' colspan = '14' rowspan ='1'>Ronaldo Fixina Barreto</td>
+  <td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+<td class = 'flx2'></td>
+
+</tr>
+</table>
+</body>
+</html>
