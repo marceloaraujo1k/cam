@@ -239,6 +239,7 @@ $empresa = getItensTable($mysql_conn,"empresa");
 			var table = $('#listar-usuarios').DataTable({
 				"processing": true,
 				"serverSide": true,
+				"select": true,
 				 "columnDefs": [
             {
                 "targets": [3],
@@ -250,8 +251,10 @@ $empresa = getItensTable($mysql_conn,"empresa");
 					"type": "POST"
 				}
 				});
+				
 			});
-	  </script>
+
+	</script>
 	  
 	  
 	
@@ -302,7 +305,8 @@ $empresa = getItensTable($mysql_conn,"empresa");
 		});
 	});
 	</script>
-	
+
+
 </body>
 
 </html>

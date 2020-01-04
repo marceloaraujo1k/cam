@@ -4,7 +4,7 @@ include '../opendb.php';
 include_once('../func.php');
 	
 $form = $_POST;
-if (empty ($form["id"])){	
+if (empty ($form["idConfiguracaoPlantao"])){	
 	$query	= "INSERT INTO configuracaoplantoes (idConfiguracaoPlantao, descricaoPlantao, idhospital, horarioInicioPlantao, 
     horarioFimPlantao, duracaoPlantao, legendaPlantao, valorPlantao, valorHoraPlantaoBruto,
     valorHoraPlantaoLiquido, pis, cofins, csll, irpj, iss, deducoes, aliquota, outros_encargos, cor)
@@ -15,12 +15,14 @@ if (empty ($form["id"])){
     header ('location: configuracoes.php');
 }
 else {
-	if(!empty($form["id"])) {
+	
+
+	if(!empty($form["idConfiguracaoPlantao"])) {
 	$query	= "UPDATE configuracaoplantoes SET descricaoPlantao='$form[descricaoPlantao]', idhospital='$form[idhospital]', horarioInicioPlantao='$form[horarioInicioPlantao]', 
 	horarioFimPlantao='$form[horarioFimPlantao]', duracaoPlantao='$form[duracaoPlantao]', legendaPlantao='$form[legendaPlantao]',
 	valorPlantao='$form[valorPlantao]', valorHoraPlantaoBruto='$form[valorHoraPlantaoBruto]', valorHoraPlantaoLiquido='$form[valorHoraPlantaoLiquido]',
 	pis='$form[pis]', cofins='$form[cofins]', csll='$form[csll]',  irpj='$form[irpj]', iss='$form[iss]', deducoes='$form[deducoes]',
-	aliquota='$form[aliquota]', outros_encargos='$form[outros_encargos]', cor='$form[cor]' WHERE idConfiguracaoPlantao='$form[id]'";	
+	aliquota='$form[aliquota]', outros_encargos='$form[outros_encargos]', cor='$form[cor]' WHERE idConfiguracaoPlantao='$form[idConfiguracaoPlantao]'";	
 	mysqli_query($mysql_conn,$query);
 	header('location: configuracoes.php' );
 	}

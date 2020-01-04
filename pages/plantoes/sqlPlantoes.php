@@ -35,6 +35,8 @@ function inserirConta()
 		else 
 			{	
 				if(!empty($form["idplantao"])) {
+				print_r($form);
+
 				$query	= "UPDATE plantoes SET idmedico='$form[idmedico]',
 				idConfiguracaoPlantao='$form[idConfiguracaoPlantao]', 
 				idhospital='$form[idhospital]',
@@ -46,8 +48,8 @@ function inserirConta()
 				horasSubstituicaoPlantao='$form[horasSubstituicaoPlantao]',
 				cor='$form[cor]',
 				statusPagamento='$form[statusPagamento]',
-				dataRepassePlantao=STR_TO_DATE('$form[dataRepasse]', '%d/%m/%Y'),
-				dataPagamentoPlantao=STR_TO_DATE('$form[dataPagamento]', '%d/%m/%Y'),
+				dataRepassePlantao=STR_TO_DATE('$form[dataRepassePlantao]', '%d/%m/%Y'),
+				dataPagamentoPlantao=STR_TO_DATE('$form[dataPagamentoPlantao]', '%d/%m/%Y'),
 				valorPlantaoBruto = (SELECT valorHoraPlantaoBruto * ('$form[horasPlantao]'-'$form[horasSubstituicaoPlantao]') FROM configuracaoplantoes WHERE idConfiguracaoPlantao='$form[idConfiguracaoPlantao]'),
 				valorPlantaoLiquido = (SELECT valorHoraPlantaoLiquido * ('$form[horasPlantao]'-'$form[horasSubstituicaoPlantao]') FROM configuracaoplantoes WHERE idConfiguracaoPlantao='$form[idConfiguracaoPlantao]'),
 				valorSubstituicaoPlantaoBruto = (SELECT (valorHoraPlantaoBruto * '$form[horasSubstituicaoPlantao]') FROM configuracaoplantoes WHERE idConfiguracaoPlantao='$form[idConfiguracaoPlantao]'),

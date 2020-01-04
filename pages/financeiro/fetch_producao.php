@@ -41,7 +41,13 @@ if($_POST["is_date_search"] == "yes")
 							}
 						break;
 						case '1':
-							 $query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
+							if ($_POST["filterConvenio"] == null) {
+								 $query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
+							}
+							else {
+								$query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+							}
+							
 
 						break;
 						default:
@@ -115,6 +121,7 @@ while($row = mysqli_fetch_array($result))
 	$sub_array[] = $row["observacao"];
 	$sub_array [] = '<button type="button" id="btnEditar" class="btn btn btn-primary" data-id="'.$row["idproducao"].'"><i class="glyphicon glyphicon-pencil">&nbsp;</i>Editar</button>';
 	$sub_array [] = '<button type="button" id="btnExcluir" class="btn btn btn-primary" data-id="'.$row["idproducao"].'"><i class="glyphicon glyphicon-trash  ">&nbsp;</i>Excluir</button>';
+	$sub_array [] = '<button type="button" id="btnBaixarProducao" class="btn btn btn-primary" data-id="'.$row["idproducao"].'"><i class="glyphicon glyphicon-arrow-down">&nbsp;</i>Baixar</button>';
 
  $data[] = $sub_array;
 }

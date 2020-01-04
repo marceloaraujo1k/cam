@@ -39,7 +39,7 @@ switch ($filtroDataTipo) {
 }
 
 
-$query =  "SELECT * FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND ".$dataOpcao."   BETWEEN '".$start_date."' AND '".$end_date. "' order by convenio, ".$dataOpcao.""; 
+$query =  "SELECT * FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio where idmedico='".$_GET["id"]."' AND ".$dataOpcao."   BETWEEN '".$start_date."' AND '".$end_date. "' order by classificacao, convenio, ".$dataOpcao.", paciente"; 
 
 
 $result = mysqli_query($mysql_conn, $query);
@@ -96,7 +96,8 @@ $pdf->SetFillColor(8,172,192);
 			$result6 = mysqli_query($mysql_conn, $query6);
 		
 				
-
+			//TOTAL PLANTÕES
+			$totalPlantoes = 0;
 
 			$pdf->Cell(100,5,''.utf8_decode("RESUMO DOS PLANTÕES"),1,0,"C",true);
 			$pdf->Cell(30,5,''.utf8_decode("MÊS"),1,0,"C",true); 
@@ -119,7 +120,7 @@ $pdf->SetFillColor(8,172,192);
 		
 			$pdf->Cell(30,5,''.utf8_decode(""),1,0,"L");
 			$pdf->Cell(30,5, number_format($row1["totalPlantaoLiquido"],2,",","."),1,1,"C");
-
+			$totalPlantoes = $totalPlantoes + $row1["totalPlantaoBruto"];
 		}
 			
 		
@@ -135,7 +136,7 @@ $pdf->SetFillColor(8,172,192);
 		}
 
 			$pdf->Cell(160,10,''.utf8_decode("R$ TOTAL DOS PLANTÕES"),1,0,"L");
-			$pdf->Cell(30,10,''.utf8_decode("R$  "),1,0,"L");
+			$pdf->Cell(30,10,''.utf8_decode("R$  ").number_format($totalPlantoes,2,",","."),1,0,"C");
 			$pdf->Cell(30,10,''.utf8_decode(" "),1,0,"L");
 			$pdf->Cell(30,10,''.utf8_decode("R$  "),1,0,"L");
 			$pdf->Cell(30,10,''.utf8_decode("R$  "),1,1,"L");
@@ -206,6 +207,7 @@ $pdf->cell(60,10,'R$ '.number_format($totalEletivas,2,",",".").'',1,0,'C');
 $pdf->cell(60,10,'R$ '.number_format($totalParticular,2,",",".").'',1,1,'C');
 
 $pdf->cell(40,5,utf8_decode("IMPOSTOS"),1,0,'C',false);	
+
 $pdf->cell(30,5,number_format($totalImpostosPlanoSaude,2,",",".")."%".'',1,0,'C');		
 $pdf->cell(30,5,'R$ '.number_format(($totalPlanoSaude*($totalImpostosPlanoSaude/100)),2,",",".").'',1,0,'C');		
 
@@ -214,6 +216,7 @@ $pdf->cell(30,5,'R$ '.number_format(($totalSUS*($totalImpostosSUS/100)),2,",",".
 
 $pdf->cell(30,5,number_format($totalImpostosEletivas,2,",",".")."%".'',1,0,'C');	
 $pdf->cell(30,5,'R$ '.number_format(($totalEletivas*($totalImpostosEletivas/100)),2,",",".").'',1,0,'C');	
+
 $pdf->cell(30,5,number_format($totalImpostosParticular,2,",",".")."%".'',1,0,'C');	
 $pdf->cell(30,5,'R$ '.number_format(($totalParticular*($totalImpostosParticular/100)),2,",",".").'',1,1,'C');	
 
@@ -223,35 +226,51 @@ $pdf->cell(60,5,'R$ '.number_format($totalSUS-($totalSUS*($totalImpostosSUS/100)
 $pdf->cell(60,5,'R$ '.number_format($totalEletivas-($totalEletivas*($totalImpostosEletivas/100)),2,",",".").'',1,0,'C');		
 $pdf->cell(60,5,'R$ '.number_format($totalParticular-($totalParticular*($totalImpostosParticular/100)),2,",",".").'',1,1,'C');	
 
+//RESUMO FINANCEIRO - TOTAL (PLANO SAUDE + SUS + ELETIVAS + PARTICULAR) 
+$totalProducao = $totalPlanoSaude+$totalSUS+$totalEletivas+$totalPlantoes;
+
 $pdf->SetFillColor(8,172,192);
 $pdf->Cell(280,5,'RESUMO FINANCEIRO',1,1,'C',true);
 		$pdf->Cell(25,10,'Taxa Adm.'.'',"LRB",0,"C");
-		$pdf->Cell(25,5,'% '.'',"",0,"R");
+		$pdf->Cell(25,5,'5 % '.'',"",0,"C" );
 		$pdf->Cell(20,10,'ISS'.'',"LRB",0,"C");
-		$pdf->Cell(25,5,'% '.'',"",0,"L");
+		$pdf->Cell(25,5,'5 % '.'',"",0,"C");
 		$pdf->Cell(20,10,'COFINS'.'',"LRB",0,"C");
-		$pdf->Cell(25,5,'% '.'',"",0,"L");
+		$pdf->Cell(25,5,' 3 % '.'',"",0,"C");
 		$pdf->Cell(20,10,'PIS'.'',"LRB",0,"C");
-		$pdf->Cell(25,5,'% '.'',"",0,"L");
+		$pdf->Cell(25,5,' 0,65 % '.'',"",0,"C");
 		$pdf->Cell(20,10,'CSLL'.'',"LRB",0,"C");
-		$pdf->Cell(25,5,'% '.'',"",0,"L");
+		$pdf->Cell(25,5,' 2,88 % '.'',"",0,"C");
 		$pdf->Cell(20,10,'IRPJ'.'',"LRB",0,"C");
-		$pdf->Cell(30,5,'% '. '',"LRB",1,"");
+		$pdf->Cell(30,5,' 7,96 % '. '',"LRB",1,"C");
 		
 		$pdf->Cell(25,5,''.'',"LR",0,"L");
-		$pdf->Cell(25,5,'R$'.'',"TB",0,"L");
+		$pdf->Cell(25,5,'R$ '.number_Format(($totalProducao*0.05),2,",",".").'',"TB",0,"C");
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
-		$pdf->Cell(25,5,'R$'.'',"TB",0,"L");
+		$pdf->Cell(25,5,'R$ '.number_Format(($totalProducao*0.05),2,",",".").'',"TB",0,"C");
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
-		$pdf->Cell(25,5,'R$'.'',"TB",0,"L");	
+		$pdf->Cell(25,5,'R$ '.number_Format(($totalProducao*0.03),2,",",".").'',"TB",0,"C");
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
-		$pdf->Cell(25,5,'R$'.'',"TB",0,"L");	
+		$pdf->Cell(25,5,'R$ '.number_Format(($totalProducao*0.0065),2,",",".").'',"TB",0,"C");
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
-		$pdf->Cell(25,5,'R$'.'',"TB",0,"L");	
+		$pdf->Cell(25,5,'R$ '.number_Format(($totalProducao*0.0288),2,",",".").'',"TB",0,"C");	
 		$pdf->Cell(20,5,''.'',"LR",0,"L");
-		$pdf->Cell(30,5,'R$'.'',"BR",1,"L");
+		$pdf->Cell(30,5,'R$ '.number_Format(($totalProducao*0.0796),2,",",".").'',"BR",1,"C");
 		
-// Page footer
+		$pdf->cell(50,10,'TOTAL BRUTO',1,0,'C');
+		$pdf->cell(45,10,'R$ '.number_format($totalPlanoSaude+$totalSUS+$totalEletivas+$totalParticular,2,",",".").'',1,0,'C');
+		$pdf->cell(49,10,utf8_decode('TOTAL IMPOSTOS').'',1,0,'C');
+		$pdf->cell(42,10,'R$ '.number_format( ($totalPlanoSaude-($totalPlanoSaude*($totalImpostosPlanoSaude/100)))+($totalSUS-($totalSUS*($totalImpostosSUS/100)))+($totalEletivas-($totalEletivas*($totalImpostosEletivas/100))) + ($totalParticular-($totalParticular*($totalImpostosParticular/100))), 2,",",".").'',1,0,'C');
+		$pdf->cell(50,10,utf8_decode('TOTAL LÍQUIDO').'',1,0,'C');
+		$pdf->cell(44,10,'R$ '.number_format( ($totalPlanoSaude-($totalPlanoSaude*($totalImpostosPlanoSaude/100)))+($totalSUS-($totalSUS*($totalImpostosSUS/100)))+($totalEletivas-($totalEletivas*($totalImpostosEletivas/100))) + ($totalParticular-($totalParticular*($totalImpostosParticular/100))), 2,",",".").'',1,1,'C');
+
+
+
+
+
+
+
+		// Page footer
 function Footer()
 {
     // Position at 1.5 cm from bottom
@@ -270,7 +289,7 @@ $pdf->SetFont('arial','',9);
 // Extrai cada linha da tabela dados
 // configura a quantidade de colunas a serem impressas esse número deve ser igual a quantidade de celulas
 
-$pdf->SetWidths(array(18,18,80,20,80,24,20,20));
+$pdf->SetWidths(array(18,18,80,20,80,20,24,20));
 $result3 = mysqli_query($mysql_conn, $query);
 
 $current_convenio = null;
@@ -326,15 +345,15 @@ while ($row = mysqli_fetch_assoc($result3))
 			$pdf->Cell(20,10,''.utf8_decode("Cód."),1,0,"L");
 
 			$pdf->Cell(80,10,''.utf8_decode("Procedimento"),1,0,"L");
-			
+			$pdf->Cell(20,10,''.utf8_decode("Status"),1,0,"L");
 			$pdf->Cell(24,10,''.utf8_decode("Data Repasse"),1,0,"L");
 			$pdf->Cell(20,10,''.utf8_decode("Valor"),1,0,"L");
-			$pdf->Cell(20,10,''.utf8_decode("Glosa"),1,0,"L");
+	
 			//$pdf->Cell(15,10,'Valor',1,0,"L");
 			
 			$pdf->Ln(10);
 			
-			 $pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])), utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",","."),number_format($row["glosa"],2,",",".")  ));	
+			 $pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])), utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),  utf8_decode($row["statusPagamento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",",".")));	
 			 $totalProcedimento=$totalProcedimento+$row["valorProcedimento"];
 			 $totalGlosa=$totalGlosa+$row["glosa"];
 			 $totalBruto = $totalProcedimento-$totalGlosa;
@@ -344,7 +363,7 @@ while ($row = mysqli_fetch_assoc($result3))
 			else
 			{	
 				$pdf->SetFont('arial','',9);
-				$pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])),  utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",","."),number_format($row["glosa"],2,",",".")  ));	
+				$pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])),  utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),   utf8_decode($row["statusPagamento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",",".")));	
 				$totalProcedimento=$totalProcedimento+$row["valorProcedimento"];
 				$totalGlosa=$totalGlosa+$row["glosa"];
 				$totalBruto = $totalProcedimento-$totalGlosa;

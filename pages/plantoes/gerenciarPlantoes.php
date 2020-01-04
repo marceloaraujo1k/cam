@@ -247,7 +247,7 @@ if(isset($_GET["edit"]))
 								<div class="form-group col-md-2"> 
 													<label class="control-label">Data Pagamento</label>
 													<div class='input-group date' id="dataPagamentoPlantao">
-													 <input type='text' id="dataPagamento" name="dataPagamento" class="form-control"/>
+													 <input type='text' id="dataPagamento" name="dataPagamentoPlantao" class="form-control"/>
 													 <span class="input-group-addon">
 													 <span class="glyphicon glyphicon-calendar"></span>
 													 </span>
@@ -257,7 +257,7 @@ if(isset($_GET["edit"]))
 										<div class="form-group col-md-2"> 
 													<label class="control-label">Data Repasse</label>
 													<div class='input-group date' id="dataRepassePlantao">
-													 <input type='text' id="dataRepasse" name="dataRepasse" class="form-control"/>
+													 <input type='text' id="dataRepasse" name="dataRepassePlantao" class="form-control"/>
 													 <span class="input-group-addon">
 													 <span class="glyphicon glyphicon-calendar"></span>
 													 </span>

@@ -312,10 +312,8 @@ $form["saldoDevedor"]=null;
 								<input type="hidden" name="descricaoProcedimento" id="descricaoProcedimento">
 								<input type="hidden" name="valorProcedimento" id="valorProcedimento">	
 								<!-- lançar o valor recebido anterior para somar com o valor atual -->
-								<input type="hidden" name="valorRecebidoAnt" id="valorRecebidoAnt">
-								 
-							
-						</div>
+								<input type="hidden" name="valorRecebidoAnt" id="valorRecebidoAnt" value="0">
+							</div>
 					
 							<div class="row">
 									<div class="form-group col-lg-8">
@@ -331,7 +329,7 @@ $form["saldoDevedor"]=null;
 											<p>Total Procedimentos R$ <span style="color:black" id="totalProcedimentos"></span></p>
 											<p>Total Recebido R$ <span style="color:black" id="totalRecebido"></span></p>
 										</div>
-										
+									
 								</div>
 
 						
@@ -428,10 +426,14 @@ $form["saldoDevedor"]=null;
 						</form>	
 							<!-- FECHAMENTO DO PAINEL WELL -->
 					</div>
+					<div class="row">
+					<div class="col-lg-12">
+				
 					     <!-- AS DUAS LINHAS SEGUINTES FAZEM O DATATABLE TRABALHAR CORRETAMENTE NA MUDANÇA DE ZOOM table table-striped table-bordered table-hover -->
 							<div class="table-responsive"> 
-								<table  class="table table-striped table-bordered  table-hover dt-responsive display nowrap" cellspacing="0" id="listar-producao">
 								
+							<table  class="table table-striped table-bordered  table-hover dt-responsive display nowrap" cellspacing="0" id="listar-producao">
+							
                                    <thead>
 								      <tr>
 										<th rowspan="2"></th>
@@ -464,8 +466,8 @@ $form["saldoDevedor"]=null;
 										<th>Glosa/Exced. R$</th>
 										<th>Saldo R$</th>
 										<th>Status</th>
-										
 										<th>Observação</th>
+										<th></th>
 										<th></th>
 										<th></th>
 									</tr>
@@ -473,6 +475,7 @@ $form["saldoDevedor"]=null;
                                
                             </table>
                             <!-- /.table-responsive -->
+						</div> <!-- row -->
 					</div>
 				    <!-- /.panel-body -->
                     </div>
@@ -485,9 +488,9 @@ $form["saldoDevedor"]=null;
 	<!-- /#wrapper -->
 
 	<!-- Bootstrap Modal - To Add New Record -->
-			<!-- Modal Relatorios -->
+			<!-- Modal Operacoes lotes -->
 				<div class="modal fade" id="modalOperacoesLote" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
+							<div class="modal-dialog modal-lg" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
 										<h4 class="modal-title" id="myModalLabel">Operações em Lote</h4>
@@ -508,7 +511,6 @@ $form["saldoDevedor"]=null;
 											<label for="nome">Forma de Pagamento</label>
 											<select id="formaPagamentoOp" name="formaPagamento" class="form-control" required> 
 													<option>Dinheiro</option>
-													<option>Dinheiro</option>
 													<option>Cartão de Crédito</option>
 													<option>Cartão Débito</option>
 													<option>Cheque</option>	
@@ -517,22 +519,46 @@ $form["saldoDevedor"]=null;
 											</select>
 										</div>
 									</div>	
-										<div class="row">
+									<div class="row">
 										<div class="form-group col-md-6">
 											<label class="control-label">Data</label>
-												<div class='input-group date' id='datetimepicker9'>
+											<div class='input-group date' id='datetimepicker9'>
 												 <input type='text' class="form-control" name="dataOperacao" id="dataOperacao"/>
 												<span class="input-group-addon">
 												<span class="glyphicon glyphicon-calendar"></span>
 												</span>
-											  </div>
 											</div>
-											<div class="form-group col-md-6">
+										</div>
+										<div class="form-group col-md-6">
 												<label for="nome">Nota Fiscal</label>
 												<input class="form-control" type="text" name="notaFiscal" id="notaFiscalOp">
-											</div>								
-										</div>
-									 
+										</div>								
+									</div>
+									
+								<div class="row">
+									<div class="table-responsive"> 
+									<table  class="table table-striped table-bordered table-hover" id="tblbaixarproducao">
+									<thead>
+								    <tr>
+										<th>Nome</th>
+										<th>No. Carteira</th> 
+										<th>Cód.Proc.</th>
+										<th>Descrição</th>
+										<th>Valor R$</th>
+										<th>Data Cobrança</th>
+										<th>Data Pagamento</th>
+										<th>Data Repasse</th>
+										<th>Valor Recebido R$</th>
+										<th>Glosa/Exced. R$</th>
+										<th>Status</th>
+									</tr>
+                            	    </thead>
+								<tbody>
+								</tbody>
+                            </table>
+							</div>
+                            <!-- /.table-responsive -->
+						</div>
 									
 									<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -595,11 +621,60 @@ $form["saldoDevedor"]=null;
 										</select>
 									</div>
 								</div>
-								
+
+								<div class="row"> 
+									<div class="form-group col-md-6">
+										<label for="convenio">Convênio</label>
+											<select id="convenio0" name="idconvenio" class="form-control"> 
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($convenios); $i++)
+											{
+											if($form["idconvenio"] == $convenios[$i]['idconvenio'])
+											{	
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" selected><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" ><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="hospital">Hospital/Clínica</label>
+											<select id="hospital_report" name="idhospital" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($hospital); $i++)
+											{
+											if($form["idhospital"] == $hospital[$i]['idhospital'])
+											{	
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" selected><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" ><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+								</div>
+
 								<div class="row">
 									<div class="form-group col-md-6">
 									  <label for="inputStatusPagamento">Status</label>
-										<select id="statusPagamento" name="statusPagamento" class="form-control" required> 
+										<select id="statusPagamento0" name="statusPagamento" class="form-control" required> 
 												<option>Faturar</option>
 												<option>Pago</option>
 												<option>Glosada</option>
@@ -763,9 +838,147 @@ $form["saldoDevedor"]=null;
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
+			
 				
 
+<!-- Bootstrap Modal - To Add New Record -->
+				<!-- Modal -->
+				<div class="modal fade" id="modalBaixarProducao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">Baixar Produção</h4>
+									</div>
+									<div class="modal-body">
+								 <form role="form" action="" method='post' enctype="multipart/form-data">
+								<input type="hidden" name="id" id="idproducao1" />
+								
+								
+								<div class="row">
+									<div class="form-group col-md-6">
+											<label class="control-label">Data Realização</label>
+											<div class='input-group date' id='dtBxRealizacao'>
+												 <input type='text' class="form-control" name="dtBaixaRealizacao" id="dtBaixaRealizacao"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									<div class="form-group col-md-6">
+										<label for="nome">Nome Paciente</label>
+												<input class="form-control" type="text" name="nomePaciente" id="nomePaciente">
+										</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label for="nome">Anestesiologista</label>
+												<input class="form-control" type="text" name="nomeMedico" id="nomeMedico">
+										</div>
+									<div class="form-group col-md-6">
+										<label for="nome">Convênio</label>
+										<input class="form-control" type="text" name="descricaoConvenio" id="descricaoConvenio">
+									</div>
+								</div>
+
+								
+							<div class="row">
+								<div class="form-group col-md-6">
+									<label for="nome">Cód.</label>
+									<input class="form-control" type="text" name="codProcedimento" id="codProcedimento">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="nome">Descrição</label>
+										<input class="form-control" type="text" name="descProcedimento" id="descProcedimento">
+								</div>
+							</div>
+
+
+							<div class="row">
+								
+							<div class="form-group col-md-6">
+											<label class="control-label">Data Pagamento</label>
+											<div class='input-group date' id='dtBxPagamento'>
+												 <input type='text' class="form-control" name="dtBxPagamento" id="dtBaixaPagamento"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+								
+								
+								<div class="form-group col-md-6">
+											<label class="control-label">Data Repasse</label>
+											<div class='input-group date' id='dtBxRepasse'>
+												 <input type='text' class="form-control" name="dtBxRepasse" id="dtBaixaRepasse"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+							</div>
+
+
+									<div class="row">
+									<div class="form-group col-md-6">
+											<label class="control-label">Data Cobrança</label>
+											<div class='input-group date' id='dtBxCobranca'>
+												 <input type='text' class="form-control" name="dtBxCobranca" id="dtBaixaCobranca"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									<div class="form-group col-md-6">
+												<label for="nome">Nota Fiscal</label>
+												<input class="form-control" type="text" name="notaFiscal" id="notaFiscalBx">
+										</div>								
+									</div>
+
+									<div class="row">
+									<div class="form-group col-md-6">
+									<label for="nome">Valor Cobrado</label>
+										<input class="form-control" type="text" name="valorCobrado" id="valorCobrado">
+									</div>
+									<div class="form-group col-md-6">
+									<label for="nome">Valor Recebido</label>
+										<input class="form-control" type="text" name="valorBxRecebido" id="valorBxRecebido" value="0" onchange="getBxSaldo(this.value)">
+									</div>
+									
+									</div>
+			
+									<div class="row">
+									
+									<div class="form-group col-md-6">
+									<label for="nome">Glosa</label>
+										<input class="form-control" type="text" name="glosaBx" id="glosaBx">
+									</div>
+									<div class="form-group col-md-6">
+									  <label for="statusOperacao">Status</label>
+									  <select id="statusBxOperacao" name="statusBxOperacao" class="form-control"> 
+											<option value="0">Pago</option>
+											<option value="1">Pendente</option> 																								
+									</select>
+									</div>
+										
+									</div>	
+
+
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" id="btn-close" data-dismiss="modal">Fechar</button>
+										<button  type="button" id="btnAtualizarProducao" class="btn btn-primary" title="Baixar Produção">Atualizar</button>
+									
+									<!--	<button type="submit" class="btn btn-success">Salvar</button>-->
+									</div>	
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+	</div>	
+	
 	<!-- /#page-wrapper -->
 	<!-- AUTOCOMPLETE BOOTSTRAP -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -892,7 +1105,7 @@ $form["saldoDevedor"]=null;
 					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
 			
 					var idmedico = $("#medico_report").find('option:selected').val();
-
+					var idhospital = $("#hospital_report").find('option:selected').text();
 					var filtroDataTipo = $("#filtroData0").find('option:selected').val();
 					
 				   var id = document.getElementById("tipoRelatorio").value;
@@ -902,22 +1115,64 @@ $form["saldoDevedor"]=null;
 							break;
 						
 						case '1':
-							window.open("relatorioPlanoSaude.php?id="+id);
+							window.open("relatorioPlanoSaude.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
 							break;
+
+						case '2':
+							window.open("relatorioFaturaSUS.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
+						case '3':
+							window.open("relatorioFaturaEletivas.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
 						default:
 							text = "No value found";
 							}
 						});
 				}
 </script>
-	 
+
 <!-- Operaçoes em Lote -->
 <script>
 	function operacoesLote() {
+		
 	 	$(document).on('click','#btnOperacoesLote',function(e){
-			e.preventDefault();
-			var rows_selected = dataTable.column(0).checkboxes.selected();
-			$.each(rows_selected, function(index, rowId){
+			e.preventDefault();  
+
+		//	var selRows =dataTable.rows('.selected').data();
+		//	var t = $('#tblbaixarproducao').DataTable();
+
+		//	for (var i=0; i<selRows.length; i++) {
+		//		alert(selRows.data()[i]);
+			
+
+			
+			/*	t.row.add([this.data()[1],
+					   this.data()[2],
+					   this.data()[3],
+					   this.data()[4],
+					   this.data()[5],
+					   ]).draw();*/
+			
+/*			selRows.rows().every(function(){
+				alert(this.data()[0]);
+			} */
+//			for (var i=0; i< selRows.length; i++) {
+			//	alert(selRows.length);
+					//selRows.rows().every(function() 
+//			var t = $('#tblbaixarproducao').DataTable();
+		
+			/*	$.each(selRows, function(index,tr)
+				{
+					alert(selRows);
+					console.log(index);
+					console.log(tr);
+		      	/*	  */
+				
+		
+
+				var rows_selected = dataTable.column(1).checkboxes.selected();
+				$.each(rows_selected, function(index, rowId){
 				$.ajax({  
 				url:"operacoes_lote.php",  
 				method:"POST",  
@@ -926,7 +1181,7 @@ $form["saldoDevedor"]=null;
 				},  
 				success:function(data){  
 				$('#formOperacoesLote')[0].reset(); 
-					$('#listar-producao').DataTable().ajax.reload();
+				$('#listar-producao').DataTable().ajax.reload();
 				}  
 			   });  
 				});
@@ -976,15 +1231,18 @@ $form["saldoDevedor"]=null;
 			$("#valorRecebido").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
 			$("#glosa").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
 			$("#saldo").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+			$("#valorCobrado").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+			$("#valorBxRecebido").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+			$("#glosaBX").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+			
 		});
 </script>
 
-<!-- Inserir conta médica -->	
 <script>
 			$(document).ready(function(){
 			 $('#formProducao').on("submit", function(event){  
 			 event.preventDefault();
-
+		
 			// Ler os procedimentos e inserir
 		var table = $('#tblprocedimentos').DataTable();
 				table.rows().every(function(){
@@ -1011,25 +1269,23 @@ $form["saldoDevedor"]=null;
 				beforeSend:function(){
 				},  
 				success:function(data){
+					$('#formProducao')[0].reset();  
+		 		 window.parent.location.reload();
+				 $('#listar-producao').DataTable().ajax.reload();	
 			// Verificar como inserir o IDPACIENTE na 2a. requisição da tabela de procedimentos
 				//	alert(data[0]["idp"]);
 			//		var idp = data[0]["idp"];
 					//alert(idp);
 				//	paciente = idp;
-			
-                	},
-				error: function() {
-				    alert('Ocorreu um erro'); 
-			   }	    
+			   	},
 			   });
 
 				});		
-				 $('#formProducao')[0].reset();  
-		 		 window.parent.location.reload();
-				 $('#listar-producao').DataTable().ajax.reload();					
+							
 				});
 			});
 </script>
+
 
 <!-- salvar edição conta médica -->	
 	<script>
@@ -1077,8 +1333,8 @@ $form["saldoDevedor"]=null;
 		if (this.readyState == 4 && this.status == 200) {
 		var result = JSON.parse(this.responseText);
 				$("#idproducao").val(result[0][0]);
-		        $('#dataRealizacao').datetimepicker({defaultDate:  result[0][1], format:'DD/MM/YYYY HH:mm'});
-				 
+				$('#datetimepicker1').data('DateTimePicker').date(new Date(result[0][1]));
+				//$('#dataRealizacao').datetimepicker({defaultDate:  result[0][1], format:'DD/MM/YYYY HH:mm'});
 				$("#searchNoCarteira").val(result[0][6]);
 				$("#searchPaciente").val(result[0][5]);
 				document.getElementById('convenio').options[document.getElementById('convenio').selectedIndex].text = result[0][8];
@@ -1109,15 +1365,27 @@ $form["saldoDevedor"]=null;
 				$('#dataPrevisaoPagamento').datetimepicker({defaultDate:  result[0][22], format:'DD/MM/YYYY HH:mm'});
 			}
 			
-			
-				
-				
 		};
 		xmlhttp.open("GET", "operacoes_producao.php?id="+id, true);
 		xmlhttp.send(); 
 		});
 </script>	
 	
+
+<script>
+	function getSaldo(val) {
+		//Calcula quantidade 
+		// Recebe o valor do procedimento original importado da base de procedimentos/porte
+		var glosa = $('#glosa').maskMoney('unmasked')[0];
+			var valor = $("#valor").maskMoney('unmasked')[0];
+			var valorRecebido = $("#valorRecebido").maskMoney('unmasked')[0];
+			glosa = valorRecebido-valor;
+			glosa = glosa.toFixed(2);
+			document.getElementById("glosa").value = glosa;
+			$("#glosa").maskMoney('mask');	
+	}
+</script>	
+<!--
 <script>
 function getSaldo(val) {
 		//Calcula quantidade 
@@ -1126,18 +1394,19 @@ function getSaldo(val) {
 		
 		if (glosa > 0) {
 			var valorRecebido = $("#valorRecebido").maskMoney('unmasked')[0];
-			
-		glosa= glosa - valorRecebido;
-		glosa = glosa.toFixed(2);
-		document.getElementById("glosa").value = glosa;
-		$("#glosa").maskMoney('mask');	
-		
+			glosa = glosa - valorRecebido;
+			glosa = glosa.toFixed(2);
+			document.getElementById("glosa").value = glosa;
+			$("#glosa").maskMoney('mask');	
 		}
 		
-		else {
+		else {	
 			var valor = $("#valor").maskMoney('unmasked')[0];
 			var valorRecebido = $("#valorRecebido").maskMoney('unmasked')[0];
 			var glosa = $('#glosa').maskMoney('unmasked')[0]; 
+	//		var valorRecebidoAnt = $("#valorRecebidoAnt").maskMoney('unmasked')[0]
+	//		alert(valor-(valorRecebido+valorRecebidoAnt));
+
 			glosa= valor- valorRecebido;
 			glosa = glosa.toFixed(2);
 			document.getElementById("glosa").value = glosa;
@@ -1145,7 +1414,7 @@ function getSaldo(val) {
 			confirm("Confirma glosa do procedimento ?");
 		}
 	}
-</script>	
+</script>	-->
 
 <script>
 	function getSaldoDevedor(val) {
@@ -1180,9 +1449,6 @@ function getSaldo(val) {
 	
 <script>
 	$(document).ready(function(){
-
-	
-
 		 $('#start_date').datetimepicker({
 			format:'DD/MM/YYYY'
 		});
@@ -1202,8 +1468,8 @@ function getSaldo(val) {
                     'targets': 0,
                     'checkboxes': {
                        'selectRow': true
-                    }
-                 }
+					},
+                }
               ],
               'select': {
                  'style': 'multi'
@@ -1217,12 +1483,12 @@ function getSaldo(val) {
                      {
 					 extend: 'excelHtml5',
                      exportOptions: {
-                    columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14],
-					format: {
+						columns:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+							format: {
               		 body: function ( data, row, column, node ) {
               		      //Strip $ column to make it numeric
              			     //return (column === 13)  ? //data.replace( /[$,]/g, '' ) :	 data;
-							  if (column ==13) {
+							  if (column ==12) {
 								data = data.replace(/[\D]+/g, "" );
 								var tmp = parseInt(data);
 								tmp=tmp/100;
@@ -1242,14 +1508,14 @@ function getSaldo(val) {
 					 {
                     extend: 'pdfHtml5',
                      exportOptions: {
-                    columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+						columns:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
 					}
 					},
 					 {
 					 extend: 'print',
                      exportOptions: {
-                    columns: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14]
-					 }
+						columns:  [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]
+							 }
 					},
 					{
 						text: 'Op. Lote',
@@ -1267,6 +1533,22 @@ function getSaldo(val) {
 						text: 'Email',
 						action: function ( e, dt, node, config ) {
 									$("#modalEmail").modal();
+						},
+					},
+					{
+						text: 'Exibir/Ocultar',
+						action: function ( e, dt, node, config ) {
+							dataTable.column(2).visible( !dataTable.column(2).visible() );
+							dataTable.column(4).visible( !dataTable.column(4).visible() );
+							dataTable.column(7).visible( !dataTable.column(7).visible() );
+							dataTable.column(10).visible( !dataTable.column(10).visible() );
+							dataTable.column(11).visible( !dataTable.column(11).visible() );
+							dataTable.column(12).visible( !dataTable.column(12).visible() );
+							dataTable.column(15).visible( !dataTable.column(15).visible() );
+							dataTable.column(16).visible( !dataTable.column(16).visible() );
+							dataTable.column(20).visible( !dataTable.column(20).visible() );
+							dataTable.column(21).visible( !dataTable.column(21).visible() );
+							dataTable.column(23).visible( !dataTable.column(23).visible() );
 						},
 					}
                   	],
@@ -1302,18 +1584,20 @@ function getSaldo(val) {
 		   alert("Obrigatório informar o período");
 		  }
 		 }); 
-		 
+
 		});
 </script>
 
 
 <script>
-$("#searchNoCarteira").keyup(function() {
+
+/*$("#searchNoCarteira").keyup(function() {
 if (!this.value) {
 	alert('The box is empty');
 	$("#idpaciente").val("");
 }
-});
+}); */
+
 </script>
 
 
@@ -1351,7 +1635,7 @@ if (!this.value) {
 
 <script>
 // search PACIENTES
-	 $( function() {
+$( function() {
       $( "#searchPaciente" ).autocomplete({
             source: function( request, response ) {
                 
@@ -1378,12 +1662,12 @@ if (!this.value) {
             }
         });
 
-    });	
+    });
 </script>
 
 <script>
 // search MÉDICO
-	 $( function() {
+$( function() {
       $( "#searchMedico" ).autocomplete({
             source: function( request, response ) {
                 
@@ -1614,6 +1898,130 @@ if (!this.value) {
 		});
 </script>	
 
+<script>
+		$( document ).ready(function() {
+			$('#dtBxRealizacao').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtBxRepasse').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtBxCobranca').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtBxPagamento').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+	  
+<script>
+		$(document).on('click','#btnBaixarProducao',function(e){
+        e.preventDefault();
+		var id = $(this).data('id');
+		confirm("Baixar produção ? " +id);
+		
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		var result = JSON.parse(this.responseText);
+			document.getElementById("idproducao1").value = id;	
+			$('#dtBxRealizacao').data('DateTimePicker').date(new Date(result[0][1]));
+			document.getElementById("nomePaciente").value = result[0][5];	
+			document.getElementById("nomeMedico").value = result[0][7];
+			document.getElementById("descricaoConvenio").value = result[0][8];
+			document.getElementById("codProcedimento").value = result[0][10];		
+			document.getElementById("descProcedimento").value = result[0][11];
+			$("#valorCobrado").val(result[0][12]);
+			$("#valorCobrado").maskMoney('mask');
+			$("#valorBxRecebido").val(result[0][16]);
+			$("#valorBxRecebido").maskMoney('mask');
+			$("#glosaBx").val(result[0][17]);
+			$("#glosaBx").maskMoney('mask');
+			
+
+			$('#dtBxPagamento').data('DateTimePicker').date(new Date(result[0][19]));
+			$('#dtBxCobranca').data('DateTimePicker').date(new Date(result[0][20]));
+
+			$('#dtBxRepasse').data('DateTimePicker').date(new Date(result[0][21]));
+			document.getElementById("notaFiscalBx").value = result[0][23];
+			
+			}
+		};
+		xmlhttp.open("GET", "operacoes_producao.php?id="+id, true);
+		xmlhttp.send();
+		$("#modalBaixarProducao").modal();
+		});
+
+	</script>	
+
+<script>
+			$(document).on('click','#btnAtualizarProducao',function(e){
+			e.preventDefault();
+			$.ajax({  
+				url:"operacoes_baixar_producao.php",  
+				method:"POST",  
+				data: {id: $("#idproducao1").val(), 
+				    dataRealizacao : $("#dtBaixaRealizacao").val(),
+					valorRecebido : $('#valorBxRecebido').maskMoney('unmasked')[0], 
+					glosa : $('#glosaBx').maskMoney('unmasked')[0], 
+					dataPagamento : $("#dtBaixaPagamento").val(), 
+					dataRepasse : $("#dtBaixaRepasse").val(), 
+					dataCobranca : $("#dtBaixaCobranca").val(), 
+			 	    statusPagamento : $("#statusBxOperacao").find('option:selected').text(),
+			  	    notaFiscal : $("#notaFiscalBx").val()},
+				beforeSend:function(){  
+				},  
+				success:function(data){ 
+					alert("Operação realizada com suscesso!");
+					$('#listar-producao').DataTable().ajax.reload();
+
+				}  
+			   });   
+			}); 
+</script>	
+
+<script>
+	function getBxSaldo(val) {
+		//Calcula quantidade 
+		// Recebe o valor do procedimento original importado da base de procedimentos/porte
+		var glosaBx = $('#glosaBx').maskMoney('unmasked')[0];
+			var valorBx = $("#valorCobrado").maskMoney('unmasked')[0];
+			var valorRecebidoBx = $("#valorBxRecebido").maskMoney('unmasked')[0];
+			glosaBx = valorRecebidoBx-valorBx;
+			glosaBx = glosaBx.toFixed(2);
+			document.getElementById("glosaBx").value = glosaBx;
+			$("#glosaBx").maskMoney('mask');	
+	}
+</script>	
+
+<script>
+		$('[data-dismiss=modal]').on('click', function (e) {
+			$('#modalBaixarProducao').on('hidden.bs.modal', function () {
+			document.getElementById("idproducao1").value = null;
+			$(this).find('form').trigger('reset');
+			});
+		});
+</script>
 
 
 <!-- END DATE FUNCTIONS -->	  

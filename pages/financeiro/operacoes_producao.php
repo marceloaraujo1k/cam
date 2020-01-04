@@ -21,6 +21,7 @@ $form = mysqli_fetch_assoc($query);
 	$dado[]=$form["hospital"];
 	$dado[]=$form["codigoProcedimento"];
 	$dado[]=$form["descricaoProcedimento"];
+	//12
 	$dado[]=$form["valorProcedimento"];
 	$dado[]=$form["quantidade"];
 	$dado[]=$form["adicional"];
@@ -28,6 +29,7 @@ $form = mysqli_fetch_assoc($query);
 	$dado[]=$form["valorRecebido"];
 	$dado[]=$form["glosa"];
 	$dado[]=$form["saldo"];
+	//19
 	$dado[]=$form["dataPagamento"];
 	$dado[]=$form["dataCobranca"];
 	$dado[]=$form["dataRepasse"];
