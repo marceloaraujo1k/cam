@@ -29,12 +29,15 @@ switch ($filtroDataTipo) {
 		break;
 
 	case '2':
-    $dataOpcao = "dataPagamento";
+	$dataOpcao = "dataPagamento";
+	$dataFormato = "DATA DE PAGAMENTO";
     $status = "PAGO";
 			break;
 	
 	case '3':
 		$dataOpcao = "dataRepasse";
+		$status = "PAGO";
+		$dataFormato = "DATA DE REPASSE";
 		break;	
 } 
 
@@ -44,12 +47,12 @@ if (!empty($id)){
 
   $query = "SELECT producao.idconvenio, producao.idmedico, producao.medico,  sum(producao.valorProcedimento) as totalCobrado , 
  			 sum(producao.valorRecebido) as totalRecebido, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio, convenio.descricao FROM producao inner join convenio 
-		  on producao.idconvenio = convenio.idconvenio where convenio.classificacao='PLANO DE SAÚDE' AND  producao.dataPagamento  BETWEEN '2019-01-01' AND '2019-01-31' group by convenio.idconvenio, producao.medico;";
+		  on producao.idconvenio = convenio.idconvenio where convenio.classificacao='PLANO DE SAÚDE' AND   producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date. "' group by convenio.idconvenio, producao.medico;";
 }
 else {
-  $query =  "SELECT producao.idconvenio,  producao.idmedico, producao.medico,  sum(producao.valorProcedimento) as totalCobrado, 
-  sum(producao.valorRecebido) as totalRecebido, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio, convenio.descricao FROM producao inner join convenio 
-  on producao.idconvenio = convenio.idconvenio where convenio.classificacao='PLANO DE SAÚDE' AND  producao.dataPagamento  BETWEEN '2019-01-01' AND '2019-01-31' group by convenio.idconvenio, producao.medico;";
+	$query =  "SELECT producao.idconvenio,  producao.idmedico, producao.medico,  sum(producao.valorProcedimento) as totalCobrado, 
+	sum(producao.valorRecebido) as totalRecebido, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio, convenio.descricao FROM producao inner join convenio 
+	on producao.idconvenio = convenio.idconvenio where convenio.classificacao='PLANO DE SAÚDE' AND  producao.".$dataOpcao."   BETWEEN '".$start_date."' AND '".$end_date. "' group by convenio.idconvenio, producao.medico;";
 }
 
 $result = mysqli_query($mysql_conn, $query);
@@ -71,68 +74,26 @@ $pdf->AddPage("P");
 	// Move to the right   
 	$pdf->SetFillColor(166,166,166);
 	$pdf->SetTextColor(255,255,255);
-	$pdf->Cell(140,5,utf8_decode('RELATÓRIO GERENCIAL DE REALIZAÇÃO DE PROCEDIMENTOS PLANO DE SAÚDE'),1,1,'C',true);
-	$pdf->Cell(30,5,utf8_decode("PERÍODO:"),1,0,'C',true);
+	$pdf->Cell(180,10,utf8_decode('RELATÓRIO GERENCIAL DE REALIZAÇÃO DE PROCEDIMENTOS PLANO DE SAÚDE'),1,1,'C',true);
+	$pdf->Cell(90,5,utf8_decode($dataFormato." PERÍODO: "),1,0,'C',true);
 	setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 	date_default_timezone_set('America/Sao_Paulo');
 	$pdf->SetFillColor(255,255,0);
 	$pdf->SetTextColor(0,0,0);
 
-	$pdf->Cell(30,5,strftime('%B %Y', strtotime($mesFatura)),1,1,'C',true);
+	$pdf->Cell(90,5,strftime('%B %Y', strtotime($mesFatura)),1,1,'C',true);
 	
 	$pdf->SetFillColor(0,176,240);
 	$pdf->SetTextColor(255,255,255);
 	$pdf->ln();
 
-
-//	$pdf->Cell(50,5,utf8_decode('PLANO DE SAÚDE'),'LRT',0,'C',true);
-//	$pdf->SetFillColor(166,166,166);
-	//$pdf->Cell(50,5,utf8_decode('NORDCLINICAS'),'LRTB',0,'C',true);
-
 	while ($row1=mysqli_fetch_assoc($result1)) { 
-//		$pdf->Cell(50,5,utf8_decode($row1["descricao"]),'LRTB',0,'C',true);
 	}
 	
-	//$pdf->Cell(50,5,'','LRTB',1,'C',true);
 
 	$pdf->ln();
 	$pdf->SetTextColor(0,0,0);
 
-/*	while($row= mysqli_fetch_assoc($result)){
-		$pdf->SetX(2);	
-	//	while ($row1=mysqli_fetch_assoc($result1)) {
-///		$convenio=$row1["idconvenio"];
-		$convenio=1;
-		$pdf->Cell(50,5,utf8_decode('NEI NOGUEIRA'),'LRTB',0,'C',true);
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-				$pdf->Cell(30,5,$row["totalCobrado"],0,0,'C');
-			}
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-			$pdf->Cell(50,5,'teste',0,0,'C');
-		}
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-		$pdf->Cell(50,5,$row["totalCobrado"],0,1,'C');
-		}
-		else {
-			$pdf->ln();
-		}
-
-		$pdf->Cell(50,5,utf8_decode('EDILSON SILVA'),'LRTB',0,'C',true);
-		
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-				$pdf->Cell(30,5,$row["totalCobrado"],0,0,'C',true);
-			}
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-			$pdf->Cell(50,5,'teste',1,'C',true);
-		}
-		if ($row["idmedico"]==21 and $row["idconvenio"]==$convenio) {
-		$pdf->Cell(50,5,$row["totalCobrado"],1,'C',true);
-		}
-	//}
-} */
-
-	//$pdf->Cell(50,5,utf8_decode('TOTAL'),'LRB',1,'C',true);
-	
 	$pdf->SetFillColor(242,242,242);
 	$pdf->SetFillColor(255,255,0);
     // Line break
@@ -152,22 +113,57 @@ function Footer()
     $this->Cell(0,10,'Página '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
+$current_convenio=null;
+$totalCobradoConvenio = null;
+$totalPagoConvenio = null;
 
 
 $pdf->SetWidths(array(70,50,30,30));
-	$pdf->Cell(70,5,''.utf8_decode("PLANO DE SAÚDE"),1,0,"L");
-	$pdf->Cell(50,5,''.utf8_decode("MÉDICO"),1,0,"L");
-	$pdf->Cell(30,5,''.utf8_decode("TOTAL COBRADO"),1,0,"L");
-	$pdf->Cell(30,5,''.utf8_decode("TOTAL PAGO"),1,1,"L");
+
+			
+$pdf->Cell(70,10,''.utf8_decode("PLANO DE SAÚDE"),1,0,"L");
+$pdf->Cell(50,10,''.utf8_decode("MÉDICO"),1,0,"L");
+$pdf->Cell(30,10,''.utf8_decode("TOTAL COBRADO"),1,0,"L");
+$pdf->Cell(30,10,''.utf8_decode("TOTAL PAGO"),1,1,"L");
+
 if(mysqli_num_rows($result) > 0){
     while($row= mysqli_fetch_assoc($result)){
-	
-		$pdf->Row(array(utf8_decode($row["descricao"]), utf8_decode($row["medico"]), number_format($row["totalCobrado"],2,",","."), number_format($row["totalRecebido"],2,",",".")));
+		if ($row["descricao"] != $current_convenio) {
+			if ($current_convenio != null) { 
+				$pdf->Cell(180,10,utf8_decode('TOTAL COBRADO CONVÊNIO R$ ') . number_format($totalCobradoConvenio,2,",","."),"LTR",1,"L");
+				$pdf->Cell(180,10,utf8_decode('TOTAL PAGO CONVÊNIO R$ ') . number_format($totalPagoConvenio,2,",","."),"LRB",1,"L");
+				
+				$pdf->Cell(70,10,''.utf8_decode("PLANO DE SAÚDE"),1,0,"L");
+				$pdf->Cell(50,10,''.utf8_decode("MÉDICO"),1,0,"L");
+				$pdf->Cell(30,10,''.utf8_decode("TOTAL COBRADO"),1,0,"L");
+				$pdf->Cell(30,10,''.utf8_decode("TOTAL PAGO"),1,1,"L");
+				
+				  
+			}
+			$current_convenio = $row["descricao"];	
+			$totalCobradoConvenio = 0;
+			$totalPagoConvenio = 0;
+			$pdf->Row(array(utf8_decode($row["descricao"]), utf8_decode($row["medico"]), number_format($row["totalCobrado"],2,",","."), number_format($row["totalRecebido"],2,",",".")));
+			$totalCobradoConvenio=$totalCobradoConvenio+$row["totalCobrado"];
+			$totalPagoConvenio=$totalPagoConvenio+$row["totalRecebido"];
 		}
-	 }
-
-	
+		else {
+			$pdf->Row(array(utf8_decode($row["descricao"]), utf8_decode($row["medico"]), number_format($row["totalCobrado"],2,",","."), number_format($row["totalRecebido"],2,",",".")));
+			$totalCobradoConvenio=$totalCobradoConvenio+$row["totalCobrado"];
+			$totalPagoConvenio=$totalPagoConvenio+$row["totalRecebido"];
+			}
+		}
+		if ($current_convenio != null){
+			$pdf->Cell(180,10,utf8_decode('TOTAL COBRADO CONVÊNIO R$ ') . number_format($totalCobradoConvenio,2,",","."),"LTR",1,"L");
+			$pdf->Cell(180,10,utf8_decode('TOTAL PAGO CONVÊNIO R$ ') . number_format($totalPagoConvenio,2,",","."),"LRB",0,"L");
+			
+		}
+	 
 	}
+	
+
+}
+
 
 	 $pdf->Output();
 ?>

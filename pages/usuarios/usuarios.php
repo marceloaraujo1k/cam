@@ -154,10 +154,10 @@ $empresa = getItensTable($mysql_conn,"empresa");
 									<div class="form-group col-md-6">
 									  <label for="funcao">Função</label>
 									  <select id="funcao" name="idfuncao" class="form-control"> 
-											<option value="0">ATENDENTE</option>
-											<option value="1">GERENTE</option>
-											<option value="2">MÉDICO</option>
-											<option value="3">DIRETOR</option>									
+											<option value="1">ATENDENTE</option>
+											<option value="2">GERENTE</option>
+											<option value="3">MÉDICO</option>
+											<option value="4">DIRETOR</option>									
 									</select>
 									</div>
 									

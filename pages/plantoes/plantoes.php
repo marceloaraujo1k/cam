@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include '../opendb.php';
 include_once('../func.php');
 

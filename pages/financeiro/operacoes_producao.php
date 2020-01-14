@@ -39,6 +39,7 @@ $form = mysqli_fetch_assoc($query);
 	$dado[]=$form["formaPagamento"];
 	$dado[]=$form["statusPagamento"];
 	$dado[]=$form["observacao"];
+	$dado[]=$form["medicoCirurgiao"];
 			
 $dados[] = $dado;
 

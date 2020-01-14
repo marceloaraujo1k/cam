@@ -431,7 +431,7 @@ $r=$result;
         . "</td>";
           }
        //   $i=$i+2;
-
+       mysqli_free_result($result);
     
 ?>
 
@@ -526,10 +526,10 @@ $query1=null;
       }
   else {
     $query1 =  "SELECT producao.dataRealizacao, producao.paciente, producao.idmedico, producao.medico, producao.codigoProcedimento, producao.descricaoProcedimento, 
-     producao.valorProcedimento, producao.hospital, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
-    on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND producao.hospital = '".$_GET["hospital"]."'  AND 
+     producao.valorProcedimento, producao.hospital, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos,
+      convenio.classificacao, convenio.idconvenio FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND producao.hospital = '".$_GET["hospital"]."' AND 
     producao.".$dataOpcao."  BETWEEN '.$start_date.' AND '.$end_date. ' order by producao.idmedico;";    
-   }
+  }
 
 $result1 = mysqli_query($mysql_conn, $query1);
 
@@ -538,37 +538,22 @@ if(mysqli_num_rows($result1) > 0){
 ?>
 
   <tr style='height:11.05pt'>
-  <td width=138 nowrap style='width:103.6pt;border:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt; text-align:center;line-height:normal'>
-  <span style='color:black'><?php echo strftime('%d/%m/%Y', strtotime($row1['dataRealizacao'])); ?> </span></p>
+  <td><?php echo strftime('%d/%m/%Y', strtotime($row1['dataRealizacao'])); ?>
   </td>
- 
-  <td width=208 nowrap valign=bottom style='width:156.15pt;border:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:normal'><span style='color:black'><?php echo $row1['paciente']; ?></span></p>
-  </td>
- 
   <td width=126 nowrap valign=bottom style='width:94.55pt;border:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;text-align:center;line-height:normal'><span style='color:black'><?php echo $row1['codigoProcedimento']; ?></span></p>
-  </td>
-
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'><?php echo $row1['codigoProcedimento']; ?>
+  </td>     
   <td width=310 nowrap valign=bottom style='width:232.55pt;border:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:normal'><span style='color:black'><?php echo $row1['descricaoProcedimento']; ?></span></p>
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'><?php echo $row1['descricaoProcedimento']; ?>
   </td>
 
   <td width=129 nowrap valign=bottom style='width:97.1pt;border:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='color:black'><?php echo $row1['medico']; ?></span></p>
+  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'><?php echo $row1['medico']; ?>
   </td>
-  <td width=115 nowrap style='width:86.45pt;border:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
-  padding:0cm 5.4pt 0cm 5.4pt;height:11.05pt'>
-  <p class=MsoNormal align=center style='margin-bottom:0cm;margin-bottom:.0001pt;
-  text-align:center;line-height:normal'><span style='color:black'>R$ <?php echo $row1['valorProcedimento']; ?> </span></p>
-  </td>
- </tr>
-<?php }
+ 
+  <td>R$ <?php echo $row1['valorProcedimento']; ?> </td>
+
+ <?php }
     }
 ?>
 

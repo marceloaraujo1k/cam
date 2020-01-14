@@ -12,18 +12,19 @@ $columns = array(
 	2 => 'paciente',
 	3 => 'carteiraPaciente',
 	4 => 'medico',
-	5 => 'convenio',
-	6 => 'hospital',
-	7 => 'codigoProcedimento',
-	8 => 'descricaoProcedimento',
-	9 => 'quantidade',
-	10 => 'adicional',
-	11 => 'redutor',
-	12 => 'valoRecebido',
-	13 => 'dataCobranca',
-	14 => 'protocoloEnvio',
-	15 => 'notaFiscal',
-	16 => 'observacao'
+	5 => 'medicoCirurgiao',
+	6 => 'convenio',
+	7 => 'hospital',
+	8 => 'codigoProcedimento',
+	9 => 'descricaoProcedimento',
+	10 => 'quantidade',
+	11 => 'adicional',
+	12 => 'redutor',
+	13 => 'valoRecebido',
+	14 => 'dataCobranca',
+	15 => 'protocoloEnvio',
+	16 => 'notaFiscal',
+	17 => 'observacao'
 );
 
 $query = "SELECT * FROM producao WHERE ";
@@ -47,9 +48,24 @@ if($_POST["is_date_search"] == "yes")
 							else {
 								$query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
 							}
-							
-
 						break;
+						case '2':
+							if ($_POST["filterConvenio"] == null) {
+								 $query .= 'dataPagamento BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
+							}
+							else {
+								$query .= 'dataPagamento BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+							}
+						break;
+						case '3':
+							if ($_POST["filterConvenio"] == null) {
+								 $query .= 'dataRepasse BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
+							}
+							else {
+								$query .= 'dataRepasse BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+							}
+						break;
+
 						default:
 				}
 }
@@ -101,6 +117,7 @@ while($row = mysqli_fetch_array($result))
 	$sub_array[] = $row["paciente"];
 	$sub_array[] = $row["carteiraPaciente"];
 	$sub_array[] = $row["medico"];
+	$sub_array[] = $row["medicoCirurgiao"];
 	$sub_array[] = $row["convenio"];
 	$sub_array[] = $row["hospital"];
 	$sub_array[] = $row["codigoProcedimento"];

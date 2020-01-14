@@ -5,7 +5,14 @@ Correções calculo da glosa
 
 
 
+
+
+
 ATIVIDADES CAM
+
+- FIXAR ALGUMAS COLUNAS
+- SEPARAÇÃO DE VALORES POR PAGAMENTO
+- 
 
 #### ESCONDER/EXIBIR ####
 DATA REALIZAÇÃO

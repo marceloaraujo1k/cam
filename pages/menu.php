@@ -1,3 +1,12 @@
+<?php
+    include 'opendb.php';
+
+    $teste = $_SESSION['idfuncao'];
+
+    //echo $teste;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,19 +68,34 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+
 						 <li>
                             <a href="../gerencial/dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
                         </li>
+                        
+                        <?php if($teste == 1){ ?>
+
 						 <li>
                             <a href="../pacientes/pacientes.php"><i class="fa fa-user fa-fw"></i> Pacientes </a>
                         </li>
+
+                        <?php }?>
+
+                        <?php if($teste == 1){ ?>
                         <li>
                             <a href="../agendamento/agendamento.php"><i class="fa fa-calendar fa-fw"></i> Agendamento </a>
                         </li>
-						<li>
+                        <?php } ?>
+
+                        <?php if($teste == 1){ ?>
+						
+                        <li>
                             <a href="../plantoes/plantoes.php"><i class="fa fa-calendar fa-fw"></i> Plantões </a>
                         </li>
-					
+
+                        <?php }?>
+
+                        <?php if($teste == 1){ ?>
 						<li>
                             <a href="#"><i class="fa fa-bar-chart-o"></i> Financeiro<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -81,6 +105,7 @@
                  			</ul>
                             <!-- /.nav-second-level -->
                         </li>
+
 						<li>
                             <a href="#"><i class="fa fa-archive"></i> Administrativo<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -108,7 +133,7 @@
 							</ul>
                             <!-- /.nav-second-level -->
                         </li>
-						
+                        <?php }?>
 						
                     </div>
                 <!-- /.sidebar-collapse -->

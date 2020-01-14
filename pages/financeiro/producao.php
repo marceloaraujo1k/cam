@@ -128,8 +128,10 @@ $form["saldoDevedor"]=null;
 									<br>
 									  <label for="filtroData">Filtrar por</label>
 										<select id="filtroData" name="filtroData" class="form-control"> 
-											<option value="0">Data de Realização</option>
-											<option value="1">Data de Cobrança</option>
+												<option value="0">Data de Realização</option>
+												<option value="1">Data de Cobrança</option>
+												<option value="2">Data de Pagamento</option>
+												<option value="3">Data de Repasse</option>
 										</select>
 						</div>
 						<div class="form-group col-lg-2">
@@ -316,14 +318,19 @@ $form["saldoDevedor"]=null;
 							</div>
 					
 							<div class="row">
-									<div class="form-group col-lg-8">
+									<div class="form-group col-lg-3">
 										<label for="nome">Observação</label>
 										<input class="form-control" type="text" name="observacao" id="observacao">
+									</div>
+
+									<div class="form-group col-lg-3">
+										<label for="nome">Cirurgião</label>
+										<input class="form-control" type="text" name="medicoCirurgiao" id="medicoCirurgiao">
 									</div>
 								
 										<div class="form-group col-lg-2">
 										<br>
-										<button type="button" id="adicionarProcedimentos" class="btn btn btn-default btn-primary"><i class="glyphicon glyphicon-plus"></i> Adicionar </button> 
+										<button type="button" id="adicionarProcedimentos" class="btn btn btn-default btn-primary" onclick="teste()"><i class="glyphicon glyphicon-plus"></i> Adicionar </button> 
 									</div>
 										<div class="form-group col-lg-2">
 											<p>Total Procedimentos R$ <span style="color:black" id="totalProcedimentos"></span></p>
@@ -333,7 +340,7 @@ $form["saldoDevedor"]=null;
 								</div>
 
 						
-								<div class="row">
+								<div class="row" >
 										<div class="form-group col-lg-12">
 											<table class="table table-striped table-bordered table-hover" id="tblprocedimentos">
 												<thead>
@@ -342,11 +349,12 @@ $form["saldoDevedor"]=null;
 															<th>Procedimento</th>
 															<th>Qtd.</th>
 															<th>% Ad.</th>
-															<th>% Red.</th>
-															<th>Valor</th>
-															<th>Receb.</th>
+															<th >% Red.</th>
+															<th >Valor</th>
+															<th >Receb.</th>
 															<th>Glosa</th>
 															<th>Observação</th>
+															<th>Medico Cirurgião</th>
 															<th></th>
 														</tr>
 												</thead>
@@ -441,6 +449,7 @@ $form["saldoDevedor"]=null;
 										<th rowspan="2">Nota Fiscal</th>
 										<th colspan="2"><center>Paciente</center></th>
 										<th rowspan="2">Médico</th>
+										<th rowspan="2">Cirurgião</th>
 										<th rowspan="2">Convênio</th>
 										<th rowspan="2">Hospital</th>
 										<th colspan="4"><center>Procedimento</center></th>
@@ -1030,28 +1039,115 @@ $form["saldoDevedor"]=null;
 	<script src="../../js/dataTables.checkboxes.min.js"></script>
 	
 <script>
+// CRIAR TABELA
 	$(document).ready(function(){
-		var t = $('#tblprocedimentos').DataTable(
+		 Table = $('#tblprocedimentos').DataTable(
 		{
 		"scrollY": 		"100px",
 	    "paging": 		false,
-		"searching":	false
+		"searching":	false,
+		
+		createdRow:	function(row){ // Toda vez que criar uma row ..
+			var td = $(row).find("td").eq(5); // Pega o texto da célula 5
+			td.data("value", td.text()); // Coloca no Válue 
+
+			console.log(td);
+		}
+
 		});
   	});
 		var totalProcedimentos = 0;
 		var totalRecebido = 0;
+</script>
+
+<script>
+
+
+
+function teste(){
+
+// CÓDIGO PARA EDITAR CADA LINHA DA TABELA
+
+$(document).ready(function(){
+		$("table#tblprocedimentos").on("dblclick", "td" , function () {
+        var cell = Table.cell(this);
+		
+		console.log(cell.index().column);
+		var conteudoOriginal = $(this).text();
+        var td = $(this);
+
+        td.addClass("celulaEmEdicao");
+
+		if(cell.index().column == 4){ // Se o index da coluna for igual o 4 .. 
+			td.addClass("recalcularPorcentagem");
+
+		}
+
+        td.html("<input type='text' value='" + conteudoOriginal + "' />");
+        td.children().first().focus();
+			
+        td.children().first().keypress(function (e) {
+            if (e.which == 13) {
+				e.preventDefault();
+                var novoConteudo = $(this).val();
+                $(this).parent().text(novoConteudo);
+
+				cell.data(novoConteudo).draw(); // Atualiza o conteudo editado.
+
+                $(this).parent().removeClass("celulaEmEdicao");
+				
+            }
+
+        });
+         
+		 
+
+		td.children().first().blur(function(){
+        td.parent().text(conteudoOriginal);
+        td.parent().removeClass("celulaEmEdicao");
+		td.removeClass("recalcularPorcentagem");
+		
+    });
+
+
+
+    });
+
+	$("table#tblprocedimentos").on("change", "td.recalcularPorcentagem input", function(){
+	 var porcentagem = $(this).val(); //Valor input 
+	 
+	 //console.log('Porcentagem: ', porcentagem);
+	 //console.log(Table.cell(this.parentElement.nextSibling).data());
+
+	 var cell = Table.cell(this.parentElement.nextSibling); // Determina Célula seguinte
+	
+	//console.log(cell);
+	 var valor = parseFloat($(this.parentElement.nextSibling).data("value")); // Pega o valor da Celula
+	 console.log('Valor: ', valor);
+	 
+	conta = valor - valor * (porcentagem/100);
+	
+	cell.data(conta.toFixed(2)); // Grava o Novo valor
+
+	});
+
+	});
+
+}
+
 </script>
 	
 <script>	
 // adiciona varios procedimentos
 		$('#adicionarProcedimentos').on( 'click', function () {
 
-		var t = $('#tblprocedimentos').DataTable();
+		//var t = $('#tblprocedimentos').DataTable();
 		var valor = $("#valor").maskMoney('unmasked')[0];
 		var valorRecebido = $("#valorRecebido").maskMoney('unmasked')[0];
 		var glosa = $("#glosa").maskMoney('unmasked')[0];
-    
-        t.row.add([
+		
+
+        Table.row.add([
 			document.getElementById('searchCodProcedimento').value,
             document.getElementById('searchProcedimento').value,
 			document.getElementById('quantidade').value,
@@ -1061,6 +1157,10 @@ $form["saldoDevedor"]=null;
 			valorRecebido,
 			glosa,
 			document.getElementById('observacao').value,
+
+			//Medico Cirurgiao
+			document.getElementById('medicoCirurgiao').value,
+			
 			'<button type="button" id="btnExcluirItemProcedimento" class="btn  btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></button>',
              ]).draw();
 			 	totalProcedimentos = totalProcedimentos + valor;
@@ -1115,7 +1215,7 @@ $form["saldoDevedor"]=null;
 							break;
 						
 						case '1':
-							window.open("relatorioPlanoSaude.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							window.open("relatorioPlanodeSaude.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
 							break;
 
 						case '2':
@@ -1244,8 +1344,8 @@ $form["saldoDevedor"]=null;
 			 event.preventDefault();
 		
 			// Ler os procedimentos e inserir
-		var table = $('#tblprocedimentos').DataTable();
-				table.rows().every(function(){
+		//var table = $('#tblprocedimentos').DataTable();
+				Table.rows().every(function(){
 				var codigoProcedimento  = this.data()[0];
 				var descricao = this.data()[1];
 				var quantidade = this.data()[2];
@@ -1255,6 +1355,9 @@ $form["saldoDevedor"]=null;
 				var valorRecebido = this.data()[6];
 				var glosa = this.data()[7];
 				var observacao = this.data()[8];
+				var medicoCirurgiao = this.data()[9];
+				//console.log(valorProcedimento);
+				//return false;
 			$.ajax({  
 				url:"proc_producao.php",  
 				method:"POST",  
@@ -1265,7 +1368,7 @@ $form["saldoDevedor"]=null;
 					  codigoProcedimento:codigoProcedimento, descricaoProcedimento: descricao, quantidade : quantidade,  adicional : adicional, redutor : redutor,
 					  valorProcedimento : valorProcedimento, valorRecebido :valorRecebido, glosa : glosa,  saldo : $('#saldo').maskMoney('unmasked')[0],
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
-					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: observacao},
+					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: observacao, medicoCirurgiao: medicoCirurgiao},
 				beforeSend:function(){
 				},  
 				success:function(data){
@@ -1299,7 +1402,7 @@ $form["saldoDevedor"]=null;
 					  codigoProcedimento: $("#searchCodProcedimento").val(), descricaoProcedimento: $("#searchProcedimento").val(), quantidade : $("#quantidade").val(),  adicional : $("#adicional").val(), redutor : $("#redutor").val(),
 					  valorProcedimento : $('#valor').maskMoney('unmasked')[0], valorRecebido : $('#valorRecebido').maskMoney('unmasked')[0], glosa : $('#glosa').maskMoney('unmasked')[0],  saldo : $('#saldo').maskMoney('unmasked')[0],
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
-					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: $("#observacao").val()  },
+					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: $("#observacao").val(), medicoCirurgiao: $("#medicoCirurgiao").val()  },
 				beforeSend:function(){  
 				},  
 				success:function(data){  
@@ -1337,14 +1440,15 @@ $form["saldoDevedor"]=null;
 				//$('#dataRealizacao').datetimepicker({defaultDate:  result[0][1], format:'DD/MM/YYYY HH:mm'});
 				$("#searchNoCarteira").val(result[0][6]);
 				$("#searchPaciente").val(result[0][5]);
-				document.getElementById('convenio').options[document.getElementById('convenio').selectedIndex].text = result[0][8];
+				$("#convenio option:contains(" + result[0][8] + ")").attr('selected', 'selected');
+				//document.getElementById('convenio').options[document.getElementById('convenio').selectedIndex].text = result[0][8];
 				document.getElementById('hospital').options[document.getElementById('hospital').selectedIndex].text = result[0][9];
 				$("#searchMedico").val(result[0][7]);
 				
 				$("#searchCodProcedimento").val(result[0][10]);
 				$("#searchProcedimento").val(result[0][11]);
-			
-				$("#valor").val(result[0][12]);
+			 
+			 	$("#valor").val(result[0][12]);
 				$("#valor").maskMoney('mask');
 								
 				$("#quantidade").val(result[0][13]);
@@ -1356,6 +1460,7 @@ $form["saldoDevedor"]=null;
 				$("#glosa").val(result[0][17]);
 				$("#saldo").val(result[0][18]);
 				$("#observacao").val(result[0][27]);
+				$("#medicoCirurgiao").val(result[0][28]);
 				$("#notaFiscal").val(result[0][23]);
 				document.getElementById('formaPagamento').options[document.getElementById('formaPagamento').selectedIndex].text = result[0][25];
 				document.getElementById('statusPagamento').options[document.getElementById('statusPagamento').selectedIndex].text = result[0][26];
@@ -1488,7 +1593,7 @@ function getSaldo(val) {
               		 body: function ( data, row, column, node ) {
               		      //Strip $ column to make it numeric
              			     //return (column === 13)  ? //data.replace( /[$,]/g, '' ) :	 data;
-							  if (column ==12) {
+							  if ((column ==12) || (column==18) || (column==19) || (column==20)) {
 								data = data.replace(/[\D]+/g, "" );
 								var tmp = parseInt(data);
 								tmp=tmp/100;
@@ -1497,11 +1602,11 @@ function getSaldo(val) {
 								return data=tmp;
 							  }
 							  else 	
-							 { return data;	
+							 { 
+								 return data;	
 							}
-					   }	
-		                     
-               		 }
+						}	
+		            }
 					}
 					 
 					 },
@@ -1701,21 +1806,31 @@ $( function() {
 // search CÓDIGO PROCEDIMENTO
 	 $( function() {
       $( "#searchCodProcedimento" ).autocomplete({
-            source: function( request, response ) {
+		source: function( request, response ) {
                 
-                $.ajax({
-                    url: "fetchData.php",
-                    type: 'post',
-                    dataType: "json",
-                    data: {
-						searchprocedimento: request.term, 
-						idconvenio : $('#convenio').val()
-                        },
-                    success: function( data ) {
-                        response( data );
-                    }
-                });
-            },
+							$.ajax({
+				url: "fetchData.php",
+				type: 'post',
+				dataType: "json",
+				cache: "false",
+				beforeSend: function(){
+					console.log( "id:" + $('#convenio').val() );
+				},
+				data: {
+					searchprocedimento: request.term,
+					idconvenio: $('#convenio').val()
+					},
+
+				success: function( data ) {
+					console.log(data);
+					response( data );
+				},
+				error: function (data){
+					console.log(data);
+				}
+			});
+
+	},
 		//	appendTo: "#modalReceita",
 		
             select: function (event, ui) {
