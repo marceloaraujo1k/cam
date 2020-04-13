@@ -1,3 +1,6 @@
+
+//dfijaiodfj
+
 // Dados da conexão com o banco de dados
 define('SERVER', 'localhost');
 define('DBNAME', 'db_blog');
