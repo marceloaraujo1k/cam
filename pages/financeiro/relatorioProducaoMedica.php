@@ -353,7 +353,7 @@ while ($row = mysqli_fetch_assoc($result3))
 			
 			$pdf->Ln(10);
 			
-			 $pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])), utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),  utf8_decode($row["statusPagamento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",",".")));	
+			 $pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])), utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),  utf8_decode($row["statusPagamento"]),  ((((($row["dataRepasse"])!="0000-00-00 00:00:00")) && (($row["dataRepasse"])!=NULL)) ? date('d/m/Y',strtotime($row["dataRepasse"])) : ''), number_format($row["valorRecebido"],2,",",".")));	
 			 $totalProcedimento=$totalProcedimento+$row["valorProcedimento"];
 			 $totalGlosa=$totalGlosa+$row["glosa"];
 			 $totalBruto = $totalProcedimento-$totalGlosa;
@@ -363,7 +363,7 @@ while ($row = mysqli_fetch_assoc($result3))
 			else
 			{	
 				$pdf->SetFont('arial','',9);
-				$pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])),  utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),   utf8_decode($row["statusPagamento"]), date('d/m/Y', strtotime($row["dataRepasse"])), number_format($row["valorRecebido"],2,",",".")));	
+				$pdf->Row(array(date('d/m/Y', strtotime($row["dataRealizacao"])),  utf8_decode($row["notaFiscal"]), utf8_decode($row["paciente"]), utf8_decode($row["codigoProcedimento"]), utf8_decode($row["descricaoProcedimento"]),   utf8_decode($row["statusPagamento"]),	((((($row["dataRepasse"])!="0000-00-00 00:00:00")) && (($row["dataRepasse"])!=NULL)) ? date('d/m/Y',strtotime($row["dataRepasse"])) : ''), number_format($row["valorRecebido"],2,",",".")));	
 				$totalProcedimento=$totalProcedimento+$row["valorProcedimento"];
 				$totalGlosa=$totalGlosa+$row["glosa"];
 				$totalBruto = $totalProcedimento-$totalGlosa;

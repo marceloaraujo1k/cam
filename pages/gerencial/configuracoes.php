@@ -1,7 +1,25 @@
 <?php
-//session_start();
+session_start();
 include '../opendb.php';
 include_once('../func.php');
+
+if((!isset ($_SESSION['user']) == true) and (!isset ($_SESSION['idempresa']) == true) and (!isset ($_SESSION['idfuncao']) == true))
+{
+  unset($_SESSION['user']);
+  unset($_SESSION['idempresa']);
+  unset($_SESSION['idfuncao']);
+  
+  session_destroy();
+  header('location:../login.php');
+  }
+
+if (($_SESSION['idfuncao'])!=1) {
+	
+	
+	header('location:dashboard.php');
+	
+
+}
 
 	$convenios = getItensTable($mysql_conn,"convenio");
 	$hospital = getItensTable($mysql_conn,"hospital");

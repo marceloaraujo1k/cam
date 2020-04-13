@@ -3,6 +3,21 @@ session_start();
 include '../opendb.php';
 include_once('../func.php');
 
+
+if((!isset ($_SESSION['user']) == true) and (!isset ($_SESSION['idempresa']) == true) and (!isset ($_SESSION['idfuncao']) == true))
+{
+  unset($_SESSION['user']);
+  unset($_SESSION['idempresa']);
+  unset($_SESSION['idfuncao']);
+  
+  session_destroy();
+  header('location:../login.php');
+  }
+
+
+$usuarioLogado = $_SESSION['user'];
+$usuarioFuncao = $_SESSION['idfuncao'];
+  
 //Zerar variaveis
 $totalPacientes=0;
 $totalAgendamentos=0;
@@ -12,37 +27,30 @@ $totalFaturamento=0;
 $totalFaturamentoDia=0;
 $totalDespesas=0;
 
-
-//$totalPacientes=count(getItensTable($mysql_conn,"pacientes"));
-//$totalAgendamentos=count(getItensTable($mysql_conn,"agendamentos"));
-
-//$totalProntuarios = count(getItensTable($mysql_conn, "prontuarios"));
+$form=null;
 
 $documentos=null;
-//$documentos=(getItensTable($mysql_conn,"documentos"));
+$documentos = getItensTable($mysql_conn,"documentos");
 
-
-//$query = mysqli_query($mysql_conn, "SELECT format(SUM(valorRecebido),2,'de_DE') AS total FROM financeiro WHERE tipo='RECEITA' AND statusPagamento='RECEBIDA' AND DAY(dataRecebimento)=DAY(NOW()) AND MONTH(dataRecebimento)=MONTH(NOW()) GROUP BY DAY(dataRecebimento);");
-//$row = mysqli_fetch_assoc($query);
-//$totalFaturamentoDia = $row['total'];
-
-//$query = mysqli_query($mysql_conn, "SELECT format(SUM(valorRecebido),2,'de_DE') AS total FROM financeiro WHERE tipo='RECEITA' AND statusPagamento='RECEBIDA' AND MONTH(dataRecebimento)=MONTH(NOW()) GROUP BY MONTH(dataRecebimento);");
-//$row = mysqli_fetch_assoc($query);
-//$totalFaturamento = $row['total'];
-
-//$query = mysqli_query($mysql_conn, "SELECT format(SUM(valorRecebido),2,'de_DE') AS total FROM financeiro WHERE tipo='DESPESA' AND statusPagamento='RECEBIDA' AND MONTH(dataRecebimento)=MONTH(NOW()) GROUP BY MONTH(dataRecebimento);");
-//$row = mysqli_fetch_assoc($query);
-//$totalDespesas = $row['total'];
-
-
-$medicos = getItensTable($mysql_conn,"medicos");
 
 $empresa = getItensTable($mysql_conn,"empresa");
 $agendamentos = getItensTable($mysql_conn,"agendamentos");
 $pacientes = getItensTable($mysql_conn,"pacientes");
 $convenios = getItensTable($mysql_conn,"convenio");
+$hospital = getItensTable($mysql_conn,"hospital");
+$totalProducao = count(getItensTable($mysql_conn, "producao"));
 $medicos = getItensTable($mysql_conn, "medicos");
-		
+
+$nomeUsuario = null;
+$idmedico = -1;
+for($i=0; $i<count($medicos); $i++)
+{
+    if ($medicos[$i]['idusuario'] == $usuarioLogado) {
+        $nomeUsuario = $medicos[$i]['nome'];
+        $idmedico = $medicos[$i]['idmedico'];
+    }
+}
+
 ?>
 
 
@@ -91,17 +99,21 @@ $medicos = getItensTable($mysql_conn, "medicos");
 	<!-- Calendário --> 
 				<link href='../../css/fullcalendar.min.css' rel='stylesheet' />
 				<link href='../../css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-				<script src='../../lib/moment.min.js'></script>
 				<script src='../../lib/jquery.min.js'></script>
+			
+                <script src='../../lib/moment.min.js'></script>
 				<script src='../../js/fullcalendar.min.js'></script>
 				<link href='../../css/personalizado.css' rel='stylesheet' />
-							
-			<script src='../../locale/pt-br.js'></script>
-	
+		    	<script src='../../locale/pt-br.js'></script>
 	
 </head>
 
-
+   <style>
+                .mesmo-tamanho {
+                    width: 100%;
+                    white-space: normal;
+                }
+            </style>
 
 <style>
 	<!-- Calendário --> 
@@ -122,7 +134,7 @@ $medicos = getItensTable($mysql_conn, "medicos");
 						right: 'month,agendaWeek,agendaDay'
 					},
 
-					defaultDate: Date(),
+					defaultDate: Date.now(),
 					navLinks: true, // can click day/week names to navigate views
 					editable: true,
 					eventLimit: true, // allow "more" link when too many events
@@ -139,6 +151,8 @@ $medicos = getItensTable($mysql_conn, "medicos");
 												{ 
 											?>	
 												 <?php $paciente =  $pacientes[$j]['nome']; ?>
+												 <?php $sexo = $pacientes[$j]['sexo']; ?>
+												 <?php $observacao = $pacientes[$j]['observacao']; ?>
 										<?php	
 												} 
 											}
@@ -158,26 +172,130 @@ $medicos = getItensTable($mysql_conn, "medicos");
 												if($agendamentos[$i]['idconvenio'] == $convenios[$j]['idconvenio'])
 												{ 
 											?>	
-												title: '<?php echo  $pacientes[$j]['nome'] . " - ".  $convenios[$j]['descricao'] . " - Dr(a)." . $medico;?>',
+												
+                                                <?php $convenio =  $convenios[$j]['descricao']; ?>
 										<?php	
 												} 
 											}
 										?>	
-										
-								url: './inserirAgendamento.php?edit&id='+'<?php  echo $agendamentos[$i]['idconsultas']; ?>',
+                                title: '<?php echo "Paciente: " . $paciente;?>',	
+								//description: 'Informação.',
 								start: '<?php echo $agendamentos[$i]['dataInicio']; ?>',
 								end: '<?php echo $agendamentos[$i]['dataFim']; ?>',
-								color: '<?php echo $agendamentos[$i]['cor']; ?>'
+								color: '<?php echo $agendamentos[$i]['cor']; ?>',
+
+								sexo:'<?php echo $sexo?>',
+								convenio:'<?php echo $convenio?>',
+								//procedimento:'procedimento',
+								//clinica:'clinica',
+								medico:'<?php echo $medico?>',
+								dataHoraConsulta:'<?php echo  date('d/m/Y H:i', strtotime($agendamentos[$i]['dataInicio']))?>',
+								statusAtendimento:'statusAtendimento',
+								observacao:'observacao',
+
 								},
+								
 								<?php
 							}
 						?>
-					]
+						
+						
+						
+
+						
+					],
+					eventClick:  function(event, jsEvent, view) {
+												$('#modalTitle').html(event.title);
+												$('#sexo').val(event.sexo);
+												$('#convenio').val(event.convenio);
+												$('#procedimento').val(event.procedimento);
+												$('#clinica').val(event.clinica);
+												$('#medico').val(event.medico);
+												$('#dataHoraConsulta').val(event.dataHoraConsulta);
+												$('#statusAtendimento').val(event.statusAtendimento);
+												$('#observacao').val(event.observacao);
+												$('#eventUrl').attr('href',event.url);
+												$('#calendarModal').modal();
+											},
 				});
+				
 			})
 
 </script>
 <body>
+
+<div id="calendarModal" class="modal fade">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+            <h4 id="modalTitle" class="modal-title"></h4>
+        </div>
+        <div id="modalBody" class="modal-body"> 
+		<input type="hidden" disabled name="id2" id="idProduto2" />
+								<div class="row">
+									
+								</div>
+								
+								<div class="row">
+									<div class="form-group col-md-4">
+										<label>sexo</label>
+										 <input class="form-control" disabled name="sexo" id="sexo">
+									</div>
+									
+								<div class="form-group col-md-4">
+										<label>Convênio</label>
+										<input class="form-control" disabled name="convenio" id="convenio">
+								</div>
+
+								<div class="form-group col-md-4">
+										<label>Procedimento</label>
+										<input class="form-control" disabled name="procedimento" id="procedimento">
+								</div>
+
+								</div>
+								<div class="row">
+									
+									<div class="form-group col-md-4">
+										<label>Clínica</label>
+										 <input class="form-control" disabled name="clinica" id="clinica">
+									</div>	
+
+									<div class="form-group col-md-4">
+										<label>Médico</label>
+										 <input class="form-control" disabled name="medico" id="medico">
+									</div>
+									<div class="form-group col-md-4">
+									<label for="dataHoraConsulta">Data Hora Consulta</label>
+									<input class="form-control" disabled name="dataHoraConsulta" id="dataHoraConsulta">
+								</div>
+
+								</div>
+					<div class="row">	
+					
+					<div class="form-group col-md-3">
+						  	<label for="statusAtendimento">Status Atendimento</label>
+							<input class="form-control" disabled name="statusAtendimento" id="statusAtendimento">
+					</div>
+						 <div class="form-group col-md-8">
+						 <label for="observacao">Observações</label>
+
+
+								<textarea class="form-control" value="" disabled id="observacao" name="observacao" rows="5">
+										
+									</textarea>
+						</div>
+					</div>
+					
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									</div>
+		</div>
+		</div>
+        
+    </div>
+</div>
+</div>
 
    <div id="wrapper">
 
@@ -224,11 +342,11 @@ $medicos = getItensTable($mysql_conn, "medicos");
 							  </div>
 							</div>
 						</div>
-									
+                    				
 						<div class="form-group col-lg-2">
 						<br>
 									<label for="medico">Filtrar por médico</label>
-											<select id="medico_report" name="idmedico" class="form-control">
+											<select id="filtroMedico" name="idmedico" class="form-control">
 											<option value=""></option>
 											<?php
 											for($i=0; $i<count($medicos); $i++)
@@ -249,10 +367,34 @@ $medicos = getItensTable($mysql_conn, "medicos");
 											?>
 										</select>
 						</div>
+
+                       <div class="form-group col-lg-2">
+									<br>
+									  <label for="filtroData">Filtrar por</label>
+										<select id="filtroData" name="filtroData" class="form-control"> 
+												<option value="0">Data de Realização</option>
+												<option value="1">Data de Cobrança</option>
+												<option value="2">Data de Pagamento</option>
+												<option value="3">Data de Repasse</option>
+										</select>
+						</div>   
+						<div class="row"> 
+							<div class="col-lg-12">
+                            <div class="form-group col-lg-2"> 
+								 <input type="button" name="search" id="search" value="Filtrar" class="btn btn-primary mesmo-tamanho" />
+							</div> 
+							<div class="form-group col-lg-2"> 
+								<input type="button"  name="relatorio" id="report" value="Relatório" class="btn btn-primary mesmo-tamanho" />
+							</div>   
+							</div>    
+						</div>                    
+				
 					</div>
-					</div>
+				</div>
 					
-					</div>
+			</div>
+
+			
 			    <!-- /.row -->
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -263,14 +405,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-user fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">120</div>
+                                    <div class="huge" id="totalProcedimentos">0</div>
                                     <div>TOTAL PROCEDIMENTOS</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -285,14 +427,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">47.222.20</div>
+                                    <div class="huge" id="totalBruto">0,00</div>
                                     <div>TOTAL BRUTO</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -307,14 +449,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">11.561,71</div>
+                                    <div class="huge" id=totalImpostos>0,00</div>
                                     <div>TOTAL IMPOSTOS</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -329,14 +471,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">35.657,48</div>
+                                    <div class="huge" id="totalLiquido">0,00</div>
                                     <div>TOTAL LÍQUIDO</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -355,14 +497,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26.000,00</div>
+                                    <div class="huge" id="totalPlanoSaude">0,00</div>
                                     <div>PLANO DE SAÚDE</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -377,14 +519,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">5.230,00</div>
+                                    <div class="huge" id=totalSUS>0,00</div>
                                     <div>SUS</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -399,14 +541,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">6.900,00</div>
+                                    <div class="huge" id="totalEletivas">0,00</div>
                                     <div>ELETIVAS</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -421,14 +563,14 @@ $medicos = getItensTable($mysql_conn, "medicos");
                                     <i class="fa fa-3x"><b> R$</b> </i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">9.092,20</div>
+                                    <div class="huge" id="totalParticular">0,00</div>
                                     <div>PARTICULAR</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#">
                             <div class="panel-footer">
-                                <span class="pull-left">Detalhar</span>
+                                <span class="pull-left"></span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -441,179 +583,35 @@ $medicos = getItensTable($mysql_conn, "medicos");
                 <div class="col-lg-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Gráfico Produção Médica/Anual
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Filtrar
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <i class="fa  fa-table fa-fw"></i> Produção médica no período
                             </div>
-                        </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div id="morris-area-chart"></div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Gráfico Produção Médica Mensal
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Filtrar
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
-                                        </li>
-                                        <li><a href="#">Another action</a>
-                                        </li>
-                                        <li><a href="#">Something else here</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-8">
+                            <div class="col-lg-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
+                                        <table class="table table-bordered table-hover table-striped" id="listar-producao">
                                             <thead>
                                                 <tr>
-													<th>Mês</th>
-                                                    <th>Total procedimentos</th>
-                                                    <th>Plano de Saúde</th>
-                                                    <th>SUS</th>
-													<th>Eletivas</th>
-													<th>Particular</th>
+                                                    <th>ID</th>
+                                                    <th>Data</th>
+                                                    <th>No. NF</th>
+													<th>Convênio</th>
+                                                    <th>Paciente</th>
+                                                    <th>Cod.</th>
+                                                    <th>Procedimento</th>
+                                              		<th>Status</th>
+													<th>Data Repasse</th>
+                                                    <th>Valor</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr> 
-													<td>JUN/19</td>
-                                                    <td>3.326</td>
-                                                    <td>R$ 321,00</td>
-                                                    <td>R$ 1292,00</td>
-                                                    <td>R$ 99,33</td>
-													<td>R$ 1.099,33</td>
-                                                                                              
-											   </tr>
-                                                <tr>
-                                                    <td>JUL/19</td>
-                                                      <td>3.326</td>
-                                                    <td>R$ 321,00</td>
-                                                    <td>R$ 1292,00</td>
-                                                    <td>R$ 99,33</td>
-													<td>R$ 1.099,33</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>AGO/19</td>
-                                                     <td>2102</td>
-                                                    <td>R$ 26.000,00</td>
-                                                    <td>R$ 5.230,00</td>
-                                                    <td>R$ 6.900,00</td>
-													<td>R$ 9.092,20</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                          </table>
                                     </div>
                                     <!-- /.table-responsive -->
-                                </div>
-								
-							</div>
-							  <div class="row">
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
                             </div>
-                            <!-- /.row -->
+                         <!-- /.panel-body -->
                         </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> Linha do tempo
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <ul class="timeline">
-                                <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
-                                            </p>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia pariatur? Est cum veniam excepturi. Maiores praesentium, porro voluptas suscipit facere rem dicta, debitis.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem dolorem quibusdam, tenetur commodi provident cumque magni voluptatem libero, quis rerum. Fugiat esse debitis optio, tempore. Animi officiis alias, officia repellendus.</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium maiores odit qui est tempora eos, nostrum provident explicabo dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae minus eaque facere.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
-                                    </div>
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus numquam facilis enim eaque, tenetur nam id qui vel velit similique nihil iure molestias aliquam, voluptatem totam quaerat, magni commodi quisquam.</p>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="timeline-inverted">
-                                    <div class="timeline-panel">
-                                        <div class="timeline-heading">
-                                            <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                        </div>
-                                        <div class="timeline-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias sapiente rerum quas odit! Aperiam officiis quidem delectus libero, omnis ut debitis!</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
+                    </div>    
+                <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-8 -->
                 <div class="col-lg-4">
@@ -624,34 +622,35 @@ $medicos = getItensTable($mysql_conn, "medicos");
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> 3 consultas agendadas
-                                    <span class="pull-right text-muted small"><em>17/07/2019</em>
+								<?php
+							
+								if (!empty($documentos)) {
+								for($i=0; $i<count($documentos); $i++)
+								{
+								?>
+                                <a href="visualizarDocumentos.php?id=<?php echo $documentos[$i]['iddocumentos']?>" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i><?=$documentos[$i]['descricao']?>
+                                    <span class="pull-right text-muted small"><em><?=$documentos[$i]['data']?></em>
                                     </span>
                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> Aguardando guias 
-                                    <span class="pull-right text-muted small"><em>20/07/2019</em>
+								<?php
+								}
+								}
+								else 
+								{ 
+								?>
+								  <a href="#" class="list-group-item">
+                                    <i class="fa fa-comment fa-fw"></i> SEM NOTIFICAÇÕES
+                                    <span class="pull-right text-muted small"><em></em>
                                     </span>
                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> Pagamento repasse 
-                                    <span class="pull-right text-muted small"><em>31/07/2019</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> Escala plantões
-                                    <span class="pull-right text-muted small"><em>02/08/2019</em>
-                                    </span>
-                                </a>
-								    <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> Reunião dos sócios
-                                    <span class="pull-right text-muted small"><em>04/08/2019</em>
-                                    </span>
-                                </a>
+								<?php
+								}
+								
+								?>
                             </div>
                             <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">Ler todas mensagens</a>
+                            <a href="documentos.php" class="btn btn-default btn-block">Ver Documentos</a>
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -661,8 +660,8 @@ $medicos = getItensTable($mysql_conn, "medicos");
                             <i class="fa fa-fw"></i> Agenda
 							</div>
                         <div class="panel-body">
-                            <div id="calendar"></div>
-                            <a href="#" class="btn btn-default btn-block">Detalhar</a>
+                                   <div id='calendar'>
+                           
                         </div>
                         <!-- /.panel-body -->
                     </div>
@@ -691,101 +690,427 @@ $medicos = getItensTable($mysql_conn, "medicos");
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-   <!-- <script src="../../vendor/jquery/jquery.min.js"></script> -->
+    </div>
+  <!-- AUTOCOMPLETE BOOTSTRAP -->
+          <div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">Relatório</h4>
+									</div>
+									<div class="modal-body">
+								 <form role="form" action="./.php" method='post' enctype="multipart/form-data">
+					
+								<div class="row">
+									<div class="form-group col-md-6">
+									  <label for="tipoRelatorio">Tipo</label>
+									  <select id="tipoRelatorio" name="tipoRelatorio" disabled class="form-control"> 
+											<option value="0">Produção Médica</option>
+											<option value="1">Plano de Saúde</option>
+											<option value="2">SUS</option>
+											<option value="3">Eletivas</option>
+											<option value="4">Particular</option>
+											<option value="5">Plantões</option>
+																								
+									</select>
+									</div>
+										<div class="form-group col-md-6">
+										<label for="medico">Médico</label>
+											<select id="medico_report" name="idmedico" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($medicos); $i++)
+											{
+											if($form["idmedico"] == $medicos[$i]['idmedico'])
+											{	
+											?>
+											<option value="<?=$medicos[$i]['idmedico']?>" selected><?=$medicos[$i]['nome']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$medicos[$i]['idmedico']?>" ><?=$medicos[$i]['nome']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+								</div>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+								<div class="row"> 
+									<div class="form-group col-md-6">
+										<label for="convenio">Convênio</label>
+											<select id="convenio0" name="idconvenio" disabled class="form-control"> 
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($convenios); $i++)
+											{
+											if($form["idconvenio"] == $convenios[$i]['idconvenio'])
+											{	
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" selected><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" ><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="hospital">Hospital/Clínica</label>
+											<select id="hospital_report" name="idhospital" disabled class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($hospital); $i++)
+											{
+											if($form["idhospital"] == $hospital[$i]['idhospital'])
+											{	
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" selected><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" ><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+								</div>
 
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../../vendor/metisMenu/metisMenu.min.js"></script>
+								<div class="row">
+									<div class="form-group col-md-6">
+									  <label for="inputStatusPagamento">Status</label>
+										<select id="statusPagamento0" name="statusPagamento" disabled class="form-control" required> 
+												<option>Faturar</option>
+												<option selected>Pago</option>
+												<option>Glosada</option>
+												<option>Pendente</option>									
+										</select>
+									</div>	
+									<div class="form-group col-md-6">
+										  <label for="filtroData">Filtrar por</label>
+											<select id="filtroData0" name="filtroData" class="form-control"> 
+												<!--<option value="0">Data de Realização</option> -->
+												<!--<option value="1">Data de Cobrança</option>  -->
+												<option value="2">Data de Pagamento</option>
+												<option value="3">Data de Repasse</option>
+											</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-daterange">
+										<div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Inicial</label>
+											<div class='input-group date' id="start_date_report">
+											 <input type='text' name="start_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div> 
+										  <div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Final</label>
+											<div class='input-group date' id="end_date_report">
+											 <input type='text' name="end_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div>
+									</div>
+								
+			
+								</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+										<button  type="button" id="btnVisualizar" class="btn btn-primary" title="Relatório" onclick="relatorios()">Imprimir </button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
 
-    <!-- Morris Charts JavaScript -->
-    <script src="../../vendor/raphael/raphael.min.js"></script>
-    <script src="../../vendor/morrisjs/morris.min.js"></script>
-    <script src="../../data/morris-data.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="../../dist/js/sb-admin-2.js"></script>
-
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+			
+ <!-- jQuery -->
+ <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+	
+			<!-- jQuery - NECESSÁRIO DESABILITAR O JQUERY PERTENCENTE AO BOOTSTRAP -->
+			
+			<!--   <script src="../vendor/jquery/jquery.min.js"></script>-->
+		
+			<!-- Bootstrap Core JavaScript -->
+			<script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+		
+			<!-- Metis Menu Plugin JavaScript -->
+			<script src="../../vendor/metisMenu/metisMenu.min.js"></script>
+		
+			<!-- DataTables JavaScript -->
+			<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+			<script src="../../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+			<script src="../../vendor/datatables-responsive/dataTables.responsive.js"></script>
+		
+			<!-- Custom Theme JavaScript -->
+			<script src="../../dist/js/sb-admin-2.js"></script>
+		
+			<!--  IMPORT PARA UTILIZACAO DOS BOTES DE IMPRIMIR, EXPORTAR EM CSV, PDF, EXCEL -->
+			<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script> 
+			<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>	
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script> 
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+			<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>	
+			
+			<!-- Custom Theme JavaScript -->
+			<script src="../../dist/js/sb-admin-2.js"></script>
+			<!-- TRABALIHAR COM MOEDAS -->
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+			 <!-- Use with CHECKBOX selected  -->
+			<script src="../../js/dataTables.checkboxes.min.js"></script>
+			   
 	<script>
 	$(document).ready(function() {
-		var xmlhttp = new XMLHttpRequest();
-		xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-		var result = JSON.parse(this.responseText);
-	//	document.getElementById("total2").innerHTML ="AAA";
-		}
-		
-		};
-		xmlhttp.open("GET", "proc_dashboard.php");
-		xmlhttp.send();
+        $('#start_date').datetimepicker({
+			format:'DD/MM/YYYY'
 		});
-    </script>
-	  
-<script>
-/*function loadXMLDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
 		
-	  var result = JSON.parse(this.responseText);
-	  var a1 = result[1];
-		Morris.Bar({
-			element: 'bar-example',
-			data: [<?php echo $chart_data; ?>],
-			//barColors: ['#00a65a', '#f56954'],
-			xkey:'mes',
-			ykeys:['agendamento', 'purchase', 'sale'],
-			labels:['Agendamentos', 'Purchase', 'Sale'],
-			});
+		 $('#end_date').datetimepicker({
+			format:'DD/MM/YYYY'
+		});
 
-			document.getElementById("demo").innerHTML = result[1];
-			}
-		  };
-  xhttp.open("GET", "proc_dashboard.php", true);
-  xhttp.send();
-  
-  function loadXMLDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
 		
-	  var result = JSON.parse(this.responseText);
-	  var a1 = result[1];
-		Morris.Bar({
-			element: 'bar-example',
-			data: [{mes: 1, agendamento: a1, purchase: 1, sale: 1}],
-			//barColors: ['#00a65a', '#f56954'],
-			xkey:'mes',
-			ykeys:['agendamento', 'purchase', 'sale'],
-			labels:['Agendamentos', 'Purchase', 'Sale'],
-			});
+	$('#search').click(function(){
+	    var start = $('#start_date').data('DateTimePicker').date().toString();
+		var date = new Date(start);
+		var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+		var end = $('#end_date').data('DateTimePicker').date().toString();
+		var date = new Date(end);
+		var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+        $('#listar-producao').DataTable().destroy();
+		if(start_date != '' && end_date !='')
+		  {
+		    $('#listar-producao').DataTable().destroy();
+            filterData = document.getElementById("filtroData").value;
+			filterConvenio = $("#filtroConvenio").find('option:selected').val();
+			filterMedico  = $("#filtroMedico").find('option:selected').val();
+            fetch_data('yes', start_date, end_date, filterData, filterConvenio, filterMedico);
+		  }
+		  else
+		  {
+		   alert("Obrigatório informar o período");
+		  }
+		 });
 
-			document.getElementById("demo").innerHTML = result[1];
-			}
-		  };
-  xhttp.open("GET", "proc_dashboard.php", true);
-  xhttp.send();
-}
-} */
-</script>
+
+        function fetch_data(is_date_search, start_date='', end_date='', filterData, filterConvenio, filterMedico)
+		{
+        $.ajax({
+			url:"proc_dashboard.php",
+			type:"POST",
+            dataType: "json",
+			data:{
+			 is_date_search:is_date_search, start_date:start_date, end_date:end_date, filterData:filterData, filterConvenio: filterConvenio, filterMedico: filterMedico
+			},
+            beforeSend:function(){ 
+            },  
+			success:function(result){ 
+                //Retorna ARRAY dos JSON  
+                  
+                    // Retorna os valores totais por CONVENIO
+
+                     document.getElementById("totalPlanoSaude").innerHTML = result.totalPlanoSaude;
+                     document.getElementById("totalSUS").innerHTML = result.totalSUS;
+                     document.getElementById("totalEletivas").innerHTML = result.totalEletivas;
+                     document.getElementById("totalParticular").innerHTML = result.totalParticular;
+                     var proc = result;
+                     document.getElementById("totalProcedimentos").innerHTML =proc['data'][0][1];
+                     document.getElementById("totalBruto").innerHTML = result.totalBruto;
+                     document.getElementById("totalLiquido").innerHTML = result.totalLiquido;
+                     document.getElementById("totalImpostos").innerHTML = result.totalImpostos;
+				}  
+		   });
+
+             var table = $('#listar-producao').DataTable({
+				"processing": true,
+				"serverSide": true,
+				"select": true,
+                extend: 'collection',
+                text: 'Export',
+				     dom: 'lBfrtip',
+                buttons: [
+                     {
+					 extend: 'excelHtml5',
+                     exportOptions: {
+						columns:  [1,2,3,4,5,6,7,8,9],
+							format: {
+              		 body: function ( data, row, column, node ) {
+              		      //Strip $ column to make it numeric
+             			     //return (column === 13)  ? //data.replace( /[$,]/g, '' ) :	 data;
+							  if ((column ==8)) {
+								data = data.replace(/[\D]+/g, "" );
+								var tmp = parseInt(data);
+								tmp=tmp/100;
+								tmp = tmp.toFixed(2);
+								$("#tmp").maskMoney({prefix:'R$ ', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+								return data=tmp;
+							  }
+							  else 	
+							 { 
+								 return data;	
+							}
+						}	
+		            }
+					}
+					 
+					 },
+					 {
+                    extend: 'pdfHtml5',
+                     exportOptions: {
+						columns:  [1,2,3,4,5,6,7,8,9],
+					}
+					},
+					 {
+					 extend: 'print',
+                     exportOptions: {
+						columns:  [1,2,3,4,5,6,7,8,9],
+							 }
+					    },
+					{
+						text: 'Relatório',
+						action: function ( e, dt, node, config ) {
+                            var usuarioFuncao = <?php echo  $usuarioFuncao ?>;
+                            var idmedico = <?php echo $idmedico?>;
+                            if ((usuarioFuncao != 1) || (usuarioFuncao !=3)) { 
+                                document.getElementById('medico_report').disabled = true;
+                                document.getElementById('medico_report').value = idmedico;
+                            }  
+                            $("#modalRelatorio").modal("show");
+						},
+					}],
+					lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+
+				"ajax": {
+					"url": "proc_producao.php",
+					"type": "POST",
+                    "data":{
+                        is_date_search:is_date_search, start_date:start_date, end_date:end_date, filterData:filterData, filterConvenio: filterConvenio, filterMedico: filterMedico
+	                }
+				}
+			});
+	      }
+        });
+ </script>
  
-<script>
-/*	Morris.Bar({
-			element: 'bar-example',
-			data: [<?php echo $chart_data; ?>],
-			//barColors: ['#00a65a', '#f56954'],
-			xkey:'mes',
-			ykeys:['total'],
-			labels:['Receita', 'Despesa'],
-			}); 
-*/
+ <script>
+     $("#report").click(function(){
+        var usuarioFuncao = <?php echo  $usuarioFuncao ?>;
+        var idmedico = <?php echo $idmedico?>;
+        if ((usuarioFuncao ==2)) { 
+             document.getElementById('medico_report').disabled = true;
+            document.getElementById('medico_report').value = idmedico;
+        }   
+        $("#modalRelatorio").modal("show");
+        });
 </script>
+
+<script>
 	
+</script>
+
+ <script>
+		$( document ).ready(function() {
+			$('#start_date_report').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY HH:mm'
+			});
+		});
+ </script>
+ 
+  <script>
+		$( document ).ready(function() {
+			$('#end_date_report').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY HH:mm'
+			});
+		});
+ </script>
+
+<script>
+		$( document ).ready(function() {
+           var usuarioFuncao = <?php echo  $usuarioFuncao ?>;
+            alert("<?php echo 'Bem vindo! '. $nomeUsuario ?>");
+			var idmedico = <?php echo $idmedico?>;
+         if ((usuarioFuncao == 2)) { 
+               document.getElementById('filtroMedico').disabled = true;
+               document.getElementById('filtroMedico').value = <?php echo $idmedico;?>
+        	  }    
+		});
+ </script>
+
+<script>
+	function relatorios() {
+		$(document).on('click','#btnVisualizar',function(e){
+			e.preventDefault();
+					var start = $('#start_date_report').data('DateTimePicker').date().toString();
+					var date = new Date(start);
+					var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+				
+					var end = $('#end_date_report').data('DateTimePicker').date().toString();
+					var date = new Date(end);
+					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+
+                        
+            		var idmedico = $("#medico_report").find('option:selected').val();
+					
+                    var idhospital = $("#hospital_report").find('option:selected').text();
+					var filtroDataTipo = $("#filtroData0").find('option:selected').val();
+					
+				   var id = document.getElementById("tipoRelatorio").value;
+					switch (id) {
+						case '0':
+							window.open("../financeiro/relatorioProducaoMedica.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo);
+							break;
+						
+						case '1':
+							window.open("../financeiro/relatorioPlanodeSaude.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;
+
+						case '2':
+							window.open("../financeiro/relatorioFaturaSUS.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
+						case '3':
+							window.open("../financeiro/relatorioFaturaEletivas.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+
+						case '4':
+							window.open("../financeiro/relatorioParticular.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
+						default:
+							text = "No value found";
+							}
+						});
+				}
+</script>
 </body>
 
 </html>

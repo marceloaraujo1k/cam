@@ -14,7 +14,7 @@ if(isset($_GET["add"]))
 				//		$form = $row;
 						$hospital = getItensTable($mysql_conn,"hospital");
 						$medicos = getItensTable($mysql_conn,"medicos");
-						$configuracaoplantoes = getItensTable ($mysql_conn, "configuracaoplantoes");
+					//	$configuracaoplantoes = getItensTable ($mysql_conn, "configuracaoplantoes");
 			}
 if(isset($_GET["edit"]))
 					{
@@ -24,7 +24,7 @@ if(isset($_GET["edit"]))
 						$form = $row;
 						$hospital = getItensTable($mysql_conn,"hospital");
 						$medicos = getItensTable($mysql_conn,"medicos");
-						$configuracaoplantoes = getItensTable ($mysql_conn, "configuracaoplantoes");
+					//	$configuracaoplantoes = getItensTable ($mysql_conn, "configuracaoplantoes");
 					}
 			
 				
@@ -88,20 +88,73 @@ if(isset($_GET["edit"]))
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+
+			<div class="row">
+			   <div class="col-lg-12">
+             		<div class="panel panel-default">
+                        <div class="panel-heading">
+                            Plantões
+                        </div>
+                 		<div class="panel-body">
+						 <div class="row">
+						<div class="form-group col-md-3">
+									<label for="hospital">Hospital</label>
+									<select id="idhospital" name="idhospital" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($hospital); $i++)
+											{
+											if($form["idhospital"] == $hospital[$i]['idhospital'])
+											{	
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>"><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" ><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											}
+											?>
+									</select>
+							</div>
+							<div class="form-group col-md-2"> 
+								<label class="control-label">Mês/Ano</label>
+									<div class='input-group date' id="mesAnoPlantao">
+									<input type='text' id="dtMesAnoPlantao" name="mesAnoPlantao" class="form-control"/>
+										<span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
+								</div>
+							<div class="form-group col-sm-2"> 
+								<br>
+								<p id="resultado"></p>
+								<input type="button" name="search" id="search" value="Filtrar" class="btn btn-default" />
+							</div>			
+						</div>
+						</div>		
+					</div>
+				</div>
+			</div>
 		    <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Plantões
+                            Gestão de Plantões
                         </div>
                        <!-- /.panel-heading -->
 						<div class="panel-body">
 						<!-- informacoes do paciente -->
 						<form role="form" id="formPlantao" method="post">
+				
+
 						<div class="row">
 						<input type="hidden" id="idplantao" name="idplantao" value="<?=$form["idplantao"]?>"> 
-						<input type="hidden" id="idhospital" name="idhospital" value="<?=$form["idhospital"]?>"> 
+
 						<input type="hidden" id="cor" name="cor" value="<?=$form["cor"]?>">
 							<div class="form-group col-md-2">
 									<label for="convenio">Médico</label>
@@ -268,10 +321,8 @@ if(isset($_GET["edit"]))
 										<button type="submit" name="submit" id="inserirConta" value="inserirConta" class="btn btn-success">Salvar</button>
 									</div>									
 							</div>
-						<div class="row"> 
-										
-						</div>
-							</div>	
+							<div class="row"> 
+							</div>
 						</form>
 					</div>
 				<!-- /.panel-body -->
@@ -289,8 +340,10 @@ if(isset($_GET["edit"]))
                         </div>
                  
 						<div class="panel-body">
-							<table width="100%" class="table table-striped table-bordered table-hover table-responsive" id="tbl-plantoes">
-                                <thead>
+							<div class="table-responsive"> 
+							<table  class="table table-striped  table-bordered  table-hover dt-responsive display nowrap" cellspacing="0" id="tbl-plantoes">
+							
+			                    <thead>
                                     <tr>
 										<th>ID</th>
 										<th>Inicio</th>
@@ -323,7 +376,157 @@ if(isset($_GET["edit"]))
 	</div>
 </div>
 </div>
-	
+		<!-- Bootstrap Modal - To Add New Record -->
+			<!-- Modal Relatorios -->
+			<div class="modal fade" id="modalRelatorio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">Relatório</h4>
+									</div>
+									<div class="modal-body">
+								 <form role="form" action="./.php" method='post' enctype="multipart/form-data">
+					
+								<div class="row">
+									<div class="form-group col-md-6">
+									  <label for="tipoRelatorio">Tipo</label>
+									  <select id="tipoRelatorio" name="tipoRelatorio" class="form-control"> 
+											<option value="0">Escala Plantões</option>
+											<option value="1">Escala/Hospital</option>
+											<option value="2">Hospital/Médico</option>
+											<option value="3">Gerencial</option>
+									</select>
+									</div>
+										<div class="form-group col-md-6">
+										<label for="medico">Médico</label>
+											<select id="medico_report" name="idmedico" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($medicos); $i++)
+											{
+											if($form["idmedico"] == $medicos[$i]['idmedico'])
+											{	
+											?>
+											<option value="<?=$medicos[$i]['idmedico']?>" selected><?=$medicos[$i]['nome']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$medicos[$i]['idmedico']?>" ><?=$medicos[$i]['nome']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+								</div>
+
+								<div class="row"> 
+									<div class="form-group col-md-6">
+										<label for="convenio">Convênio</label>
+											<select id="convenio0" name="idconvenio" class="form-control"> 
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($convenios); $i++)
+											{
+											if($form["idconvenio"] == $convenios[$i]['idconvenio'])
+											{	
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" selected><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" ><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+									<div class="form-group col-md-6">
+										<label for="hospital">Hospital/Clínica</label>
+											<select id="hospital_report" name="idhospital" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($hospital); $i++)
+											{
+											if($form["idhospital"] == $hospital[$i]['idhospital'])
+											{	
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" selected><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" ><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+									  <label for="inputStatusPagamento">Status</label>
+										<select id="statusPagamento0" name="statusPagamento" class="form-control" required> 
+												<option>Faturar</option>
+												<option>Pago</option>
+												<option>Glosada</option>
+												<option>Pendente</option>									
+										</select>
+									</div>	
+									<div class="form-group col-md-6">
+										  <label for="filtroData">Filtrar por</label>
+											<select id="filtroData0" name="filtroData" class="form-control"> 
+												<option value="0">Data do Plantão</option>
+												<option value="1">Data de Pagamento</option>
+												<option value="2">Data de Repasse</option>
+											</select>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-daterange">
+										<div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Inicial</label>
+											<div class='input-group date' id="start_date_report">
+											 <input type='text' name="start_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div> 
+										  <div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Final</label>
+											<div class='input-group date' id="end_date_report">
+											 <input type='text' name="end_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div>
+									</div>
+								
+			
+								</div>
+									<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									<button  type="button" id="btnRelatorio" class="btn btn-primary" title="Relatório" onclick="relatorios()">Imprimir </button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+				
+
 	
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
@@ -367,60 +570,20 @@ if(isset($_GET["edit"]))
 	
 		<script>
    	$(document).ready(function() {
-			var table = $('#tbl-plantoes').DataTable({
-				"processing": true,
-				"serverSide": true,
-				'select': {
-                 'style': 'multi'
-     	         },
-     //			   "order" : [],
-			   extend: 'collection',
-                text: 'Export',
-				dom: 'lBfrtip',
-                buttons: [
-                     {
-					 	extend: 'excelHtml5',
-                     	exportOptions: {
-						columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
-				   		 }
-					 },
-					 {
-                    extend: 'pdfHtml5',
-                     	exportOptions: {
-                    	columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
-						}
-					},
-					 {
-					 extend: 'print',
-                     exportOptions: {
-						columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
-					 	}
-					},
-					{
-						text: 'Relatório',
-						action: function ( e, dt, node, config ) {
-								//	$("#modalRelatorio").modal();
-						}
-					},
-					{
-						text: 'Email',
-						action: function ( e, dt, node, config ) {
-								//	$("#modalEmail").modal();
-						}
-					}
-					
-					],
-				lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
-
-				"ajax": {
-					"url": "proc_plantoes.php",
-					"type": "POST"
-				}
-				});
+	
 			});
 	  </script>
 	
-	
+
+	<script>
+		$( document ).ready(function() {
+			$('#mesAnoPlantao').datetimepicker({
+			viewMode: 'years',
+             format: 'MM/YYYY',
+			});
+		});
+ </script>
+
 <script>
 		$( document ).ready(function() {
 			$('#dataInicioPlantao').datetimepicker({
@@ -472,7 +635,9 @@ if(isset($_GET["edit"]))
 		    document.getElementById("horasPlantao").value = duracao;
 			var end_date = (moment(dataHoraPlantao).add(duracao, 'hours').format('DD/MM/YYYY HH:mm:ss'));
 			$('#dataFimPlantao').data('DateTimePicker').date(end_date);
-			document.getElementById("idhospital").value = result[0][5];
+
+			
+	//		document.getElementById("idhospital").value = result[0][5];
 			document.getElementById("cor").value = result[0][6];
 		}
 	};
@@ -536,8 +701,8 @@ if(isset($_GET["edit"]))
 				success:function(data){  
 					}  
 			   });
-			   	$('#formPlantao')[0].reset();  
-			 	 window.parent.location.reload();
+			  	$('#formPlantao')[0].reset();  
+			 	// window.parent.location.reload();
 				$('#tbl-plantoes').DataTable().ajax.reload();	
 		});		
 	});
@@ -581,8 +746,175 @@ if(isset($_GET["edit"]))
 		 confirm("Excluir PLANTÃO ? " +id);
 		location.assign("deletePlantoes.php?id="+id);
 		});
-	</script>	
+</script>
+
+<script>
+// Acrescentar PAD 
+	function month(d)
+		{   
+			d = ( d < 10 ? '0' : '') + d;
+			return d;
+		}
+</script>
+
+<script>
+	var id;
+	var mesAnoPlantao;
+	$(document).ready(function(){
+		$('#search').click(function(){	
+//		$('#idhospital').change(function() {
+			id = $("#idhospital").find('option:selected').val();
+			var mesAnoPlantao = $('#mesAnoPlantao').data('DateTimePicker').date().toString();
+			mesAnoPlantao = new Date(mesAnoPlantao);
+			mes = month(mesAnoPlantao.getMonth() + 1)
+			mesAnoPlantao = mesAnoPlantao.getFullYear()+'-'+mes;
+
+	if (mesAnoPlantao == '') {
+			alert('Preencher o período (mês/ano)');
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: 'operacoesConfiguracaoPlantao.php',
+			data: {
+				id: id
+			},
+			dataType: 'json',
+			beforeSend:function(){ 
+				$('select[name=configuracaoplantoes]').empty();
+				$('select[name=configuracaoplantoes]').append('<option value=""></option>');
+				$('select[name=configSubstituicaoPlantao]').empty();
+				$('select[name=configSubstituicaoPlantao]').append('<option value=""></option>');
+				},  
+			success: function(data){
+				console.log(data);
+				for(i = 0; i < data.qtd; i++){
+					$('select[name=configuracaoplantoes]').append('<option value="'+data.id[i]+'">'+data.descricao[i]+'</option>');
+					$('select[name=configSubstituicaoPlantao]').append('<option value="'+data.id[i]+'">'+data.descricao[i]+'</option>');
+				}
+			}
+		});
+		$('#tbl-plantoes').DataTable().destroy();
+		var table = $('#tbl-plantoes').DataTable({
+				"processing": true,
+				"serverSide": true,
+				'select': {
+                 'style': 'multi'
+     	         },
+     			order : [[1, "asc"]],
+			   extend: 'collection',
+                text: 'Export',
+				dom: 'lBfrtip',
+                buttons: [
+                     {
+					 	extend: 'excelHtml5',
+                     	exportOptions: {
+						columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+				   		 }
+					 },
+					 {
+                    extend: 'pdfHtml5',
+                     	exportOptions: {
+                    	columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+						}
+					},
+					 {
+					 extend: 'print',
+                     exportOptions: {
+						columns: [0,1,2,3,4,5,6,7,8,9,10,11,12]
+					 	}
+					},
+					{
+						text: 'Relatório',
+						action: function ( e, dt, node, config ) {
+							$("#modalRelatorio").modal();
+						}
+					},
+					{
+						text: 'Email',
+						action: function ( e, dt, node, config ) {
+								//	$("#modalEmail").modal();
+						}
+					}
+					
+					],
+				lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+
+				ajax: {
+					url: "proc_plantoes.php",
+					data: {
+						id: id,
+						mesAnoPlantao : mesAnoPlantao,
+					},
+					dataType: 'json',
+					type: "POST"
+				},
+				beforeSend:function(){
+				},  
+				success:function(data){
+				 	$('#tbl-plantoes').DataTable().ajax.reload();
+				},
+				});
+			});
+		});
+</script>
+
+<script>
+	$(document).ready(function(){
+		 $('#start_date_report').datetimepicker({
+			format:'DD/MM/YYYY'
+		});
 		
+		 $('#end_date_report').datetimepicker({
+			format:'DD/MM/YYYY'
+		});
+	});
+</script>
+
+<script>
+		function relatorios() {
+		$(document).on('click','#btnRelatorio',function(e){
+			e.preventDefault();
+					var start = $('#start_date_report').data('DateTimePicker').date().toString();
+					var date = new Date(start);
+					var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+				
+					var end = $('#end_date_report').data('DateTimePicker').date().toString();
+					var date = new Date(end);
+					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+			
+					var idmedico = $("#medico_report").find('option:selected').val();
+					var idhospital = $("#hospital_report").find('option:selected').val();
+					var filtroDataTipo = $("#filtroData0").find('option:selected').val();
+					
+				   var id = document.getElementById("tipoRelatorio").value;
+					switch (id) {
+						case '0':
+							window.open("relatorioEscalaPlantoes.php?start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;
+						
+						case '1':
+							window.open("relatorioPlanodeSaude.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;
+
+						case '2':
+							window.open("relatorioFaturaSUS.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
+						case '3':
+							window.open("relatorioFaturaEletivas.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+
+						case '4':
+							window.open("relatorioParticular.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
+						default:
+							text = "No value found";
+							}
+						});
+				}
+</script>
 
 </body>
 </html>

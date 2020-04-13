@@ -26,7 +26,7 @@ $medicos = getItensTable($mysql_conn,"medicos");
     <div class="" >
 
         <div class="">
-            <img src="../../pics/logo.png" alt="" style="width: 400px;">
+            <img src="../../pics/logo.png" alt="" style="width: 200px;">
         </div>
 
             <div class="" style="white-space: nowrap">

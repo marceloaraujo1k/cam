@@ -148,9 +148,9 @@ include_once('../func.php');
  
     <!-- /#wrapper -->
 
-			<!-- Bootstrap Modal - To Add New Record -->
+		<!-- Bootstrap Modal - To Add New Record -->
 									<!-- Modal -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
@@ -166,23 +166,17 @@ include_once('../func.php');
 										   <input class="form-control" name="descricao" value="<?=$row["descricao"]?>">
                         			</div>
 									<div class="form-group">
-											<br>
-											<label class="control-label">Data</label>
-											<div class='input-group date' id="data">
-											 <input type='text' name="data" class="form-control"/>
-											 <span class="input-group-addon">
-											 <span class="glyphicon glyphicon-calendar"></span>
-											 </span>
-										  </div>
+										<label for="nome">Data</label>
+										<input type="date" id="dataInicio" name="dataInicio"  placeholder="data" class="form-control" value="<?= date("d-m-Y")?>">
 									</div>
 									<div class="form-group">
 										<label for="nome">Prazo de validade (meses)</label>
 										   <input class="form-control" id="prazo" name="prazo" value="">
                         			</div>
-									<!-- <div class="form-group">
+									<div class="form-group">
 										<label for="nome">Validade</label>
-										<input type="date" id="validade" name="validade"  placeholder="data" class="form-control">
-									</div> -->
+										<input type="date" id="limiteFim" name="limiteFim"  placeholder="data" class="form-control" value="<?= date("d-m-Y")?>">
+									</div>
 									<div class="form-group">
 										<label>Documento</label>
 										<input type="file" name="userfile" value="<?=$form["arquivo"]?>"> 

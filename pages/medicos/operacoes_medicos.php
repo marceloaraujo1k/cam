@@ -18,6 +18,8 @@ $form = mysqli_fetch_assoc($query);
 	$dado[]=$form["crm"];
 	$dado[]=$form["especialidade"];
 	$dado[]=$form["email"];
+	$dado[]=$form["ufCrm"];
+	$dado[]=$form["nomeCompleto"];
 
 
 $dados[] = $dado;

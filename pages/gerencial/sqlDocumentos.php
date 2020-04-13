@@ -16,7 +16,9 @@ else {
 }		
 	
 	$form = $_POST;	  
-	$query	= "INSERT INTO documentos (iddocumentos, descricao, arquivo, data) VALUES (null, '$form[descricao]','$uploadfile', STR_TO_DATE('$form[data]', '%d/%m/%Y %H:%i:%s')";
+	print_r($form);
+	$query	= "INSERT INTO documentos (iddocumentos, descricao, arquivo, data) VALUES (null, '$form[descricao]','$uploadfile', STR_TO_DATE('$form[dataInicio]', '%Y-%m-%d 00:00:00'))";
+	var_dump($query);
 	mysqli_query($mysql_conn,$query);
 	$id = $form["id"];
     header ('location: documentos.php');

@@ -149,13 +149,17 @@ $empresa = getItensTable($mysql_conn,"empresa");
 							</div>
 									
 								<div class="row">
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
 										<label>CRM</label>
 										 <input class="form-control" name="crm" id="crm">
 									</div>
-									<div class="form-group col-md-6">
+									<div class="form-group col-md-4">
+										<label>UF</label>
+										 <input class="form-control" name="ufCrm" id="ufCrm">
+									</div>
+									<div class="form-group col-md-4">
 										<label>Especialidade</label>
-										 <input class="form-control" name="especialidade" id="especialidade">
+										 <input class=	"form-control" name="especialidade" id="especialidade">
 									</div>
 								</div>
 
@@ -163,6 +167,12 @@ $empresa = getItensTable($mysql_conn,"empresa");
 									<div class="form-group col-md-12">
 										<label>Email</label>
 										 <input class="form-control" name="email" id="email">
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-12">
+										<label>Nome Completo</label>
+										 <input class="form-control" name="nomeCompleto" id="nomeCompleto">
 									</div>
 								</div>
 									<div class="modal-footer">
@@ -249,6 +259,10 @@ $empresa = getItensTable($mysql_conn,"empresa");
 		document.getElementById("crm").value = result[0][4];
 		document.getElementById("especialidade").value = result[0][5];
 		document.getElementById("email").value = result[0][6];
+	//	document.getElementById("idusuario").value = result[0][7];
+		document.getElementById("ufCrm").value = result[0][7];
+		document.getElementById("nomeCompleto").value = result[0][8];
+		
 		
 		}
 		

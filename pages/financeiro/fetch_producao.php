@@ -126,11 +126,11 @@ while($row = mysqli_fetch_array($result))
 	$sub_array[] = $row["adicional"];
 	$sub_array[] = $row["redutor"];
 	$sub_array[] = number_format($row["valorProcedimento"],2,",",".");
-	$sub_array[] = date('d/m/Y', strtotime($row["dataCobranca"])); 
+	$sub_array[] = 	((((($row["dataCobranca"])!="0000-00-00 00:00:00")) && (($row["dataCobranca"])!=NULL)) ? date('d/m/Y',strtotime($row["dataCobranca"])) : '');
 	$sub_array[] = null;
-	$sub_array[] = date('d/m/Y', strtotime($row["dataPrevisaoPagamento"]));  
-	$sub_array[] = date('d/m/Y', strtotime($row["dataPagamento"]));  
-	$sub_array[] = date('d/m/Y', strtotime($row["dataRepasse"]));   
+	$sub_array[] = 	((((($row["dataPrevisaoPagamento"])!="0000-00-00 00:00:00")) && (($row["dataPrevisaoPagamento"])!=NULL)) ? date('d/m/Y',strtotime($row["dataPrevisaoPagamento"])) : '');
+	$sub_array[] = 	((((($row["dataPagamento"])!="0000-00-00 00:00:00")) && (($row["dataPagamento"])!=NULL)) ? date('d/m/Y',strtotime($row["dataPagamento"])) : '');
+	$sub_array[] = 	((((($row["dataRepasse"])!="0000-00-00 00:00:00")) && (($row["dataRepasse"])!=NULL)) ? date('d/m/Y',strtotime($row["dataRepasse"])) : '');
 	$sub_array[] = number_format($row["valorRecebido"],2,",",".");
 	$sub_array[] = number_format($row["glosa"],2,",",".");
 	$sub_array[] = number_format($row["saldo"],2,",",".");
@@ -142,6 +142,7 @@ while($row = mysqli_fetch_array($result))
 
  $data[] = $sub_array;
 }
+
 
 function get_all_data($conn)
 {

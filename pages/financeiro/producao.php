@@ -84,24 +84,24 @@ $form["saldoDevedor"]=null;
          <div id="page-wrapper">
 			
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-sm-12">
                     <h1 class="page-header">Produção Médica</h1>
 				
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-sm-12 -->
             </div>
             <!-- /.row -->
 					
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-sm-12">
                     <div class="panel panel-default">
                     <div class="panel-heading">
 					<!-- /.panel-heading -->
 					<!-- FILTRAR POR FILIAL - DATA  -->
 					<div class="row">
 						<div class="input-daterange">
-							<div class="form-group col-lg-2"> 
+							<div class="form-group col-sm-2"> 
 								<br>
 								<label class="control-label">Data Inicial</label>
 								<div class='input-group date' id="start_date">
@@ -112,7 +112,7 @@ $form["saldoDevedor"]=null;
 							  </div>
 							</div> 
 							
-							<div class="form-group col-lg-2"> 
+							<div class="form-group col-sm-2"> 
 								<br>
 								<label class="control-label">Data Final</label>
 								<div class='input-group date' id="end_date">
@@ -124,7 +124,7 @@ $form["saldoDevedor"]=null;
 							</div>
 						</div>
 						
-						<div class="form-group col-lg-2">
+						<div class="form-group col-sm-2">
 									<br>
 									  <label for="filtroData">Filtrar por</label>
 										<select id="filtroData" name="filtroData" class="form-control"> 
@@ -134,7 +134,7 @@ $form["saldoDevedor"]=null;
 												<option value="3">Data de Repasse</option>
 										</select>
 						</div>
-						<div class="form-group col-lg-2">
+						<div class="form-group col-sm-2">
 									<br>
 									  <label for="filtroConvenico">Filtrar convênio</label>
 									  <select id="filtroConvenio" name="filtroConvenio" class="form-control"> 
@@ -159,12 +159,14 @@ $form["saldoDevedor"]=null;
 										</select>
 						</div>
 
-						<div class="form-group col-lg-2"> 
+						<div class="form-group col-sm-2"> 
 								<br>
 								<p id="resultado"></p>
 								<br>
 								<input type="button" name="search" id="search" value="Filtrar" class="btn btn-default" />
 						</div>
+				
+					<!--	<button class="btn btn-primary" data-toggle="modal" data-target="#modalGuiaProducaoMedica">Inserir Produção</button> -->
 						
 					</div>
 					</div>
@@ -178,7 +180,7 @@ $form["saldoDevedor"]=null;
 						<div class="row">
 						<input type="hidden" name="idempresa" id="idempresa" value="1">
 						<input type="hidden" name="idproducao" id="idproducao">
-								<div class="form-group col-lg-2"> 
+								<div class="form-group col-sm-2"> 
 									<label class="control-label">Data Realização</label>
 										<div class='input-group date' id='datetimepicker1'> 
 											<input type='text' class="form-control" id="dataRealizacao" name="dataRealizacao"/>
@@ -188,12 +190,12 @@ $form["saldoDevedor"]=null;
 										</div>
 								</div>
 								
-								<div class="form-group   col-lg-2">
+								<div class="form-group   col-sm-2">
 										<label for="nome">No.Carteira</label>
 										<input class="form-control"  id="searchNoCarteira" placeholder="Num. Carteira" />
 								</div>
 								
-								<div class="form-group   col-lg-3">
+								<div class="form-group   col-sm-3">
 										<label for="nome">Paciente</label>
 										<input class="form-control"  id="searchPaciente" placeholder="Nome do paciente" />
 								</div>
@@ -201,7 +203,7 @@ $form["saldoDevedor"]=null;
 								<input type="hidden" name="idpaciente" id="idpaciente">
 								<input type="hidden" name="paciente" id="paciente">
 								
-								<div class="form-group col-lg-2">
+								<div class="form-group col-sm-2">
 										<label for="convenio">Hospital/Clínica</label>
 											<select id="hospital" name="idhospital" class="form-control">
 											<option value=""></option>
@@ -226,7 +228,7 @@ $form["saldoDevedor"]=null;
 									</div>
 								
 								
-								<div class="form-group   col-lg-3">
+								<div class="form-group   col-sm-3">
 										<label for="nome">Médico</label>
 										<input class="form-control"  id="searchMedico" placeholder="Nome do médico" />
 								</div>
@@ -235,7 +237,7 @@ $form["saldoDevedor"]=null;
 								
 						</div>
 						<div class="row"> 
-								<div class="form-group col-lg-2">
+								<div class="form-group col-sm-2">
 										<label for="convenio">Convênio</label>
 											<select id="convenio" name="idconvenio" class="form-control"> 
 											<option value=""></option>
@@ -259,11 +261,11 @@ $form["saldoDevedor"]=null;
 										</select>
 									</div>
 														
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 										<label for="nome">Cód.</label>
 										<input class="form-control"  id="searchCodProcedimento" placeholder="Código Procedimento" />
 									</div>
-									<div class="form-group col-lg-3">
+									<div class="form-group col-sm-3">
 									
 										<label for="nome"> Procedimento</label>
 									
@@ -271,39 +273,39 @@ $form["saldoDevedor"]=null;
 									</div>									
 									
 									
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 										<label for="nome">Quantidade</label>
 										<input class="form-control" type="text" name="quantidade" id="quantidade"  value="1" onchange="getSaldoDevedor(this.value)" >
                         			</div>
 									
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 										<label for="nome">Ad.%</label>
 										<input class="form-control" type="text" name="ajuste" id="adicional"  value="0" onchange="getSaldoDevedor(this.value)" >
                         			</div>
 									
 
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 										<label for="nome">Red.%</label>
 										<input class="form-control" type="text" name="ajuste" id="redutor"  value="0" onchange="getSaldoDevedor(this.value)" >
                         			</div>
 									
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 											<label for="nome">Valor R$</label>
 											<input class="form-control" name="valor" id="valor">
                         			</div>
 									
-									<div class="form-group col-lg-1">
+									<div class="form-group col-sm-1">
 										<label for="nome">Receb.R$</label>
 										<input class="form-control" type="text" name="valorRecebido" id="valorRecebido"  value="0" onchange="getSaldo(this.value)">
 									</div>
 							
-								<div class="form-group col-lg-1">
+								<div class="form-group col-sm-1">
 									<label for="nome">Glosa R$</label>
 									<input class="form-control" type="text" style="background-color:pink;" name="glosa" id="glosa">
                         		</div>
 								
 								
-							 	<!--<div class="form-group col-lg-1">
+							 	<!--<div class="form-group col-sm-1">
 									<label for="nome">Saldo R$</label> -->
  									<input type="hidden" class="form-control" type="text" style="background-color:yellow;" name="saldo" id="saldo" value=0>
 								<!--</div> -->
@@ -318,21 +320,27 @@ $form["saldoDevedor"]=null;
 							</div>
 					
 							<div class="row">
-									<div class="form-group col-lg-3">
+									<div class="form-group col-sm-2">
+										<label for="nome">Senha</label>
+										<input class="form-control" type="text" name="senhaGuia" id="senhaGuia">
+									</div>
+									<div class="form-group col-sm-3">
 										<label for="nome">Observação</label>
 										<input class="form-control" type="text" name="observacao" id="observacao">
 									</div>
 
-									<div class="form-group col-lg-3">
+									<div class="form-group col-sm-3">
 										<label for="nome">Cirurgião</label>
 										<input class="form-control" type="text" name="medicoCirurgiao" id="medicoCirurgiao">
 									</div>
 								
-										<div class="form-group col-lg-2">
+							
+									<div class="form-group col-sm-2">
 										<br>
 										<button type="button" id="adicionarProcedimentos" class="btn btn btn-default btn-primary" onclick="teste()"><i class="glyphicon glyphicon-plus"></i> Adicionar </button> 
+										<button type="button" class="btn btn-primary" id="btnModalGuia"><i class="glyphicon glyphicon-file"></i> Guia </button>
 									</div>
-										<div class="form-group col-lg-2">
+										<div class="form-group col-sm-2">
 											<p>Total Procedimentos R$ <span style="color:black" id="totalProcedimentos"></span></p>
 											<p>Total Recebido R$ <span style="color:black" id="totalRecebido"></span></p>
 										</div>
@@ -341,7 +349,7 @@ $form["saldoDevedor"]=null;
 
 						
 								<div class="row" >
-										<div class="form-group col-lg-12">
+										<div class="form-group col-sm-12">
 											<table class="table table-striped table-bordered table-hover" id="tblprocedimentos">
 												<thead>
 														<tr>
@@ -353,7 +361,7 @@ $form["saldoDevedor"]=null;
 															<th >Valor</th>
 															<th >Receb.</th>
 															<th>Glosa</th>
-															<th>Observação</th>
+															<th>Senha</th>
 															<th>Medico Cirurgião</th>
 															<th></th>
 														</tr>
@@ -367,16 +375,16 @@ $form["saldoDevedor"]=null;
 					
 						
 						<div class="row"> 
-								<div class="form-group col-lg-2"> 
+								<div class="form-group col-sm-2"> 
 										<label class="control-label">Data Cobrança</label>
 											<div class='input-group date' id='datetimepicker3'>
-											 <input type='text' class="form-control" name="dataCobranca" id="dataCobranca"/>
+											 <input type='text' class="form-control" name="dataCobranca" id="dataCobranca" required/>
 											<span class="input-group-addon">
 											<span class="glyphicon glyphicon-calendar"></span>
 											</span>
 										  </div>
 								</div>
-								<div class="form-group col-lg-2"> 
+								<div class="form-group col-sm-2"> 
 										<label class="control-label">Data Pagamento</label>
 											<div class='input-group date' id='datetimepicker4'>
 											 <input type='text' class="form-control" name="dataPagamento" id="dataPagamento"/>
@@ -388,7 +396,7 @@ $form["saldoDevedor"]=null;
 
 								<input type="hidden" name="dataPrevisaoPagamento" id="dataPrevisaoPagamento">
 											
-								<div class="form-group col-lg-2"> 
+								<div class="form-group col-sm-2"> 
 										<label class="control-label">Data Repasse</label>
 											<div class='input-group date' id='datetimepicker6'>
 											 <input type='text' class="form-control" name="dataRepasse" id="dataRepasse">
@@ -397,13 +405,13 @@ $form["saldoDevedor"]=null;
 											</span>
 										  </div>
 								</div>
-								<div class="form-group col-lg-2">
+								<div class="form-group col-sm-2">
 										<label for="nome">Nota Fiscal</label>
 										<input class="form-control" type="text" name="notaFiscal" id="notaFiscal">
                         			</div>								
 								
   								
-								<div class="form-group  col-lg-2">
+								<div class="form-group  col-sm-2">
 										<label for="nome">Forma de Pagamento</label>
 									  <select id="formaPagamento" name="formaPagamento" class="form-control" required> 
 									  		<option>Dinheiro</option>
@@ -415,7 +423,7 @@ $form["saldoDevedor"]=null;
 									</select>
                         		</div>
 									
-								<div class="form-group col-lg-1">
+								<div class="form-group col-sm-1">
 									  <label for="inputStatusPagamento">Status</label>
 									  <select id="statusPagamento" name="statusPagamento" class="form-control" required> 
 											<option>Faturar</option>
@@ -425,7 +433,7 @@ $form["saldoDevedor"]=null;
 									</select>
 								</div>	
 
-								<div class="form-group col-lg-1">
+								<div class="form-group col-sm-1">
 								<br>
 									<button type="button" id="btnEditarConta" value="editarConta" onclick="editarConta()" class="btn btn-success">Editar</button>
 									<button type="submit" name="submit" id="inserirConta" value="inserirConta" class="btn btn-success">Lançar</button>
@@ -435,7 +443,7 @@ $form["saldoDevedor"]=null;
 							<!-- FECHAMENTO DO PAINEL WELL -->
 					</div>
 					<div class="row">
-					<div class="col-lg-12">
+					<div class="col-sm-12">
 				
 					     <!-- AS DUAS LINHAS SEGUINTES FAZEM O DATATABLE TRABALHAR CORRETAMENTE NA MUDANÇA DE ZOOM table table-striped table-bordered table-hover -->
 							<div class="table-responsive"> 
@@ -490,7 +498,7 @@ $form["saldoDevedor"]=null;
                     </div>
                     <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-sm-12 -->
             </div>
             <!-- /.row -->
             </div>
@@ -544,42 +552,17 @@ $form["saldoDevedor"]=null;
 										</div>								
 									</div>
 									
-								<div class="row">
-									<div class="table-responsive"> 
-									<table  class="table table-striped table-bordered table-hover" id="tblbaixarproducao">
-									<thead>
-								    <tr>
-										<th>Nome</th>
-										<th>No. Carteira</th> 
-										<th>Cód.Proc.</th>
-										<th>Descrição</th>
-										<th>Valor R$</th>
-										<th>Data Cobrança</th>
-										<th>Data Pagamento</th>
-										<th>Data Repasse</th>
-										<th>Valor Recebido R$</th>
-										<th>Glosa/Exced. R$</th>
-										<th>Status</th>
-									</tr>
-                            	    </thead>
-								<tbody>
-								</tbody>
-                            </table>
-							</div>
-                            <!-- /.table-responsive -->
-						</div>
-									
-									<div class="modal-footer">
+						
+								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-										<button  type="button" id="btnOperacoesLote" class="btn btn-primary" title="Editar dado" onclick="operacoesLote()">Atualizar </button>
-								
-								
+									<button  type="button" id="btnOperacoesLote" class="btn btn-primary" title="Editar dado" onclick="operacoesLote()">Salvar </button>
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>		
+		</div>		
 			
 			
 				<!-- Bootstrap Modal - To Add New Record -->
@@ -851,6 +834,87 @@ $form["saldoDevedor"]=null;
 			
 				
 
+			<!-- Modal Relatório XML -->
+			<div class="modal fade" id="modalXml" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">Enviar Xml</h4>
+									</div>
+									<div class="modal-body">
+									
+								 <form role="form" action="./.php" method='post' enctype="multipart/form-data">
+					
+								<div class="row">
+
+								<div class="form-group col-md-6">
+										<label for="convenio">Convênio</label>
+											<select id="convenio3" name="idconvenio" class="form-control"> 
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($convenios); $i++)
+											{
+											if($form["idconvenio"] == $convenios[$i]['idconvenio'])
+											{	
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" selected><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" ><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>
+
+									<div class="form-group col-md-6">
+												<label for="nome">Sequencial/Lote</label>
+												<input class="form-control" type="text" name="pdfff" id="pdfff" maxlength="20"  placeholder="Número com 20 posições">
+											</div>
+										
+								</div>
+								<div class="row">
+									<div class="input-daterange">
+										<div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Cobrança Inicial</label>
+											<div class='input-group date' id="start_date_report2">
+											 <input type='text' name="start_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div> 
+										  <div class="form-group col-md-6"> 
+											<br>
+											<label class="control-label">Data Cobrança Final</label>
+											<div class='input-group date' id="end_date_report2">
+											 <input type='text' name="end_date_report" class="form-control"/>
+											 <span class="input-group-addon">
+											 <span class="glyphicon glyphicon-calendar"></span>
+											 </span>
+										  </div>
+										</div>
+										
+									</div>
+								
+											
+								</div>
+									<div class="modal-footer">	
+									<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+									<button  type="button" id="btnExportarTissXls" class="btn btn-primary" title="Excel">Excel</button>
+									<button  type="button" id="btnEnviarXml" class="btn btn-primary" title="Relatório" onclick="email()">Gerar </button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
 <!-- Bootstrap Modal - To Add New Record -->
 				<!-- Modal -->
 				<div class="modal fade" id="modalBaixarProducao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -973,8 +1037,6 @@ $form["saldoDevedor"]=null;
 										
 									</div>	
 
-
-
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default" id="btn-close" data-dismiss="modal">Fechar</button>
 										<button  type="button" id="btnAtualizarProducao" class="btn btn-primary" title="Baixar Produção">Atualizar</button>
@@ -987,6 +1049,255 @@ $form["saldoDevedor"]=null;
 					</div>
 				</div>
 	</div>	
+
+
+	<!-- Modal -->
+    <div class="modal fade" id="modalGuiaProducaoMedica" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							<div class="modal-dialog modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="myModalLabel">Guia Produção Médica</h4>
+									</div>
+									<div class="modal-body">
+								 <form role="form" action="" method='post' enctype="multipart/form-data">
+						<!--		<input type="hidden" name="id" id="idproducao1" /> -->
+						<div class="row">
+						<div class="form-group col-md-12">
+											<h5><b>DADOS DA OPERADORA</b></h5>
+						</div>
+						</div>
+
+                                <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <label for="tipoGuia">Guia</label>
+                                            <select id="tipoGuia" name="tipoGuia" class="form-control"> 
+                                                    <option value="0">Honorário Individual</option>
+                                                    <option value="1">SP/SADT</option> 
+                                                    <option value="2">Consulta</option>
+													<option value="3">Resumo Internação</option> 																								
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-3">
+										<label for="convenio">Convênio</label>
+											<select id="convenioGuia" name="idconvenio" class="form-control"> 
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($convenios); $i++)
+											{
+											if($form["idconvenio"] == $convenios[$i]['idconvenio'])
+											{	
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" selected><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$convenios[$i]['idconvenio']?>" ><?=$convenios[$i]['descricao']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>    
+									<div class="form-group col-md-3">
+										<label for="nome">Número da Guia</label>
+												<input class="form-control" type="text" name="numeroGuia" id="numeroGuia">
+									</div>
+                                    <div class="form-group col-md-3">
+										<label for="nome">No.Guia Princ./Solic.</label>
+												<input class="form-control" type="text" name="guiaPrincipal" id="guiaPrincipal">
+									</div>
+								</div>
+
+							<div class="row">
+									<div class="form-group col-md-3">
+											<label class="control-label">Dt.Autorização</label>
+											<div class='input-group date' id='dtAutorizacao'>
+												 <input type='text' class="form-control" name="dataAutorizacao" id="dataAutorizacao"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									<div class="form-group col-md-3">
+											<label for="nome">Senha</label>
+											<input class="form-control" type="text" name="senhaAutorizacao" id="senhaAutorizacao"> 
+									</div>		
+											
+									<div class="form-group col-md-3">
+											<label class="control-label">Validade senha</label>
+											<div class='input-group date' id='dtValSenha'>
+												 <input type='text' class="form-control" name="dataValidadeSenha" id="dataValidadeSenha"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+										<div class="form-group col-md-3">
+											<label class="control-label">Emissão guia</label>
+											<div class='input-group date' id='dtEmissaoGuia'>
+												 <input type='text' class="form-control" name="dataEmissaoGuia" id="dataEmissaoGuia"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>		
+									</div>
+
+									<div class="row">
+									<div class="form-group col-md-12">
+														<h5><b>DADOS BENEFICIARIOS</b></h5>
+									</div>
+									</div>
+								<div class="row">
+											<!-- DADOS BENEFICIARIOS -->
+											<div class="form-group col-md-3">
+												<label for="nome">No. Carteira</label>
+												<input class="form-control" type="text" name="numeroCarteiraGuia" id="numeroCarteiraGuia">
+											</div>
+											<div class="form-group col-md-6">
+												<label for="nome">Plano</label>
+												<input class="form-control" type="text" name="tipoPlano" id="tipoPlano">
+											</div>
+											<div class="form-group col-md-3">
+											<label class="control-label">Validade Carteira</label>
+											<div class='input-group date' id='dtValCarteira'>
+												 <input type='text' class="form-control" name="dataValidadeCarteira" id="dataValidadeCarteira"/>
+												<span class="input-group-addon">
+												<span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+											</div>
+											
+								</div>			
+								<div class="row">
+									<!-- DADOS BENEFICIARIOS cont. -->
+											<div class="form-group col-md-6">
+											<label for="nome">Nome Paciente</label>
+													<input class="form-control" type="text" name="nomePacienteGuia" id="nomePacienteGuia">
+											</div>
+											<div class="form-group col-md-3">
+											<label for="nome">No.Cartäo Nac. Saúde</label>
+													<input class="form-control" type="text" name="numeroCartaoNacionalSaude" id="numeroCartaoNacionalSaude">
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="checkbox" id="atendimentoRN">
+												<label class="form-check-label" for="inlineCheckbox1">Atend.RN</label>
+											</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-12">
+														<h5><b> DADOS DO CONTRATADO (onde foi executado o procedimento, guias SP/SADT considerar SOLICITANTE)</b></h5>
+									</div>
+									</div>
+								<div class="row">
+								<!-- DADOS DO CONTRATADO (onde foi exewcutado o procedimento) -->
+										<div class="form-group col-md-3">
+											<label for="nome">Cód. na Op./CNPJ/CPF</label>
+											<input class="form-control" type="text" name="codigoContratado" id="codigoContratado">
+										</div>	
+									<div class="form-group col-md-6">
+										<label for="nome">Nome do Contratado</label>
+										<input class="form-control" type="text" name="nomeContratado" id="nomeContratado">
+									</div>
+											<div class="form-group col-md-3">
+												<label for="nome">Cód. CNES</label>
+													<input class="form-control" type="text" name="codCNES" id="codCNES">
+											</div>
+								</div>			
+								<div class="row">
+									<div class="form-group col-md-12">
+														<h5><b> DADOS DO CONTRATADO EXECUTANTE</b></h5>
+									</div>
+									</div>			
+								<div class="row">
+								<!-- DADOS DO CONTRATADO EXECUTANTE -->
+								<div class="form-group col-md-3">
+												<label for="nome">Cód. Op./CNPJ/CPF</label>
+													<input class="form-control" type="text" name="codigoContratadoExecutante" id="codigoContratadoExecutante">
+											</div>
+
+
+									<div class="form-group col-md-5">
+											<label for="convenio">Nome Contratado(Executante)</label>
+											<input class="form-control" type="text" id="nomeContratadoExecutante">
+											
+									</div>
+										
+											<div class="form-group col-md-4">
+												<label for="nome">Nome Profissional(Executante)</label>
+													<input class="form-control" type="text" name="nomeMedicoExecutante" id="nomeMedicoExecutante">
+											</div>	
+									</div>			
+									<div class="row">
+										<div class="form-group col-md-3">
+											<label for="nome">Grau Participação</label>
+											<select id="grauParticipacao" name="grauParticipacao" class="form-control"> 
+												<option value="00">Cirurgião</option>
+												<option value="01">Primeiro Auxiliar</option>
+												<option value="02">Segundo Auxiliar</option>
+												<option value="03">Terceiro Auxiliar</option>
+												<option value="04">Quarto Auxiliar</option>
+												<option value="05">Instrumentador</option>
+												<option value="06" selected="selected">Anestesista</option>
+												<option value="07">Auxiliar de Anestesista</option>
+												<option value="08">Consultor</option>
+												<option value="09">Perfusionista</option>
+												<option value="10">Pediatra Sala Parto</option>
+												<option value="11">Auxiliar SADT</option>
+												<option value="12">Clínico</option>
+												<option value="13">Intensivista</option>
+											</select>
+										</div>
+										<div class="form-group col-md-2">
+													<label for="nome">Conselho</label>
+													<input class="form-control" type="text" name="tipoConselho" id="tipoConselho">
+											</div>
+											<div class="form-group col-md-2">
+													<label for="nome">No.Conselho</label>
+													<input class="form-control" type="text" name="crmMedico" id="crmMedico">
+											</div>
+											<div class="form-group col-md-2">
+													<label for="nome">UF</label>
+													<input class="form-control" type="text" name="ufCrmMedico" id="ufCrmMedico">
+											</div>
+											<div class="form-group col-md-3">
+													<label for="nome">CPF</label>
+													<input class="form-control" type="text" name="cpfMedico" id="cpfMedico">
+											</div>
+									</div>
+									<div class="row">
+											<div class="form-group col-md-3">
+												<label class="control-label">Ass. Prestador</label>
+												<div class='input-group date' id='dtAssinaturaPrestador'>
+													<input type='text' class="form-control" name="dataAssinaturaPrestador" id="dataAssinaturaPrestador"/>
+													<span class="input-group-addon">
+													<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+												</div>
+											</div>
+											<div class="form-group col-md-3">
+												<label class="control-label">Ass. Beneficiario</label>
+												<div class='input-group date' id='dtAssinaturaBeneficiario'>
+													<input type='text' class="form-control" name="dataAssinaturaBeneficiario" id="dataAssinaturaBeneficiario"/>
+													<span class="input-group-addon">
+													<span class="glyphicon glyphicon-calendar"></span>
+													</span>
+												</div>
+											</div>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default" id="btn-close2" data-dismiss="modal">Fechar</button>
+									</div>	
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+
 	
 	<!-- /#page-wrapper -->
 	<!-- AUTOCOMPLETE BOOTSTRAP -->
@@ -1046,10 +1357,12 @@ $form["saldoDevedor"]=null;
 		"scrollY": 		"100px",
 	    "paging": 		false,
 		"searching":	false,
-		
+		"order":[],
 		createdRow:	function(row){ // Toda vez que criar uma row ..
 			var td = $(row).find("td").eq(5); // Pega o texto da célula 5
-			td.data("value", td.text()); // Coloca no Válue 
+
+			td.data("value", td.text())
+			.addClass('cell-val'); // Coloca no Válue 
 
 			console.log(td);
 		}
@@ -1060,82 +1373,100 @@ $form["saldoDevedor"]=null;
 		var totalRecebido = 0;
 </script>
 
+
+
 <script>
-
-
-
 function teste(){
 
 // CÓDIGO PARA EDITAR CADA LINHA DA TABELA
 
 $(document).ready(function(){
-		$("table#tblprocedimentos").on("dblclick", "td" , function () {
+		var tblProcedimentos = $("table#tblprocedimentos");
+
+		tblProcedimentos.on("dblclick", "td" , function () {
         var cell = Table.cell(this);
+
+		var row = cell.index().row;
+		var tr = tblProcedimentos.find('tbody tr').eq(row); // Pega a TR Atual
 		
-		console.log(cell.index().column);
+
 		var conteudoOriginal = $(this).text();
         var td = $(this);
-
+		
         td.addClass("celulaEmEdicao");
 
-		if(cell.index().column == 4){ // Se o index da coluna for igual o 4 .. 
-			td.addClass("recalcularPorcentagem");
+		if(cell.index().column == 3){ // Se o index da coluna for igual o 3 .. 
+			td.addClass("adicionarPorcentagem"); 
+		}
 
+		if(cell.index().column == 4){ // Se o index da coluna for igual o 4 .. 
+			td.addClass("reduzirPorcentagem");
+
+			
+			
 		}
 
         td.html("<input type='text' value='" + conteudoOriginal + "' />");
         td.children().first().focus();
-			
+		
         td.children().first().keypress(function (e) {
+			
             if (e.which == 13) {
 				e.preventDefault();
                 var novoConteudo = $(this).val();
-                $(this).parent().text(novoConteudo);
-
-				cell.data(novoConteudo).draw(); // Atualiza o conteudo editado.
-
-                $(this).parent().removeClass("celulaEmEdicao");
+                td.text(novoConteudo);
 				
-            }
+				cell.data(novoConteudo).draw(); // Atualiza o conteudo editado.
+				
+                //$(this).parent().removeClass("celulaEmEdicao");
 
+				//td.text(conteudoOriginal);
+
+				tr.find('.celulaEmEdicao, .reduzirPorcentagem, .adicionarPorcentagem')
+				.removeClass("celulaEmEdicao")
+				.removeClass("reduzirPorcentagem")
+				.removeClass("adicionarPorcentagem");
+
+				//console.log('TR: ', tr.find('.celulaEmEdicao, .reduzirPorcentagem, .adicionarPorcentagem'));
+				calcularPorcentagem(tr); 
+			} 
+			
         });
-         
-		 
-
-		td.children().first().blur(function(){
-        td.parent().text(conteudoOriginal);
-        td.parent().removeClass("celulaEmEdicao");
-		td.removeClass("recalcularPorcentagem");
-		
-    });
-
-
-
-    });
-
-	$("table#tblprocedimentos").on("change", "td.recalcularPorcentagem input", function(){
-	 var porcentagem = $(this).val(); //Valor input 
-	 
-	 //console.log('Porcentagem: ', porcentagem);
-	 //console.log(Table.cell(this.parentElement.nextSibling).data());
-
-	 var cell = Table.cell(this.parentElement.nextSibling); // Determina Célula seguinte
-	
-	//console.log(cell);
-	 var valor = parseFloat($(this.parentElement.nextSibling).data("value")); // Pega o valor da Celula
-	 console.log('Valor: ', valor);
-	 
-	conta = valor - valor * (porcentagem/100);
-	
-	cell.data(conta.toFixed(2)); // Grava o Novo valor
-
+	//console.log(event);
 	});
 
-	});
+	
 
+function calcularPorcentagem(tr){
+	var td = tr.find('td');
+	var ad = td.eq(3).html(); // pega a celula 3
+	var red = td.eq(4).html(); // pega a celula 4
+
+	var valor = parseFloat(td.eq(5).data('value')); // pega o valor 
+		conta = valor - valor * (red/100);
+		if(ad){
+			conta = conta + conta * (ad/100);
+		}
+		td.eq(5).html(conta.toFixed(2)); // Grava o Novo valor
+
+		var cell = Table.cell(td.eq(5));	
+		cell.data(conta.toFixed(2));
+		var soma = 0;
+		console.log('TESTE:', tblProcedimentos.find('.cell-val'));
+
+			tblProcedimentos.find('.cell-val').each(function(){
+				soma = soma + parseFloat($(this).html());
+			})
+			
+			console.log('VAMOS VER', soma);
+			console.log('Valor do Campo TotalProcedimento:', $('#totalProcedimentos').html(parseFloat(soma).toFixed(2)));
+
+	console.log('CONTA:', conta);
 }
-
+	});
+}
 </script>
+
 	
 <script>	
 // adiciona varios procedimentos
@@ -1156,19 +1487,23 @@ $(document).ready(function(){
 			valor,
 			valorRecebido,
 			glosa,
-			document.getElementById('observacao').value,
+		//	document.getElementById('observacao').value,
+			document.getElementById('senhaGuia').value,
 
 			//Medico Cirurgiao
 			document.getElementById('medicoCirurgiao').value,
 			
 			'<button type="button" id="btnExcluirItemProcedimento" class="btn  btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i></button>',
              ]).draw();
+			 //	totalProcedimentos =  $('#totalProcedimentos').html();
+			//	console.log('totalprocedimentos 1', totalProcedimentos);
 			 	totalProcedimentos = totalProcedimentos + valor;
 				totalRecebido = totalRecebido + valorRecebido;	
 				$('#totalProcedimentos').html(parseFloat(totalProcedimentos).toFixed(2));
 				$('#totalRecebido').html(parseFloat(totalRecebido).toFixed(2));
 			});
 </script>	
+
 
 <script>
 		$(document).on('click','#btnExcluirItemProcedimento',function(e){
@@ -1225,6 +1560,11 @@ $(document).ready(function(){
 						case '3':
 							window.open("relatorioFaturaEletivas.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
 							break;	
+
+						case '4':
+							window.open("relatorioParticular.php?id="+idmedico+"&start_date="+start_date+"&end_date="+end_date+"&filtroDataTipo="+filtroDataTipo+"&hospital="+idhospital);
+							break;	
+							
 						default:
 							text = "No value found";
 							}
@@ -1238,52 +1578,48 @@ $(document).ready(function(){
 		
 	 	$(document).on('click','#btnOperacoesLote',function(e){
 			e.preventDefault();  
-
-		//	var selRows =dataTable.rows('.selected').data();
+			//	var selRows =dataTable.rows('.selected').data();
 		//	var t = $('#tblbaixarproducao').DataTable();
 
 		//	for (var i=0; i<selRows.length; i++) {
 		//		alert(selRows.data()[i]);
-			
-
-			
 			/*	t.row.add([this.data()[1],
 					   this.data()[2],
 					   this.data()[3],
 					   this.data()[4],
 					   this.data()[5],
 					   ]).draw();*/
-			
-/*			selRows.rows().every(function(){
+	/*			selRows.rows().every(function(){
 				alert(this.data()[0]);
 			} */
 //			for (var i=0; i< selRows.length; i++) {
 			//	alert(selRows.length);
 					//selRows.rows().every(function() 
 //			var t = $('#tblbaixarproducao').DataTable();
-		
-			/*	$.each(selRows, function(index,tr)
+				/*	$.each(selRows, function(index,tr)
 				{
 					alert(selRows);
 					console.log(index);
 					console.log(tr);
 		      	/*	  */
+				var rows_selected = dataTable.column(0).checkboxes.selected();
 				
-		
-
-				var rows_selected = dataTable.column(1).checkboxes.selected();
 				$.each(rows_selected, function(index, rowId){
 				$.ajax({  
-				url:"operacoes_lote.php",  
-				method:"POST",  
-				data: {id : rowId, dataOperacao : $("#dataOperacao").val(), formaPagamento: $("#formaPagamentoOp").val(), statusOperacao : $("#statusOperacao").find('option:selected').text(), notaFiscal : $("#notaFiscalOp").val()},
-				beforeSend:function(){  
-				},  
-				success:function(data){  
-				$('#formOperacoesLote')[0].reset(); 
-				$('#listar-producao').DataTable().ajax.reload();
-				}  
-			   });  
+					url:"operacoes_lote.php",  
+					method:"POST",  
+					data: {id : rowId, 
+						dataOperacao : $("#dataOperacao").val(), 
+						formaPagamento: $("#formaPagamentoOp").val(), 
+						statusOperacao : $("#statusOperacao").find('option:selected').text(), 
+						notaFiscal : $("#notaFiscalOp").val()},
+					beforeSend:function(){ 
+					},  
+					success:function(data){  
+					$('#formOperacoesLote')[0].reset(); 
+					$('#listar-producao').DataTable().ajax.reload();
+					}  
+			   		});  
 				});
 			 });
 	}	 	
@@ -1323,6 +1659,24 @@ $(document).ready(function(){
 </script>
 
 
+<script>
+		$(document).on('click','#btnEnviarXml',function(e){
+			e.preventDefault();
+					var start = $('#start_date_report2').data('DateTimePicker').date().toString();
+					var date = new Date(start);
+					var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+				
+					var end = $('#end_date_report2').data('DateTimePicker').date().toString();
+					var date = new Date(end);
+					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+					
+				   //var id = document.getElementById("tipoRelatorio2").value;
+
+				   var idconvenio = $("#convenio3").find('option:selected').text();
+				   var pdfff =$("#pdfff").val();
+					window.open("envioXmlProducaoHonorarios.php?id="+idconvenio+"&start_date="+start_date+"&end_date="+end_date+"&pdfff="+pdfff);
+		});
+</script>
 
 <!-- Inserir Máscara R$ -->
 <script>
@@ -1344,7 +1698,6 @@ $(document).ready(function(){
 			 event.preventDefault();
 		
 			// Ler os procedimentos e inserir
-		//var table = $('#tblprocedimentos').DataTable();
 				Table.rows().every(function(){
 				var codigoProcedimento  = this.data()[0];
 				var descricao = this.data()[1];
@@ -1354,10 +1707,9 @@ $(document).ready(function(){
 				var valorProcedimento = this.data()[5];
 				var valorRecebido = this.data()[6];
 				var glosa = this.data()[7];
-				var observacao = this.data()[8];
+				var senhaGuia = this.data()[8];
 				var medicoCirurgiao = this.data()[9];
-				//console.log(valorProcedimento);
-				//return false;
+		
 			$.ajax({  
 				url:"proc_producao.php",  
 				method:"POST",  
@@ -1368,19 +1720,38 @@ $(document).ready(function(){
 					  codigoProcedimento:codigoProcedimento, descricaoProcedimento: descricao, quantidade : quantidade,  adicional : adicional, redutor : redutor,
 					  valorProcedimento : valorProcedimento, valorRecebido :valorRecebido, glosa : glosa,  saldo : $('#saldo').maskMoney('unmasked')[0],
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
-					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: observacao, medicoCirurgiao: medicoCirurgiao},
+					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(),
+					  valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: $('#observacao').val(),  medicoCirurgiao: medicoCirurgiao,
+					  senhaGuia: senhaGuia,
+					  tipoGuia: $("#tipoGuia").val(),
+					  numeroGuia: $("#numeroGuia").val(),
+					  guiaPrincipal: $("#guiaPrincipal").val(),
+					  dataAutorizacao : $("#dataAutorizacao").val(),
+					//  senhaAutorizacao : $("#senhaAutorizacao").val(),
+					  dataValidadeSenha : $("#dataValidadeSenha").val(),
+					  dataEmissaoGuia : $("#dataEmissaoGuia").val(),
+					  tipoPlano :  $("#tipoPlano").val(),
+					  dataValidadeCarteira : $("#dataValidadeCarteira").val(),
+					  numeroCartaoNacionalSaude : $("#numeroCartaoNacionalSaude").val(), 
+					  codigoContratado : $("#codigoContratado").val(), 
+					  nomeContratado : $("#nomeContratado").val(), 
+					  atendimentoRN : $("#atendimentoRN").is(':checked')?1:0,
+					  codCNES : $("#codCNES").val(), 
+					  codigoContratadoExecutante : $("#codigoContratadoExecutante").val(), 
+					  nomeContratadoExecutante : $("#nomeContratadoExecutante").val(), 
+					  grauParticipacao : $("#grauParticipacao").val(),
+					  dataAssinaturaPrestador : $("#dataAssinaturaPrestador").val(),
+					  dataAssinaturaBeneficiario : $("#dataAssinaturaBeneficiario").val()
+					  },
 				beforeSend:function(){
 				},  
 				success:function(data){
-					$('#formProducao')[0].reset();  
-		 		 window.parent.location.reload();
-				 $('#listar-producao').DataTable().ajax.reload();	
-			// Verificar como inserir o IDPACIENTE na 2a. requisição da tabela de procedimentos
-				//	alert(data[0]["idp"]);
-			//		var idp = data[0]["idp"];
-					//alert(idp);
-				//	paciente = idp;
-			   	},
+				 	$('#formProducao')[0].reset();  
+			 		window.parent.location.reload();
+				 	$('#listar-producao').DataTable().ajax.reload();
+				// LIMPA O MODAL GUIA PRODUCAO MEDICA
+				//	$('#form').reset()
+		 		},
 			   });
 
 				});		
@@ -1398,17 +1769,40 @@ $(document).ready(function(){
 				url:"proc_producao.php",  
 				method:"POST",  
 				data: {submit : $("#inserirConta").val(), idproducao: $("#idproducao").val(), idempresa : $("#idempresa").val(),  dataRealizacao : $("#dataRealizacao").val(), idpaciente: $("#idpaciente").val(), paciente: $("#searchPaciente").val(), 
-					  carteiraPaciente: $("#searchNoCarteira").val(), idmedico: $("#idmedico").val(), medico: $("#searchMedico").val(), idconvenio: $("#convenio").find('option:selected').val(), convenio : $('#convenio').find('option:selected').text(), hospital : $('#hospital').find('option:selected').text(),
+					  carteiraPaciente: $("#searchNoCarteira").val(), idmedico: $("#idmedico").val(), medico: $("#searchMedico").val(), idconvenio: $("#convenio").find('option:selected').val(), convenio : $('#convenio').find('option:selected').text(), 
+					  hospital : $('#hospital').find('option:selected').text(),
 					  codigoProcedimento: $("#searchCodProcedimento").val(), descricaoProcedimento: $("#searchProcedimento").val(), quantidade : $("#quantidade").val(),  adicional : $("#adicional").val(), redutor : $("#redutor").val(),
 					  valorProcedimento : $('#valor').maskMoney('unmasked')[0], valorRecebido : $('#valorRecebido').maskMoney('unmasked')[0], glosa : $('#glosa').maskMoney('unmasked')[0],  saldo : $('#saldo').maskMoney('unmasked')[0],
 					  dataCobranca : $("#dataCobranca").val(),  dataPrevisaoPagamento : $("#dataPrevisaoPagamento").val(),  dataRepasse : $("#dataRepasse").val(),  dataPagamento : $("#dataPagamento").val(), 
-					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), observacao: $("#observacao").val(), medicoCirurgiao: $("#medicoCirurgiao").val()  },
+					  formaPagamento: $("#formaPagamento").val(), statusPagamento : $("#statusPagamento").find('option:selected').text(), notaFiscal : $("#notaFiscal").val(), valorRecebidoAnt : $('#valorRecebidoAnt').val(), 
+					  observacao: $("#observacao").val(), senhaGuia: $("#senhaGuia").val(), medicoCirurgiao: $("#medicoCirurgiao").val(),
+					  tipoGuia: $("#tipoGuia").val(),
+					  numeroGuia: $("#numeroGuia").val(),
+					  guiaPrincipal: $("#guiaPrincipal").val(),
+					  dataAutorizacao : $("#dataAutorizacao").val(),
+					//  senhaAutorizacao : $("#senhaAutorizacao").val(),
+					  dataValidadeSenha : $("#dataValidadeSenha").val(),
+					  dataEmissaoGuia : $("#dataEmissaoGuia").val(),
+					  tipoPlano :  $("#tipoPlano").val(),
+					  dataValidadeCarteira : $("#dataValidadeCarteira").val(),
+					  numeroCartaoNacionalSaude : $("#numeroCartaoNacionalSaude").val(), 
+					  codigoContratado : $("#codigoContratado").val(), 
+					  nomeContratado : $("#nomeContratado").val(), 
+					  atendimentoRN : $("#atendimentoRN").is(':checked')?1:0,
+					  codCNES : $("#codCNES").val(), 
+					  codigoContratadoExecutante : $("#codigoContratadoExecutante").val(), 
+					  nomeContratadoExecutante : $("#nomeContratadoExecutante").val(), 
+					  grauParticipacao : $("#grauParticipacao").val(),
+					  dataAssinaturaPrestador : $("#dataAssinaturaPrestador").val(),
+					  dataAssinaturaBeneficiario : $("#dataAssinaturaBeneficiario").val() },
 				beforeSend:function(){  
 				},  
 				success:function(data){  
-					$('#formProducao')[0].reset();  
-					window.parent.location.reload();
-					$('#listar-producao').DataTable().ajax.reload();
+				 	$('#formProducao')[0].reset();  
+			 	  	window.parent.location.reload();
+			   		$('#listar-producao').DataTable().ajax.reload();
+					// LIMPA O MODAL GUIA PRODUCAO MEDICA
+				 //	$('#form').reset();  
 				}  
 			   });  
 				}); 
@@ -1423,7 +1817,7 @@ $(document).ready(function(){
 		 confirm("Excluir procedimento? " +id);
 		location.assign("deleteProducao.php?id="+id);
 		});
-	</script>	
+</script>	
 	
 <!-- Editar conta médica -->	
 <script>
@@ -1460,6 +1854,8 @@ $(document).ready(function(){
 				$("#glosa").val(result[0][17]);
 				$("#saldo").val(result[0][18]);
 				$("#observacao").val(result[0][27]);
+				$("#senhaGuia").val(result[0][33]);
+				
 				$("#medicoCirurgiao").val(result[0][28]);
 				$("#notaFiscal").val(result[0][23]);
 				document.getElementById('formaPagamento').options[document.getElementById('formaPagamento').selectedIndex].text = result[0][25];
@@ -1468,13 +1864,15 @@ $(document).ready(function(){
 				$('#dataCobranca').datetimepicker({defaultDate:  result[0][20], format:'DD/MM/YYYY HH:mm'});
 				$('#dataRepasse').datetimepicker({defaultDate:  result[0][21], format:'DD/MM/YYYY HH:mm'});
 				$('#dataPrevisaoPagamento').datetimepicker({defaultDate:  result[0][22], format:'DD/MM/YYYY HH:mm'});
-			}
+
 			
+			}
+		
 		};
 		xmlhttp.open("GET", "operacoes_producao.php?id="+id, true);
 		xmlhttp.send(); 
 		});
-</script>	
+	</script>	
 	
 
 <script>
@@ -1490,7 +1888,8 @@ $(document).ready(function(){
 			$("#glosa").maskMoney('mask');	
 	}
 </script>	
-<!--
+ 
+
 <script>
 function getSaldo(val) {
 		//Calcula quantidade 
@@ -1519,7 +1918,7 @@ function getSaldo(val) {
 			confirm("Confirma glosa do procedimento ?");
 		}
 	}
-</script>	-->
+</script>	 
 
 <script>
 	function getSaldoDevedor(val) {
@@ -1530,21 +1929,23 @@ function getSaldo(val) {
 			//Calculo para procedimentos cadastrados
 			var adicional = $('#adicional').val();
 			var redutor = $('#redutor').val();
-		
-			adicional =  ((adicional/100) * ((valor * $('#quantidade').val())));
-			redutor = ((redutor/100) * ((valor * $('#quantidade').val())));
-			valor = ((valor * $('#quantidade').val())) + adicional - redutor;
+			// Calculo do percenutal para os procedimentos
+			valor = ((valor * $('#quantidade').val())) * ((adicional/100)+1);
+			redutor = valor*(redutor/100);
+			valor = valor - redutor;
 			valor = valor.toFixed(2);
 			document.getElementById("valor").value = valor;
 			$("#valor").maskMoney('mask');
+			
 			}
 		
 		else {
 			//Procedimentos lançados manualmente
 			valor = $("#valor").maskMoney('unmasked')[0];
-			adicional =  ((adicional/100) * ((valor * $('#quantidade').val())));
-			redutor = ((redutor/100) * ((valor * $('#quantidade').val())));
-			valor = ((valor * $('#quantidade').val())) + adicional - redutor;
+			// Calculo do percenutal para os procedimentos
+			valor = ((valor * $('#quantidade').val())) * ((adicional/100)+1);
+			redutor = valor*(redutor/100);
+			valor = valor - redutor;
 			valor = valor.toFixed(2);
 			document.getElementById("valor").value = valor;
 			$("#valor").maskMoney('mask');
@@ -1593,7 +1994,7 @@ function getSaldo(val) {
               		 body: function ( data, row, column, node ) {
               		      //Strip $ column to make it numeric
              			     //return (column === 13)  ? //data.replace( /[$,]/g, '' ) :	 data;
-							  if ((column ==12) || (column==18) || (column==19) || (column==20)) {
+							  if ((column ==13) || (column==19) || (column==20) || (column==21)) {
 								data = data.replace(/[\D]+/g, "" );
 								var tmp = parseInt(data);
 								tmp=tmp/100;
@@ -1639,6 +2040,12 @@ function getSaldo(val) {
 						action: function ( e, dt, node, config ) {
 									$("#modalEmail").modal();
 						},
+					},
+					{
+						text:'Xml',
+						action: function(e, dt, node, config){
+							$("#modalXml").modal();
+						}
 					},
 					{
 						text: 'Exibir/Ocultar',
@@ -1689,20 +2096,7 @@ function getSaldo(val) {
 		   alert("Obrigatório informar o período");
 		  }
 		 }); 
-
-		});
-</script>
-
-
-<script>
-
-/*$("#searchNoCarteira").keyup(function() {
-if (!this.value) {
-	alert('The box is empty');
-	$("#idpaciente").val("");
-}
-}); */
-
+	});
 </script>
 
 
@@ -1794,6 +2188,10 @@ $( function() {
                 $('#searchMedico').val(ui.item.label); // display the selected text
 				$('#idmedico').val(ui.item.value);	
 				$('#medico').val(ui.item.label);
+				$('#cpfMedico').val(ui.item.cpfMedico);
+				$('#crmMedico').val(ui.item.crm);
+				$('#ufCrmMedico').val(ui.item.ufCrm);
+				
 			    return false;
             }
         });
@@ -1830,9 +2228,7 @@ $( function() {
 				}
 			});
 
-	},
-		//	appendTo: "#modalReceita",
-		
+	},		
             select: function (event, ui) {
                 $('#searchCodProcedimento').val(ui.item.codigoProcedimento); // display the selected text
 				$('#searchProcedimento').val(ui.item.label);
@@ -1869,7 +2265,6 @@ $( function() {
                     }
                 });
             },
-			//appendTo: "#modalReceita",
 		
             select: function (event, ui) {
 				$('#searchCodProcedimento').val(ui.item.codigoProcedimento); // display the selected text
@@ -1940,6 +2335,23 @@ $( function() {
 		});
  </script>
 
+<script>
+		$( document ).ready(function() {
+			$('#start_date_report2').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+ </script>
+ 
+  <script>
+		$( document ).ready(function() {
+			$('#end_date_report2').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+ </script>
 
  <script>
 		$( document ).ready(function() {
@@ -2107,9 +2519,8 @@ $( function() {
 				beforeSend:function(){  
 				},  
 				success:function(data){ 
-					alert("Operação realizada com suscesso!");
+					alert("Operação realizada com sucesso!");
 					$('#listar-producao').DataTable().ajax.reload();
-
 				}  
 			   });   
 			}); 
@@ -2138,7 +2549,224 @@ $( function() {
 		});
 </script>
 
+<script>
+$(document).ready(function()
+	{
+	 $("#btnModalGuia").click(function(){
+		var idproducao = $("#idproducao").val();
+		if (idproducao == '') {
+		$("#modalGuiaProducaoMedica").modal("show");
+				$("#nomePacienteGuia").val($("#searchPaciente").val());
+				document.getElementById('nomePacienteGuia').disabled = true;
+				$("#numeroCarteiraGuia").val($("#searchNoCarteira").val());
+				document.getElementById('numeroCarteiraGuia').disabled = true;
+				$("#convenioGuia").find('option:selected').text($('#convenio').find('option:selected').text());
+				document.getElementById('convenioGuia').disabled = true;
+				$("#nomeMedicoExecutante").val($("#searchMedico").val());
+				document.getElementById('nomeMedicoExecutante').disabled = true;
+				document.getElementById('tipoConselho').disabled = true;
+				document.getElementById('crmMedico').disabled = true;
+				document.getElementById('ufCrmMedico').disabled = true;
+				document.getElementById('cpfMedico').disabled = true;
+				$("#senhaAutorizacao").val($("#senhaGuia").val());
+				document.getElementById('senhaAutorizacao').disabled = true;
+				
+		}
+		else {
+			alert(idproducao);
+			$("#modalGuiaProducaoMedica").modal("show");
+			$("#nomePacienteGuia").val($("#searchPaciente").val());
+				document.getElementById('nomePacienteGuia').disabled = true;
+				$("#numeroCarteiraGuia").val($("#searchNoCarteira").val());
+				document.getElementById('numeroCarteiraGuia').disabled = true;
+				$("#convenioGuia").find('option:selected').text($('#convenio').find('option:selected').text());
+				document.getElementById('convenioGuia').disabled = true;
+				$("#nomeMedicoExecutante").val($("#searchMedico").val());
+				document.getElementById('nomeMedicoExecutante').disabled = true;
+				document.getElementById('tipoConselho').disabled = true;
+				document.getElementById('crmMedico').disabled = true;
+				document.getElementById('ufCrmMedico').disabled = true;
+				document.getElementById('cpfMedico').disabled = true;
+			$.ajax({
+			url:"operacoes_producao.php?id="+idproducao,
+			type:"POST",
+            dataType: "json",
+			data:{
+			 	id: idproducao
+			},
+            beforeSend:function(){ 
+            },  
+			success:function(result){ 
+				
+                //Retorna ARRAY dos JSON  
+				//Informações das GUIAS 
+				$("#tipoGuia").val(result[0][29]);
+				$("#numeroGuia").val(result[0][30]);
+				$("#guiaPrincipal").val(result[0][31]);
+				$("#dataAutorizacao").val(result[0][32]);
+				$("#senhaAutorizacao").val(result[0][33]);
+				$("#dataValidadeSenha").val(result[0][34]);
+				$("#dataEmissaoGuia").val(result[0][35]);
+				$("#tipoPlano").val(result[0][36]);
+				$("#dataValidadeCarteira").val(result[0][37]);
+				$("#numeroCartaoNacionalSaude").val(result[0][38]);
+				$("#codigoContratado").val(result[0][39]); 
+				$("#nomeContratado").val(result[0][40]); 
+				result[0][41]==1?$("#atendimentoRN").prop('checked',true):$("#atendimentoRN").prop('checked',false);
+				$("#codCNES").val(result[0][42]);
+				$("#codigoContratadoExecutante").val(result[0][43]); 
+				$("#nomeContratadoExecutante").val(result[0][44]); 
+				$("#grauParticipacao").val(result[0][45]);
+				$("#dataAssinaturaPrestador").val(result[0][46]);
+				$("#dataAssinaturaBeneficiario").val(result[0][47])
+				}  
+		   });
+	 	}
+	});
+});
+</script>
 
+<script>
+// search HOSPITAL CONTRATADO SOLICITANTE
+$( function() {
+      $( "#nomeContratado" ).autocomplete({
+            source: function( request, response ) {
+                
+                $.ajax({
+                    url: "fetchData.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        searchhospital: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+			appendTo: "#modalGuiaProducaoMedica",
+		
+            select: function (event, ui) {
+				$('#nomeContratado').val(ui.item.label); // display the selected text
+				$('#codigoContratado').val(ui.item.value);
+			    return false;
+            }
+        });
+
+    });	
+</script>
+
+
+<script>
+// search HOSPITAL ONDE FOI EXECUTADO O PROCEDIMENTO
+$( function() {
+      $( "#nomeContratadoExecutante" ).autocomplete({
+            source: function( request, response ) {
+                
+                $.ajax({
+                    url: "fetchData.php",
+                    type: 'post',
+                    dataType: "json",
+                    data: {
+                        searchhospital: request.term
+                    },
+                    success: function( data ) {
+                        response( data );
+                    }
+                });
+            },
+			appendTo: "#modalGuiaProducaoMedica",
+		
+            select: function (event, ui) {
+                $('#nomeContratadoExecutante').val(ui.item.label); // display the selected text
+				$('#codigoContratadoExecutante').val(ui.item.value);
+			    return false;
+            }
+        });
+
+    });	
+</script>
+
+<script>
+	$(document).on('click','#btnExportarTissXls',function(e){
+			e.preventDefault();
+					var start = $('#start_date_report2').data('DateTimePicker').date().toString();
+					var date = new Date(start);
+					var start_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+				
+					var end = $('#end_date_report2').data('DateTimePicker').date().toString();
+					var date = new Date(end);
+					var end_date = date.getFullYear()+'-'+(date.getMonth() + 1) + '-' + date.getDate();
+					
+				   //var id = document.getElementById("tipoRelatorio2").value;
+
+				   var idconvenio = $("#convenio3").find('option:selected').text();
+				   var pdfff =$("#pdfff").val();
+					window.open("exportarTissXLS.php?id="+idconvenio+"&start_date="+start_date+"&end_date="+end_date+"&pdfff="+pdfff);
+		});
+</script>
+
+<script>
+		$('[data-dismiss=modal]').on('click', function (e) {
+			$('#modalGuiaProducaoMedica').on('hidden.bs.modal', function () {
+	
+			});
+		});
+</script>
+
+<script>
+		$( document ).ready(function() {
+			$('#dtAutorizacao').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtValCarteira').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtEmissaoGuia').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>	
+
+<script>
+		$( document ).ready(function() {
+			$('#dtValSenha').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>
+
+<script>
+		$( document ).ready(function() {
+			$('#dtAssinaturaPrestador').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>
+
+<script>
+		$( document ).ready(function() {
+			$('#dtAssinaturaBeneficiario').datetimepicker({
+			defaultDate: new Date(),
+			format:'DD/MM/YYYY'
+			});
+		});
+</script>
 <!-- END DATE FUNCTIONS -->	  
 
 </body>

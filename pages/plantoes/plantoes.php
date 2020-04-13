@@ -156,13 +156,6 @@ $hospital = getItensTable($mysql_conn, "hospital");
 							<div class="col-lg-2">
 								<button  type="button" class="btn btn-primary" title="gerenciarPlantaoes" onclick="location.assign('gerenciarPlantoes.php?add')">
 										Gerenciar</button>
-										<button class="printBtn btn btn-primary hidden-print">Imprimir</button>
-
-									<script type="text/javascript">
-									$('.printBtn').on('click', function (){
-										window.print();
-									});
-									</script>
 							</div>
 							<div class="col-lg-10">
 							</div>

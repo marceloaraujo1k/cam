@@ -1,9 +1,7 @@
 <?php
     include 'opendb.php';
 
-    $teste = $_SESSION['idfuncao'];
-
-    //echo $teste;
+    $idfuncao = $_SESSION['idfuncao'];
 
 ?>
 
@@ -56,8 +54,8 @@
 
          <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
+                    <ul class="nav" id="side-menu">
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
@@ -73,7 +71,7 @@
                             <a href="../gerencial/dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
                         </li>
                         
-                        <?php if($teste == 1){ ?>
+                        <?php if($idfuncao == 1){ ?>
 
 						 <li>
                             <a href="../pacientes/pacientes.php"><i class="fa fa-user fa-fw"></i> Pacientes </a>
@@ -81,13 +79,13 @@
 
                         <?php }?>
 
-                        <?php if($teste == 1){ ?>
+                        <?php if($idfuncao == 1){ ?>
                         <li>
                             <a href="../agendamento/agendamento.php"><i class="fa fa-calendar fa-fw"></i> Agendamento </a>
                         </li>
                         <?php } ?>
 
-                        <?php if($teste == 1){ ?>
+                        <?php if($idfuncao == 1){ ?>
 						
                         <li>
                             <a href="../plantoes/plantoes.php"><i class="fa fa-calendar fa-fw"></i> Plantões </a>
@@ -95,7 +93,7 @@
 
                         <?php }?>
 
-                        <?php if($teste == 1){ ?>
+                        <?php if($idfuncao == 1){ ?>
 						<li>
                             <a href="#"><i class="fa fa-bar-chart-o"></i> Financeiro<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -130,13 +128,12 @@
 								<li>
                                     <a href="../cid/cid.php">CID</a>
 								</li>
-							</ul>
                             <!-- /.nav-second-level -->
+							</ul>
                         </li>
                         <?php }?>
-						
-                    </div>
                 <!-- /.sidebar-collapse -->
+			</ul>
             </div>
             <!-- /.navbar-static-side -->
         </nav>

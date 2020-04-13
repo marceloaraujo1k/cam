@@ -40,6 +40,28 @@ $form = mysqli_fetch_assoc($query);
 	$dado[]=$form["statusPagamento"];
 	$dado[]=$form["observacao"];
 	$dado[]=$form["medicoCirurgiao"];
+   //29
+	$dado[]=$form["tipoGuia"];
+	$dado[]=$form["numeroGuia"];
+	$dado[]=$form["guiaPrincipal"];
+	$dado[]=$form["dataAutorizacao"];
+	$dado[]=$form["senhaAutorizacao"];
+	$dado[]=$form["dataValidadeSenha"];
+	$dado[]=$form["dataEmissaoGuia"];
+	$dado[]=$form["tipoPlano"];
+	$dado[]=$form["dataValidadeCarteira"];
+	$dado[]=$form["numeroCartaoNacionalSaude"];
+	$dado[]=$form["codigoContratado"];
+	$dado[]=$form["nomeContratado"];
+	$dado[]=$form["atendimentoRN"];
+	$dado[]=$form["codCNES"];
+	$dado[]=$form["codigoContratadoExecutante"];
+	$dado[]=$form["nomeContratadoExecutante"];
+	$dado[]=$form["grauParticipacao"];
+	$dado[]=$form["dataAssinaturaPrestador"];
+	$dado[]=$form["dataAssinaturaBeneficiario"];
+
+
 			
 $dados[] = $dado;
 

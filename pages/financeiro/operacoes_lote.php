@@ -22,16 +22,6 @@ if(!empty($form["id"])) {
 			}
 
 
-//$id = $_GET["id"];
-
-//$dados = array();
-
-//$query = mysqli_query($mysql_conn, "SELECT * FROM producao WHERE idproducao ='$id'");
-//$form = mysqli_fetch_assoc($query);
-				
-//$dados[] = $dado;
-
-		
 $json_data = array(
 	"draw" => intval(1),//para cada requisição é enviado um número como parâmetro
 	"recordsTotal" => intval(count($dados)),  //Quantidade de registros que há no banco de dados

@@ -3,10 +3,7 @@
     include '../opendb.php';
     include_once('../func.php');
     $medicos = getItensTable($mysql_conn,"medicos");
-    
-
-
-    
+        
     // Include autoLoader
 
     require_once "../../dist/dompdf/autoload.inc.php";

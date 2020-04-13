@@ -43,22 +43,41 @@ $query=null;
 if (!empty($id)){
 
   $query = "SELECT producao.idconvenio, producao.idmedico, producao.medico,  sum(producao.valorProcedimento) , producao.hospital, producao.dataPagamento,
-  sum(producao.valorRecebido) as total, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio 
-  FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND producao.hospital = '".$_GET["hospital"]."' 
-  AND producao.idmedico='".$_GET["id"]."' AND producao.".$dataOpcao."  BETWEEN '.$start_date.' AND '.$end_date.' group by producao.idmedico;";
+  sum(producao.valorProcedimento) as total, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio 
+  FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where  convenio.classificacao like 'ELETIVAS' AND producao.hospital = '".$_GET["hospital"]."' 
+  AND producao.idmedico='".$_GET["id"]."' AND producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."' group by producao.idmedico;";
+
+$query2 = "SELECT sum(producao.valorProcedimento) as totalFatura FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where  convenio.classificacao like 'ELETIVAS'
+ AND producao.hospital = '".$_GET["hospital"]."'  AND producao.idmedico='".$_GET["id"]."'
+ AND producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."' group by producao.idmedico;";
+
+
 }
 else {
   $query =  "SELECT producao.idconvenio, producao.idmedico, producao.medico,  sum(producao.valorProcedimento) , producao.hospital, 
-  sum(producao.valorRecebido) as total, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
-  on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND  producao.hospital = '".$_GET["hospital"]."' 
-  AND producao.".$dataOpcao."  BETWEEN '.$start_date.' AND '.$end_date.' group by producao.idmedico;";
+  sum(producao.valorProcedimento) as total, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
+  on producao.idconvenio = convenio.idconvenio  where  convenio.classificacao like 'ELETIVAS' AND  producao.hospital = '".$_GET["hospital"]."' 
+  AND producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."' group by producao.idmedico;";
+  
+
+  $query2 = "SELECT sum(producao.valorProcedimento) as totalFatura FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio
+   where  convenio.classificacao like 'ELETIVAS' AND producao.hospital = '".$_GET["hospital"]."' 
+  AND producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."'";
+  
+
 }
 
 $result = mysqli_query($mysql_conn, $query);
+$row= mysqli_fetch_assoc($result);
 
 
-$mesFatura = $start_date;
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+$base=strtotime(date($start_date,time()) . '-01 00:00:01');
+$mesFatura = strftime('%B %Y', strtotime('-1 month', $base));
 
+
+$result2 = mysqli_query($mysql_conn, $query2);
+$row2 = mysqli_fetch_assoc($result2);
 
 $pdf=new PDF_MC_Table();
 
@@ -73,13 +92,11 @@ $pdf->AddPage("p");
 	$pdf->SetX(2);
 	$pdf->SetFillColor(166,166,166);
 	$pdf->SetTextColor(255,255,255);
-	$pdf->Cell(140,5,utf8_decode('FATURA ELETIVAS'),1,0,'C',true);
+	$pdf->Cell(140,5,utf8_decode('FATURA DE ELETIVAS'),1,0,'C',true);
 	$pdf->Cell(30,5,utf8_decode("PERÍODO:"),1,0,'C',true);
-	setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
-	date_default_timezone_set('America/Sao_Paulo');
 	$pdf->SetFillColor(255,255,0);
 	$pdf->SetTextColor(0,0,0);
-	$pdf->Cell(35,5,strftime('%B %Y', strtotime($mesFatura)),1,1,'C',true);
+	$pdf->Cell(35,5,$mesFatura,1,1,'C',true);
 	
 	$pdf->SetFillColor(166,166,166);
 	$pdf->SetTextColor(255,255,255);
@@ -159,12 +176,12 @@ $pdf->AddPage("p");
 
 	$pdf->SetFillColor(242,242,242);
 	$pdf->SetTextColor(0,0,0);
-	$pdf->Cell(45,5,utf8_decode('AGÊNCIA'),'LRB',1,'C',true);
+	$pdf->Cell(25,5,utf8_decode('AGÊNCIA'),'LRB',0,'C',true);
 	$pdf->SetFillColor(255,255,255);
 	$pdf->SetTextColor(0,0,0);
+	$pdf->Cell(20,5,'','LRTB',1,'C',true);
 
-	$pdf->SetFillColor(242,242,242);
-	$pdf->SetFillColor(255,255,0);
+
   
 
 
@@ -186,9 +203,10 @@ $pdf->AddPage("p");
 
 	$pdf->SetFillColor(242,242,242);
 	$pdf->SetTextColor(0,0,0);
-	$pdf->Cell(45,5,utf8_decode('CONTA CORRENTE'),'LRB',1,'C',true);
+	$pdf->Cell(25,5,utf8_decode('C/C'),'LRB',0,'C',true);
 	$pdf->SetFillColor(255,255,255);
 	$pdf->SetTextColor(0,0,0);
+	$pdf->Cell(20,5,'','LRTB',1,'C',true);
 
 
 
@@ -210,10 +228,10 @@ $pdf->AddPage("p");
 
 	$pdf->SetFillColor(242,242,242);
 	$pdf->SetTextColor(0,0,0);
-	$pdf->Cell(45,5,utf8_decode('R$ FATURA	'),'LRB',1,'C',true);
+	$pdf->Cell(25,5,utf8_decode('R$ FATURA	'),'LRB',0,'C',true);
 	$pdf->SetFillColor(255,255,255);
 	$pdf->SetTextColor(0,0,0);
-
+	$pdf->Cell(20,5,'R$ '.number_format($row2["totalFatura"],2,",","."),'LRTB',1,'C',true);
 
 	// Line break
   	$pdf->Ln(10);
@@ -265,15 +283,15 @@ $query1=null;
 
   if(!empty($id)){
     $query1 =  "SELECT producao.dataRealizacao, producao.paciente, producao.idmedico, producao.medico, producao.codigoProcedimento, producao.descricaoProcedimento, 
-    producao.dataPagamento, producao.valorProcedimento, producao.valorRecebido, producao.hospital, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, 
-    convenio.classificacao, convenio.idconvenio FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND producao.idmedico='".$_GET["id"]."'
-    AND producao.hospital = '".$_GET["hospital"]."' AND producao.".$dataOpcao."  BETWEEN '.$start_date.' AND '.$end_date.' ;"; 
+    producao.dataPagamento, producao.valorProcedimento, producao.valorRecebido, producao.hospital, producao.medicoCirurgiao, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, 
+    convenio.classificacao, convenio.idconvenio FROM producao inner join convenio on producao.idconvenio = convenio.idconvenio  where   convenio.classificacao like 'ELETIVAS' AND producao.idmedico='".$_GET["id"]."'
+    AND producao.hospital = '".$_GET["hospital"]."' AND producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."' order by producao.paciente;"; 
       }
   else {
     $query1 =  "SELECT producao.dataRealizacao, producao.paciente, producao.idmedico, producao.medico, producao.codigoProcedimento, producao.descricaoProcedimento, 
-     producao.valorProcedimento, producao.valorRecebido,  producao.hospital, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
-    on producao.idconvenio = convenio.idconvenio  where  producao.idconvenio = 21 AND producao.hospital = '".$_GET["hospital"]."'  AND 
-    producao.".$dataOpcao."  BETWEEN '.$start_date.' AND '.$end_date. ' order by producao.idmedico;";    
+     producao.valorProcedimento, producao.valorRecebido,  producao.hospital, producao.medicoCirurgiao, convenio.pis, convenio.cofins, convenio.csll, convenio.irpj, convenio.iss, convenio.outros_encargos, convenio.classificacao, convenio.idconvenio FROM producao inner join convenio 
+    on producao.idconvenio = convenio.idconvenio  where  convenio.classificacao like 'ELETIVAS' AND producao.hospital = '".$_GET["hospital"]."'  AND 
+	producao.".$dataOpcao."  BETWEEN '".$start_date."' AND '".$end_date."' order by producao.idmedico, producao.paciente;";  
    }
 
 $result1 = mysqli_query($mysql_conn, $query1);
@@ -289,19 +307,24 @@ $pdf->Cell(24,5,''.utf8_decode("R$"),1,1,"C",true);
  
 $pdf->Cell(20,5,''.utf8_decode("REALIZAÇÃO"),"LRB",0,"C",true);
 $pdf->Cell(50,5,''.utf8_decode(""),1,0,"L",true);
-$pdf->Cell(30,5,''.utf8_decode("CÓD"),1,0,"L",true);
-$pdf->Cell(30,5,''.utf8_decode("DESCRIÇÃO"),1,0,"L",true);
-$pdf->Cell(40,5,''.utf8_decode("ANESTESIOL."),1,0,"L",true);
+$pdf->Cell(30,5,''.utf8_decode("CIRURGIÃO"),1,0,"C",true);
+$pdf->Cell(30,5,''.utf8_decode("DESCRIÇÃO"),1,0,"C",true);
+$pdf->Cell(40,5,''.utf8_decode("ANESTESIOL."),1,0,"C",true);
 $pdf->Cell(24,5,''.utf8_decode(""),1,1,"L",true);
 
 $pdf->SetFillColor(255,255,255);
 $pdf->SetTextColor(0,0,0);
+/*
+$pdf->Cell(20,5,''.utf8_decode("CÓD."),1,0,"L");
+$pdf->Cell(60,5,''.utf8_decode("DESCRIÇÃO"),1,0,"L");
+$pdf->Cell(20,5,''.utf8_decode("ANESTESIOL."),1,0,"L");*/
+
 
 $pdf->SetWidths(array(20,50,30,30,40,24));
 
 if(mysqli_num_rows($result1) > 0){
     while($row1= mysqli_fetch_assoc($result1)){
-		$pdf->Row(array(date('d/m/Y', strtotime($row1["dataRealizacao"])), utf8_decode($row1["paciente"]), utf8_decode($row1["codigoProcedimento"]), utf8_decode($row1["descricaoProcedimento"]),  utf8_decode($row1["medico"]), number_format($row1["valorRecebido"],2,",",".")));
+		$pdf->Row(array(date('d/m/Y', strtotime($row1["dataRealizacao"])), utf8_decode($row1["paciente"]), utf8_decode($row1["medicoCirurgiao"]), utf8_decode($row1["descricaoProcedimento"]),  utf8_decode($row1["medico"]), number_format($row1["valorProcedimento"],2,",",".")));
 		}
 	 }
 

@@ -15,7 +15,7 @@ else {
 		print_r($form);
 	$query	= "UPDATE usuarios SET nome='$form[nome]', login='$form[login]', idfuncao='$form[idfuncao]', idempresa='$form[idempresa]' WHERE idusuario='$form[id]'";	
 	mysqli_query($mysql_conn,$query);
-//	header('location: usuarios.php' );
+	header('location: usuarios.php' );
 	}
 }	
 	

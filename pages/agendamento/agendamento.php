@@ -1,5 +1,16 @@
 <?php
+
+/* Valida usuário - empresa - função */
 session_start();
+if((!isset ($_SESSION['user']) == true) and (!isset ($_SESSION['idempresa']) == true))
+{
+  unset($_SESSION['user']);
+  unset($_SESSION['idempresa']);
+  session_destroy();
+  header('location:../login.php');
+  }
+
+
 include '../opendb.php';
 include_once('../func.php');
 
@@ -42,7 +53,7 @@ $medicos = getItensTable($mysql_conn, "medicos");
 						right: 'month,agendaWeek,agendaDay'
 					},
 
-					defaultDate: Date(),
+					defaultDate: Date.now(),
 					navLinks: true, // can click day/week names to navigate views
 					editable: true,
 					eventLimit: true, // allow "more" link when too many events
