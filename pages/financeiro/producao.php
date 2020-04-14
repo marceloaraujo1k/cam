@@ -158,7 +158,30 @@ $form["saldoDevedor"]=null;
 											?>
 										</select>
 						</div>
-
+										<div class="form-group col-sm-2">
+										<br>
+											<label for="convenio">Hospital/Clínica</label>
+											<select id="filtroHospital" name="filtroHospital" class="form-control">
+											<option value=""></option>
+											<?php
+											for($i=0; $i<count($hospital); $i++)
+											{
+											if($form["idhospital"] == $hospital[$i]['idhospital'])
+											{	
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" selected><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											else
+											{
+											?>
+											<option value="<?=$hospital[$i]['idhospital']?>" ><?=$hospital[$i]['hospital']?></option>
+											<?php
+											}
+											}
+											?>
+										</select>
+									</div>					
 						<div class="form-group col-sm-2"> 
 								<br>
 								<p id="resultado"></p>
@@ -1964,7 +1987,7 @@ function getSaldo(val) {
 		});
 		
 		 fetch_data('no');
-	function fetch_data(is_date_search, start_date='', end_date='', filterData, filterConvenio)
+	function fetch_data(is_date_search, start_date='', end_date='', filterData, filterConvenio, filterHospital)
 		 {
 		   dataTable = $('#listar-producao').DataTable({
 		   "processing" : true,
@@ -2069,7 +2092,7 @@ function getSaldo(val) {
 			url:"fetch_producao.php",
 			type:"POST",
 			data:{
-			 is_date_search:is_date_search, start_date:start_date, end_date:end_date, filterData:filterData, filterConvenio: filterConvenio
+			 is_date_search:is_date_search, start_date:start_date, end_date:end_date, filterData:filterData, filterConvenio: filterConvenio, filterHospital: filterHospital,
 			}
 		   }
 		  });
@@ -2089,7 +2112,9 @@ function getSaldo(val) {
 		   $('#listar-producao').DataTable().destroy();
 		   	filterData = document.getElementById("filtroData").value;
 			filterConvenio = $("#filtroConvenio").find('option:selected').val();
-			fetch_data('yes', start_date, end_date, filterData, filterConvenio);
+			filterHospital = $("#filtroHospital").find('option:selected').text();
+			
+			fetch_data('yes', start_date, end_date, filterData, filterConvenio, filterHospital);
 		  }
 		  else
 		  {

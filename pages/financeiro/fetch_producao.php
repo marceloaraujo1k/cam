@@ -38,7 +38,7 @@ if($_POST["is_date_search"] == "yes")
 							 $query .= 'dataRealizacao BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND '; 
 							} 
 							else {
-								$query .= 'dataRealizacao BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+								$query .= 'dataRealizacao BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND hospital="'.$_POST["filterHospital"].'" AND '; 
 							}
 						break;
 						case '1':
@@ -46,7 +46,7 @@ if($_POST["is_date_search"] == "yes")
 								 $query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
 							}
 							else {
-								$query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+								$query .= 'dataCobranca BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND hospital="'.$_POST["filterHospital"].'" AND '; 
 							}
 						break;
 						case '2':
@@ -54,7 +54,7 @@ if($_POST["is_date_search"] == "yes")
 								 $query .= 'dataPagamento BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
 							}
 							else {
-								$query .= 'dataPagamento BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+								$query .= 'dataPagamento BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND hospital="'.$_POST["filterHospital"].'" AND '; 
 							}
 						break;
 						case '3':
@@ -62,7 +62,7 @@ if($_POST["is_date_search"] == "yes")
 								 $query .= 'dataRepasse BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND ';
 							}
 							else {
-								$query .= 'dataRepasse BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND '; 
+								$query .= 'dataRepasse BETWEEN "'.$_POST["start_date"].'" AND "'.$_POST["end_date"].'" AND idconvenio="'.$_POST["filterConvenio"].'" AND hospital="'.$_POST["filterHospital"].'" AND '; 
 							}
 						break;
 
@@ -101,6 +101,8 @@ if($_POST["length"] != -1)
 {
  $query1 = 'LIMIT ' . $_POST['start'] . ', ' . $_POST['length'];
 }
+
+//print_r($query);
 
 $number_filter_row = mysqli_num_rows(mysqli_query($conn, $query));
 

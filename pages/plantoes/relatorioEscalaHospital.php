@@ -17,16 +17,13 @@ $end_date = $_GET["end_date"];
 // Essa variavel define o tipo de filtro de data  "0"=Data de Realização  | "1=Data de Cobrança  | "2"=Data de Pagamento | "3"=Data de Repasse
 $filtroDataTipo = $_GET["filtroDataTipo"];
 
-$diasemana = array("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado");
-
-
-$dataOpcao = null;
-
 switch ($filtroDataTipo) {
 	case '0':
     $dataOpcao = "dataInicio";
     break;
 	}
+
+$dataOpcao = null;
 
 
 $pdf=new PDF_MC_Table();
@@ -67,37 +64,46 @@ $pdf->Ln(10);
 $pdf->SetFont('arial','',7);
 
 
-$query_date = '2020-02-01';
+// VETOR DIA DA SEMANA
+$diasemana = array("Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado");
 
-$source_date = strtotime($query_date);
+//DATA PARA CONFIGURAÇÃO DO CALENDARIO
+$mesReferencia = '2020-02-01';
+
+$source_date = strtotime($mesReferencia);
 $dat_ini = new DateTime(date('Y-m-01', $source_date));
 $dat_fin = new DateTime(date('Y-m-t', $source_date));
 
 $NumeroSemanas = (int)$dat_fin->format('W') - (int)$dat_ini->format('W') + 1;
 
-$diaAtual = $dat_ini->format('d');
 $dat_fin = $dat_fin->format('d');
-
 $diaSemanaInicial = $dat_ini->format('w');
 $idSemana = 1;
+
+
 $contadorDiasSemana =0;
 $qtdDias = 0;
 
-if ($diaSemanaInicial != 0) {
+// VERIFICA E IMPRIME CASO A SEMANA NÃO INICIE NO DIA CORRRETO
+	if ($diaSemanaInicial != 0) {
 	$pdf->Cell(20,5,''.utf8_encode("SEMANA ".$idSemana),1,0,"L");
-	for ($j=1; $j<$diaSemanaInicial; $j++) {
-		$pdf->Cell(38,5,'',1,0,"C");
+		for ($j=1; $j<$diaSemanaInicial; $j++) {
+			$pdf->Cell(38,5,'',1,0,"C");		
+		}
 	}
-}
 	else {
 		$pdf->Cell(20,5,''.utf8_encode("SEMANA ".$idSemana),1,0,"L");
 	}
-
-    for ($i=0; $i<$dat_fin; $i++) { 
+	
+	
+	
+	for ($i=0; $i<$dat_fin; $i++) { 
        $dat_atual = new DateTime(date('d-m-Y', $source_date));
        $dat_atual->modify('+'.$i.' day');  
        $diasemanaAtual =  $dat_atual->format('w');
-	     	
+	   
+	   $qtdDias = $qtdDias+1;
+
 	   if ($diasemanaAtual == 1) {
            $pdf->Cell(38,5,$dat_atual->format('d-m-Y').'   '.utf8_decode($diasemana[$diasemanaAtual]),1,0,"C");
 	   }
@@ -121,15 +127,18 @@ if ($diaSemanaInicial != 0) {
 				$pdf->Cell(38,5,$dat_atual->format('d-m-Y').'    '.utf8_decode($diasemana[$diasemanaAtual]),1,1,"C");
 				$pdf->Cell(20,5,''.utf8_encode("07:00 as 13:00h "),1,0,"L");
 				$katual=$dat_atual->format('d');
-				for ($k=$katual; $k<=$katual; $k--) {
-					$pdf->Cell(38,5, $k.' --- qtdDia'.$qtdDias,1,1,"L");
+				$qtdDias;
+				for ($k=$katual; $k>=$qtdDias; $k--) {
+					$pdf->Cell(38,5, $k.' --- qtdDia='.$qtdDias,1,0,"L");
 				}
+				$pdf->Cell(38,5, $k.' --- qtdDia='.$qtdDias,1,1,"L");
+				
 				$qtdDias=0;
 									
 				$idSemana = $idSemana+1;
 				$pdf->Cell(20,5,''.utf8_encode("SEMANA ".$idSemana),1,0,"L");
 		}
-		$qtdDias = $qtdDias+1;
+	
 	}
 
 
